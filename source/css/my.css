@@ -57,6 +57,36 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     line-height: 1;
 }
 
+/* 导航栏整体对齐：左侧 logo 与右侧菜单同一水平线（垂直居中） */
+#headNav .nav-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 64px;
+}
+
+#headNav .brand-logo {
+    display: flex;
+    align-items: center;
+    height: 64px;
+}
+
+#headNav .brand-logo a {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+#headNav .brand-logo .logo-img {
+    vertical-align: middle;
+    align-self: center;
+}
+
+#headNav .brand-logo .logo-span {
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+}
+
 /* =========================================
    文章正文恢复普通渲染（技术文档清晰可读）
    ========================================= */
