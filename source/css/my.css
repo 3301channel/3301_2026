@@ -30,3 +30,8 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     margin: 0;
     z-index: 99;
 }
+
+/* 导航栏恢复原版紫色背景（参考旧版博客） */
+.bg-color {
+    background-image: linear-gradient(to right, #4f43ae 0%, #7253ce 100%) !important;
+}

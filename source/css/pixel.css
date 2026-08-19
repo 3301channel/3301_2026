@@ -20,9 +20,6 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6,
-.logo-span,
-.nav-menu a,
-.nav-menu span,
 .card .card-image .card-title,
 .chip,
 .btn,
@@ -67,50 +64,8 @@ body::after {
     z-index: 9999;
 }
 
-/* ---------- 3. 导航霓虹化 ---------- */
-#headNav,
-.bg-color {
-    background-image: none !important;
-    background-color: rgba(10, 10, 20, 0.92) !important;
-    border-bottom: 1px solid rgba(0, 255, 249, 0.5) !important;
-    box-shadow: 0 0 15px rgba(0, 255, 249, 0.35) !important;
-}
-
-.logo-span {
-    color: #00fff9 !important;
-    font-size: 20px;
-    letter-spacing: 0;
-    text-shadow:
-        0 0 5px #00fff9,
-        0 0 12px #00fff9,
-        0 0 24px #00fff9 !important;
-}
-
-/* 导航菜单：不换行 + 颜色统一 + 紧凑横向对齐 */
-.nav-menu {
-    white-space: nowrap;
-}
-
-.nav-menu li.nav-item {
-    margin: 0 4px;
-}
-
-.nav-menu a,
-.nav-menu span {
-    color: #00fff9 !important;
-    font-size: 14px;
-    letter-spacing: 0;
-    white-space: nowrap;
-    transition: all 0.2s;
-}
-
-.nav-menu a:hover {
-    color: #ff2d95 !important;
-    text-shadow:
-        0 0 6px #ff2d95,
-        0 0 16px #ff2d95,
-        0 0 30px #ff2d95 !important;
-}
+/* 导航栏样式交给 Matery 原版（不覆盖），由 _config.matery.yml 的 .bg-color 决定。
+   原因：像素字体在导航栏太宽会导致 7 个菜单项换行；原版普通字体 + 整齐布局更合适。 */
 
 /* ---------- 4. 标题霓虹光晕 ---------- */
 h1, h2, h3, h4, h5, h6,
