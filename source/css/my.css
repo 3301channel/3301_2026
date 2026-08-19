@@ -129,6 +129,23 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     font-size: 13px !important;
 }
 
+/* 文章内代码块去霓虹：普通深色背景、无霓虹边框/光晕 */
+#articleContent pre,
+#articleContent figure.highlight,
+#articleContent .highlight {
+    border: none !important;
+    box-shadow: none !important;
+    background: #1e1e2e !important;
+    text-shadow: none !important;
+}
+
+#articleContent code {
+    border: none !important;
+    background: transparent !important;
+    text-shadow: none !important;
+    color: #e0e0e0 !important;
+}
+
 #articleContent a {
     color: #4fc3f7 !important;
     text-shadow: none !important;

@@ -15,20 +15,10 @@ let reprintPolicy = page.reprintPolicy || theme.reprint.default || 'cc_by';
                     <a href="<%- url_for('/about') %>" rel="external nofollow noreferrer"><%- page.author || config.author %></a>
                 </span>
             </div>
-            <div class="reprint__type">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-link">
-                        <%= __('link') %>:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    <a href="<%- config.url %><%- url_for(page.path) %>"><%- config.url %><%- url_for(page.path) %></a>
-                </span>
-            </div>
             <div class="reprint__download">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-download">
-                        下载 Markdown:
+                        下载:
                     </i>
                 </span>
                 <span class="reprint-info">
