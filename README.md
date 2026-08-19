@@ -2,7 +2,7 @@
 
 个人博客，基于 [Hexo](https://hexo.io/) + [Matery 主题](https://github.com/blinkfox/hexo-theme-matery) 构建，通过 GitHub Pages 发布。
 
-博客地址：<https://abc3301.github.io/>
+博客地址：<https://3301channel.github.io/3301_2026/>
 
 ## 本地开发
 
@@ -23,7 +23,7 @@ npm run clean && npm run build
 ## 目录结构
 
 ```
-abc3301.github.io/
+3301_2026/
 ├── _config.yml          # 站点配置
 ├── _config.matery.yml   # Matery 主题配置
 ├── scaffolds/           # 文章模板
@@ -47,6 +47,13 @@ npx hexo new "文章标题"
 
 ## 部署
 
-推送代码到 `main` 分支后，GitHub Actions 会自动构建并部署到 `gh-pages` 分支。
+手动部署步骤：
 
-> 首次使用需在仓库 `Settings → Pages` 中将 Source 设置为 `gh-pages` 分支。
+```bash
+npx hexo generate          # 生成静态文件到 public/
+cd public
+git init && git add -A && git commit -m "deploy"
+git push -f https://github.com/3301channel/3301_2026.git HEAD:gh-pages
+```
+
+> Pages 已配置为从 `gh-pages` 分支发布，推送后稍等片刻即可在 <https://3301channel.github.io/3301_2026/> 访问。
