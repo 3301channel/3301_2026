@@ -23,6 +23,9 @@ menu:
   Contact:
     url: /contact
     icon: fas fa-comments
+  OldBlog:
+    url: https://3301channel.github.io
+    icon: fas fa-clock-rotate-left
 
 # 站点运行时间（可选）
 time:
