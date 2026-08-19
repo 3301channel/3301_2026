@@ -25,6 +25,16 @@ let reprintPolicy = page.reprintPolicy || theme.reprint.default || 'cc_by';
                     <a href="<%- config.url %><%- url_for(page.path) %>"><%- config.url %><%- url_for(page.path) %></a>
                 </span>
             </div>
+            <div class="reprint__download">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-download">
+                        下载 Markdown:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="<%- url_for('/md/' + page.slug + '.md') %>" download>点击下载本文 .md 源文件</a>
+                </span>
+            </div>
             <div class="reprint__notice">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-copyright">
