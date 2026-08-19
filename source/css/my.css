@@ -37,54 +37,60 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     background-color: #0a0a14 !important;
 }
 
-/* 导航栏菜单项纵向对齐：icon 与文字垂直居中，消除上下参差 */
-.nav-menu > li > a {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center;
-}
-
-.nav-menu > li > a i {
-    display: inline-flex;
-    align-items: center;
-    margin-right: 6px;
-    vertical-align: middle;
-}
-
-.nav-menu > li > a span {
-    display: inline-flex;
-    align-items: center;
-    line-height: 1;
-}
-
-/* 导航栏整体对齐：左侧 logo 与右侧菜单同一水平线（垂直居中） */
+/* 导航栏对齐：统一 line-height，logo 与菜单文字同一水平线 */
 #headNav .nav-wrapper {
-    display: flex !important;
-    align-items: center !important;
-    min-height: 64px;
+    display: flex;
+    align-items: center;
 }
 
 #headNav .brand-logo {
-    display: flex;
-    align-items: center;
     height: 64px;
+    line-height: 64px;
 }
 
 #headNav .brand-logo a {
-    display: flex;
-    align-items: center;
-    line-height: 1;
+    display: inline-block;
+    line-height: 64px;
 }
 
 #headNav .brand-logo .logo-img {
+    height: 42px;
     vertical-align: middle;
-    align-self: center;
+    margin-right: 6px;
 }
 
 #headNav .brand-logo .logo-span {
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
+    vertical-align: middle;
+    line-height: 64px;
+}
+
+.nav-menu {
+    height: 64px;
+    line-height: 64px;
+}
+
+.nav-menu > li {
+    float: left;
+    height: 64px;
+}
+
+.nav-menu > li > a {
+    display: inline-block;
+    padding: 0 14px;
+    line-height: 64px;
+    height: 64px;
+    box-sizing: border-box;
+}
+
+.nav-menu > li > a i {
+    vertical-align: middle;
+    margin-right: 4px;
+    line-height: 64px;
+}
+
+.nav-menu > li > a span {
+    vertical-align: middle;
+    line-height: 64px;
 }
 
 /* =========================================
