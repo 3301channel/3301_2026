@@ -1,0 +1,32 @@
+/* =========================================
+   3301 channel 自定义样式
+   ========================================= */
+
+/* 像素风格开关：删除/注释下面这行即可换回原主题风格 */
+@import url("pixel.css");
+
+/* 修复：夜间模式下吸底音乐播放器位置偏移。
+   主题 dark.css 中 `body.DarkMode .aplayer` 设了
+   margin:5px + position:relative，覆盖了吸底播放器
+   的 fixed 定位，导致播放器跑偏。此处用更高优先级
+   的规则还原吸底定位。 */
+body.DarkMode .aplayer.aplayer-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    z-index: 99;
+    overflow: visible;
+    max-width: 400px;
+    box-shadow: none;
+}
+
+body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    z-index: 99;
+}

@@ -1,0 +1,131 @@
+# Hexo 站点配置
+# 文档: https://hexo.io/zh-cn/docs/configuration.html
+
+# 站点
+title: 3301 channel
+subtitle: '记录与分享 · 3301'
+description: '3301 channel - 个人博客，分享杂志、影视、学习资料与生活记录'
+keywords: '3301 channel, 博客, blog, 3301'
+author: ZhangSki
+language: zh-CN
+timezone: 'Asia/Shanghai'
+
+# URL
+## 如果你的站点放在子目录，把 url 设置为 'https://yoursite.com/child'，root 设置为 '/child/'
+url: https://abc3301.github.io/3301_2026/
+root: /3301_2026/
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true   # 设置为 false 时，会在链接末尾去除 index.html
+  trailing_html: true    # 设置为 false 时，会在链接末尾去除 .html
+
+# 目录
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# 写作
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+# 首页分页
+index_generator:
+  path: ''
+  per_page: 12
+  order_by: -date
+
+# 分类 & 标签
+default_category: uncategorized
+category_map:
+tag_map:
+
+# 日期 / 时间格式
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option 支持 'mtime'（文件修改时间）、'empty'（无 updated）、'date'（使用日期）
+updated_option: 'mtime'
+
+# 分页
+per_page: 10
+pagination_dir: page
+
+# 主题
+theme: matery
+
+# 部署
+deploy:
+  type: git
+  repo: https://github.com/abc3301/abc3301.github.io.git
+  branch: main
+
+# 搜索（hexo-generator-search）
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+# 订阅（hexo-generator-feed）
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: favicon.png
+
+# 站点地图（hexo-generator-sitemap）
+sitemap:
+  path: sitemap.xml
+
+# 看板娘（hexo-helper-live2d）
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  log: false
+  model:
+    use: haru-02
+  display:
+    position: left
+    width: 150
+    height: 300
+  mobile:
+    show: true
+  react:
+    opacity: 0.7
