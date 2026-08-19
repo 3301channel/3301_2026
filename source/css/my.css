@@ -97,6 +97,17 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     line-height: 64px;
 }
 
+/* 移动端：logo（图标 + 文字）整体居中，参考原版 Matery 摆放。
+   手机端菜单收起为汉堡按钮，logo 居中不会与菜单重叠。 */
+@media only screen and (max-width: 992px) {
+    #headNav .brand-logo {
+        left: 50%;
+        right: auto;
+        top: 0;
+        transform: translateX(-50%);
+    }
+}
+
 /* =========================================
    文章正文恢复普通渲染（技术文档清晰可读）
    ========================================= */
