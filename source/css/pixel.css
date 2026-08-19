@@ -78,15 +78,29 @@ body::after {
 
 .logo-span {
     color: #00fff9 !important;
+    font-size: 20px;
+    letter-spacing: 0;
     text-shadow:
         0 0 5px #00fff9,
         0 0 12px #00fff9,
         0 0 24px #00fff9 !important;
 }
 
+/* 导航菜单：不换行 + 颜色统一 + 紧凑横向对齐 */
+.nav-menu {
+    white-space: nowrap;
+}
+
+.nav-menu li.nav-item {
+    margin: 0 4px;
+}
+
 .nav-menu a,
 .nav-menu span {
-    color: #9ffcf9 !important;
+    color: #00fff9 !important;
+    font-size: 14px;
+    letter-spacing: 0;
+    white-space: nowrap;
     transition: all 0.2s;
 }
 
