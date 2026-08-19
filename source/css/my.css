@@ -37,13 +37,16 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     background-color: #0a0a14 !important;
 }
 
-/* 导航栏对齐：统一 line-height，logo 与菜单文字同一水平线 */
+/* 导航栏：logo 靠左，菜单靠右，line-height 统一垂直对齐 */
 #headNav .nav-wrapper {
-    display: flex;
-    align-items: center;
+    position: relative;
 }
 
 #headNav .brand-logo {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     height: 64px;
     line-height: 64px;
 }
@@ -65,6 +68,7 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
 }
 
 .nav-menu {
+    float: right;
     height: 64px;
     line-height: 64px;
 }
