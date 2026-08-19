@@ -31,7 +31,80 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     z-index: 99;
 }
 
-/* 导航栏恢复原版紫色背景（参考旧版博客） */
+/* 导航栏背景统一为深色（和页面背景一个颜色） */
 .bg-color {
-    background-image: linear-gradient(to right, #4f43ae 0%, #7253ce 100%) !important;
+    background-image: none !important;
+    background-color: #0a0a14 !important;
+}
+
+/* 导航栏菜单项纵向对齐：icon 与文字垂直居中，消除上下参差 */
+.nav-menu > li > a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center;
+}
+
+.nav-menu > li > a i {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.nav-menu > li > a span {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+/* =========================================
+   文章正文恢复普通渲染（技术文档清晰可读）
+   ========================================= */
+#articleContent {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif !important;
+    letter-spacing: 0 !important;
+    text-shadow: none !important;
+}
+
+#articleContent h1,
+#articleContent h2,
+#articleContent h3,
+#articleContent h4,
+#articleContent h5,
+#articleContent h6 {
+    font-family: inherit !important;
+    color: #e8e8f0 !important;
+    text-shadow: none !important;
+}
+
+#articleContent p,
+#articleContent li,
+#articleContent td,
+#articleContent th,
+#articleContent blockquote {
+    font-family: inherit !important;
+    font-size: 15px !important;
+    line-height: 1.85 !important;
+    color: #c8d0e8 !important;
+    letter-spacing: 0 !important;
+    text-shadow: none !important;
+}
+
+#articleContent code,
+#articleContent pre,
+#articleContent figure.highlight,
+#articleContent .highlight {
+    font-family: "Consolas", "Menlo", "Monaco", "Courier New", monospace !important;
+    font-size: 13px !important;
+}
+
+#articleContent a {
+    color: #4fc3f7 !important;
+    text-shadow: none !important;
+}
+
+#articleContent a:hover {
+    color: #81d4fa !important;
+    text-shadow: none !important;
 }
