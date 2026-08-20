@@ -446,6 +446,43 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     z-index: 2;
 }
 
+/* 播放/暂停按钮：移到封面右上角，去掉圆圈（仅保留图标） */
+.music-player .aplayer .aplayer-pic .aplayer-button {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    opacity: 1 !important;
+    z-index: 5 !important;              /* 置于渐变遮罩与歌词之上，确保可见 */
+    top: 12px !important;
+    right: 12px !important;
+    bottom: auto !important;
+    left: auto !important;
+    margin: 0 !important;
+    width: 30px !important;
+    height: 30px !important;
+}
+.music-player .aplayer .aplayer-pic .aplayer-play,
+.music-player .aplayer .aplayer-pic .aplayer-pause {
+    width: 30px !important;
+    height: 30px !important;
+    border: none !important;            /* 去掉外圈白边 */
+    top: 12px !important;
+    right: 12px !important;
+    bottom: auto !important;
+    left: auto !important;
+    margin: 0 !important;
+}
+.music-player .aplayer .aplayer-pic .aplayer-play svg,
+.music-player .aplayer .aplayer-pic .aplayer-pause svg {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+.music-player .aplayer .aplayer-pic .aplayer-play svg { width: 20px !important; height: 20px !important; }
+.music-player .aplayer .aplayer-pic .aplayer-pause svg { width: 16px !important; height: 16px !important; }
+
 /* 播放列表：深色 */
 .music-player .aplayer .aplayer-list {
     background: #161618 !important;
