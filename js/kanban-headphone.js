@@ -43,6 +43,19 @@
             null;
     }
 
+    // 判断音乐是否正在播放。
+    // 关键坑：APlayer 创建的 <audio> 是「脱离 DOM 的游离元素」，它的 play/pause/ended
+    // 事件不会冒泡到 document，也不在 DOM 里、无法被 querySelector 选中——
+    // 所以监听 audio 事件 / 轮询 audio.paused 永远抓不到，这是之前耳机一直不生效的根因。
+    // 改用 APlayer 在播放时给封面按钮加的 .aplayer-pause 类（显示暂停图标 = 正在播放）
+    // 作为可靠信号；audio 兜底仅用于某些把音频放进 DOM 的配置。
+    function isPlaying() {
+        var btn = document.querySelector('.aplayer .aplayer-button');
+        if (btn && btn.classList.contains('aplayer-pause')) return true;
+        var a = findAudio();
+        return !!(a && !a.paused);
+    }
+
     // 把耳麦定位到看板娘画布头顶（画布是 fixed，位置基本稳定；resize 时重算）
     function position() {
         if (!wrap || !canvas) return;
@@ -107,10 +120,9 @@
         setTimeout(position, 300);
         setTimeout(position, 1200);
 
-        // 轮询：直接读 audio.paused，双保险
+        // 轮询：用按钮类判断播放状态（audio 事件/元素本身在游离态下都不可靠）
         setInterval(function () {
-            var a = findAudio();
-            setListening(!!a && !a.paused);
+            setListening(isPlaying());
         }, 400);
 
         return true;
