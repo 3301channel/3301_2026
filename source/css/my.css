@@ -591,28 +591,28 @@ html { scroll-behavior: smooth; }
 /* =========================================
    看板娘（Live2D）听歌戴猫耳耳麦
    ========================================= */
-/* 叠加层：定位在看板娘容器（#live2d-widget）内，居于头顶 */
+/* 叠加层：挂在 body（position:fixed, 高 z-index），由 JS 按看板娘画布实时定位，
+   彻底避免被画布裁剪 / 层级盖住 */
 .kanban-headphone {
-    position: absolute;
-    left: 50%;
-    top: 12px;
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 140px;
     height: 122px;
-    margin-left: 0;
     /* 初始（收起）状态：上移 + 缩小 + 微旋 + 透明，过渡丝滑 */
     opacity: 0;
-    transform: translateX(-50%) translateY(-30px) scale(.5) rotate(-14deg);
+    transform: translateY(-30px) scale(.5) rotate(-14deg);
     transform-origin: center bottom;
     transition: opacity .5s ease,
                 transform .65s cubic-bezier(.34, 1.56, .64, 1); /* 弹性戴上 */
     pointer-events: none;   /* 不挡看板娘点击 */
-    z-index: 6;
+    z-index: 9999;
     will-change: transform, opacity;
 }
 /* 播放时：耳麦就位 */
 .kanban-headphone.on {
     opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1) rotate(0deg);
+    transform: translateY(0) scale(1) rotate(0deg);
 }
 .kanban-headphone__inner {
     width: 100%;
