@@ -176,3 +176,75 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     color: #81d4fa !important;
     text-shadow: none !important;
 }
+
+/* =========================================
+   居中大卡片音乐播放器美化（深色霓虹风）
+   ========================================= */
+.music-player .aplayer {
+    background: rgba(18, 18, 30, 0.92) !important;
+    border: 1px solid rgba(0, 255, 249, 0.22);
+    border-radius: 14px;
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.5), 0 0 22px rgba(0, 255, 249, 0.10);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    color: #c8d0e8;
+}
+
+.music-player .aplayer .aplayer-body {
+    background: transparent !important;
+}
+
+.music-player .aplayer .aplayer-info {
+    color: #c8d0e8;
+}
+
+.music-player .aplayer .aplayer-music .aplayer-title {
+    color: #f0f0f8 !important;
+}
+
+.music-player .aplayer .aplayer-music .aplayer-author {
+    color: #8892b0 !important;
+}
+
+.music-player .aplayer .aplayer-time,
+.music-player .aplayer .aplayer-time .aplayer-time-inner {
+    color: #8892b0 !important;
+}
+
+/* 歌词：普通行灰、当前行霓虹青高亮 */
+.music-player .aplayer .aplayer-lrc {
+    color: #8892b0;
+    text-shadow: none;
+}
+
+.music-player .aplayer .aplayer-lrc p {
+    color: #8892b0;
+}
+
+.music-player .aplayer .aplayer-lrc p.aplayer-lrc-current {
+    color: #00fff9 !important;
+    text-shadow: 0 0 10px rgba(0, 255, 249, 0.55);
+}
+
+/* 播放列表深色 */
+.music-player .aplayer .aplayer-list {
+    background: rgba(12, 12, 22, 0.97) !important;
+}
+
+.music-player .aplayer .aplayer-list ol li {
+    color: #c8d0e8 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.music-player .aplayer .aplayer-list ol li:hover {
+    background: rgba(0, 255, 249, 0.08);
+}
+
+.music-player .aplayer .aplayer-list ol li.aplayer-list-light {
+    background: rgba(0, 255, 249, 0.12);
+}
+
+.music-player .aplayer .aplayer-list ol li .aplayer-list-index,
+.music-player .aplayer .aplayer-list ol li .aplayer-list-author {
+    color: #8892b0 !important;
+}
