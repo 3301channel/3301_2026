@@ -293,17 +293,25 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     flex-wrap: wrap !important;
     align-items: center !important;
     justify-content: center !important;
+    height: auto !important;
     color: #98989d !important;
 }
 
-/* 第一层：时间（居中） */
+/* 第一层：时间（左当前 / 右总时长，两端对齐） */
 .music-player .aplayer .aplayer-time .aplayer-time-inner {
     flex: 1 1 100% !important;
     order: 1;
-    text-align: center;
-    color: #98989d !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100%;
+    color: transparent !important;
     font-size: 13px !important;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
+}
+
+.music-player .aplayer .aplayer-time .aplayer-time-inner .aplayer-ptime,
+.music-player .aplayer .aplayer-time .aplayer-time-inner .aplayer-dtime {
+    color: #98989d !important;
 }
 
 /* 第二层：主按钮（上一曲 / 播放 / 下一曲） */
