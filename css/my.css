@@ -423,6 +423,7 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     font-size: 20px !important;
     font-weight: 800 !important;
     line-height: 36px !important;
+    height: 36px !important;
     color: rgba(255, 255, 255, 0.4) !important;
     text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7) !important;
 }
