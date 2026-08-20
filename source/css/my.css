@@ -228,11 +228,14 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     border-bottom: none !important;
 }
 
-/* 歌名/歌手居中，分两行 */
+/* 歌名/歌手居中，分两行（允许换行，不截断） */
 .music-player .aplayer .aplayer-music {
     text-align: center;
     width: 100% !important;
     margin-bottom: 24px;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
 }
 
 .music-player .aplayer .aplayer-music .aplayer-title {
@@ -399,14 +402,14 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
 }
 
 .music-player .aplayer .aplayer-lrc-contents {
-    padding-top: 136px;
+    padding-top: 132px;
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
 .music-player .aplayer .aplayer-lrc p {
     font-size: 20px !important;
     font-weight: 800 !important;
-    line-height: 28px !important;
+    line-height: 36px !important;
     color: rgba(255, 255, 255, 0.4) !important;
     text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7) !important;
 }
