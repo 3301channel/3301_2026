@@ -106,6 +106,12 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
         top: 0;
         transform: translateX(-50%);
     }
+
+    /* 手机端缩小 logo 字号，避免 "3301 channel" 换行 */
+    #headNav .brand-logo .logo-span {
+        font-size: 1.25rem;
+        white-space: nowrap;
+    }
 }
 
 /* =========================================
