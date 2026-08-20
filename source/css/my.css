@@ -178,73 +178,186 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
 }
 
 /* =========================================
-   居中大卡片音乐播放器美化（深色霓虹风）
+   音乐播放器 - Apple Music 深色风格
    ========================================= */
 .music-player .aplayer {
-    background: rgba(18, 18, 30, 0.92) !important;
-    border: 1px solid rgba(0, 255, 249, 0.22);
-    border-radius: 14px;
-    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.5), 0 0 22px rgba(0, 255, 249, 0.10);
-    backdrop-filter: blur(10px);
+    background: #1c1c1e !important;
+    border: none !important;
+    border-radius: 20px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6) !important;
     overflow: hidden;
-    color: #c8d0e8;
+    color: #f5f5f7;
+    font-family: -apple-system, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif !important;
 }
 
 .music-player .aplayer .aplayer-body {
     background: transparent !important;
 }
 
+/* 封面：全宽大图，竖排顶部 */
+.music-player .aplayer .aplayer-pic {
+    width: 100% !important;
+    height: 300px !important;
+    float: none !important;
+    margin: 0 !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* 封面中央播放按钮放大 */
+.music-player .aplayer .aplayer-pic .aplayer-play {
+    width: 58px !important;
+    height: 58px !important;
+    border: 2px solid rgba(255, 255, 255, 0.92) !important;
+    margin: 0 -29px -29px 0 !important;
+    background: rgba(0, 0, 0, 0.28) !important;
+}
+
+.music-player .aplayer .aplayer-pic .aplayer-play svg {
+    top: 5px !important;
+    left: 6px !important;
+    height: 46px !important;
+    width: 46px !important;
+}
+
+/* 信息区：块级，取消左缩进 */
 .music-player .aplayer .aplayer-info {
-    color: #c8d0e8;
+    margin-left: 0 !important;
+    height: auto !important;
+    padding: 22px 28px 26px !important;
+    border-bottom: none !important;
+}
+
+/* 歌名/歌手居中，分两行 */
+.music-player .aplayer .aplayer-music {
+    text-align: center;
+    width: 100% !important;
 }
 
 .music-player .aplayer .aplayer-music .aplayer-title {
-    color: #f0f0f8 !important;
+    display: block;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    letter-spacing: 0 !important;
+    text-shadow: none !important;
 }
 
 .music-player .aplayer .aplayer-music .aplayer-author {
-    color: #8892b0 !important;
+    display: block;
+    margin-top: 6px;
+    font-size: 15px !important;
+    color: #98989d !important;
+    text-shadow: none !important;
 }
 
-.music-player .aplayer .aplayer-time,
+/* 控制器：进度条独占一行，时间+按钮独占一行居中 */
+.music-player .aplayer .aplayer-controller {
+    flex-wrap: wrap !important;
+}
+
+.music-player .aplayer .aplayer-bar-wrap {
+    flex: 1 1 100% !important;
+    margin: 20px 0 4px;
+}
+
+.music-player .aplayer .aplayer-bar {
+    height: 3px !important;
+    background: #3a3a3c !important;
+    border-radius: 2px;
+}
+
+.music-player .aplayer .aplayer-bar .aplayer-loaded {
+    height: 3px !important;
+    background: #5a5a5e !important;
+}
+
+.music-player .aplayer .aplayer-bar .aplayer-played {
+    height: 3px !important;
+}
+
+.music-player .aplayer .aplayer-bar .aplayer-played .aplayer-thumb {
+    width: 13px !important;
+    height: 13px !important;
+    margin-top: -5px !important;
+}
+
+/* 时间 + 控制按钮：整行居中 */
+.music-player .aplayer .aplayer-time {
+    flex: 1 1 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 24px;
+    color: #98989d !important;
+    font-size: 12px !important;
+}
+
 .music-player .aplayer .aplayer-time .aplayer-time-inner {
-    color: #8892b0 !important;
+    color: #98989d !important;
 }
 
-/* 歌词：普通行灰、当前行霓虹青高亮 */
+/* 强制显示上一曲/播放/下一曲按钮 */
+.music-player .aplayer .aplayer-icon-back,
+.music-player .aplayer .aplayer-icon-forward,
+.music-player .aplayer .aplayer-icon-play {
+    display: inline-block !important;
+}
+
+/* 图标白色 */
+.music-player .aplayer .aplayer-icon {
+    color: #f5f5f7 !important;
+    opacity: 1 !important;
+}
+
+/* 播放按钮放大 */
+.music-player .aplayer .aplayer-time .aplayer-icon-play {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.music-player .aplayer .aplayer-time .aplayer-icon-back,
+.music-player .aplayer .aplayer-time .aplayer-icon-forward {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* 歌词：居中，普通行灰、当前行白 */
 .music-player .aplayer .aplayer-lrc {
-    color: #8892b0;
+    color: #98989d;
     text-shadow: none;
 }
 
 .music-player .aplayer .aplayer-lrc p {
-    color: #8892b0;
+    color: #98989d !important;
+    font-size: 13px !important;
+    text-shadow: none !important;
 }
 
 .music-player .aplayer .aplayer-lrc p.aplayer-lrc-current {
-    color: #00fff9 !important;
-    text-shadow: 0 0 10px rgba(0, 255, 249, 0.55);
+    color: #ffffff !important;
+    text-shadow: none !important;
 }
 
-/* 播放列表深色 */
+/* 播放列表：深色 */
 .music-player .aplayer .aplayer-list {
-    background: rgba(12, 12, 22, 0.97) !important;
+    background: #161618 !important;
 }
 
 .music-player .aplayer .aplayer-list ol li {
-    color: #c8d0e8 !important;
+    color: #d1d1d6 !important;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .music-player .aplayer .aplayer-list ol li:hover {
-    background: rgba(0, 255, 249, 0.08);
+    background: #2c2c2e;
 }
 
 .music-player .aplayer .aplayer-list ol li.aplayer-list-light {
-    background: rgba(0, 255, 249, 0.12);
+    background: #2c2c2e;
 }
 
 .music-player .aplayer .aplayer-list ol li .aplayer-list-index,
 .music-player .aplayer .aplayer-list ol li .aplayer-list-author {
-    color: #8892b0 !important;
+    color: #98989d !important;
 }

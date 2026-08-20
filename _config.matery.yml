@@ -65,7 +65,7 @@ music:
   id: 13953702168
   fixed: false
   autoplay: false
-  theme: '#00fff9'
+  theme: '#fa233b'
   loop: 'all'
   order: 'random'
   preload: 'auto'
