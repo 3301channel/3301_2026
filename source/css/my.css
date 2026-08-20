@@ -560,3 +560,30 @@ html { scroll-behavior: smooth; }
 #backTop .btn-floating:hover {
     transform: translateY(-3px) scale(1.08);
 }
+
+/* 首页头图文字视差（跟随滚动慢移淡出，由 scroll-effects.js 控制） */
+.index-cover .brand {
+    will-change: transform, opacity;
+}
+
+/* 文章卡片鼠标悬停光晕（spotlight，跟随鼠标位置） */
+.article .card { position: relative; }
+.article .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity .35s ease;
+    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%),
+                rgba(255, 255, 255, .16), transparent 60%);
+    pointer-events: none;
+    z-index: 3;
+}
+.article .card:hover::before { opacity: 1; }
+
+/* 深浅色切换：内容颜色平滑过渡（叠加主题自带 Cuteen 星球动画） */
+.theme-anim, .theme-anim * {
+    transition: background-color .45s ease, color .45s ease,
+                border-color .45s ease, box-shadow .45s ease !important;
+}

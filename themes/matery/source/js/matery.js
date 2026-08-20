@@ -63,9 +63,11 @@ $(function () {
     });
 
     AOS.init({
-        easing: 'ease-in-out-sine',
-        duration: 700,
-        delay: 100
+        easing: 'ease-out-cubic',
+        duration: 800,
+        delay: 0,
+        offset: 80,
+        once: true
     });
 
     /*文章内容详情的一些初始化特性*/
