@@ -251,14 +251,14 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     text-shadow: none !important;
 }
 
-/* 控制器：进度条独占一行，时间+按钮独占一行居中 */
+/* 控制器：进度条独占一行，下方分层排布 */
 .music-player .aplayer .aplayer-controller {
     flex-wrap: wrap !important;
 }
 
 .music-player .aplayer .aplayer-bar-wrap {
     flex: 1 1 100% !important;
-    margin: 20px 0 4px;
+    margin: 20px 0 14px;
 }
 
 .music-player .aplayer .aplayer-bar {
@@ -282,19 +282,69 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     margin-top: -5px !important;
 }
 
-/* 时间 + 控制按钮：整行居中 */
+/* 时间 + 按钮：分三层（时间 / 主按钮 / 辅助按钮） */
 .music-player .aplayer .aplayer-time {
     flex: 1 1 100% !important;
     display: flex !important;
+    flex-wrap: wrap !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 24px;
     color: #98989d !important;
-    font-size: 12px !important;
 }
 
+/* 第一层：时间（居中） */
 .music-player .aplayer .aplayer-time .aplayer-time-inner {
+    flex: 1 1 100% !important;
+    order: 1;
+    text-align: center;
     color: #98989d !important;
+    font-size: 13px !important;
+    margin-bottom: 18px;
+}
+
+/* 第二层：主按钮（上一曲 / 播放 / 下一曲） */
+.music-player .aplayer .aplayer-time .aplayer-icon-back {
+    order: 2;
+    margin: 0 12px 0 0;
+}
+
+.music-player .aplayer .aplayer-time .aplayer-icon-play {
+    order: 3;
+    margin: 0 12px;
+}
+
+.music-player .aplayer .aplayer-time .aplayer-icon-forward {
+    order: 4;
+    margin: 0 0 0 12px;
+}
+
+/* 换行分隔：让辅助按钮另起一行 */
+.music-player .aplayer .aplayer-time::after {
+    content: "";
+    flex: 1 1 100%;
+    order: 5;
+    height: 0;
+}
+
+/* 第三层：辅助按钮（音量 / 顺序 / 循环 / 列表） */
+.music-player .aplayer .aplayer-time .aplayer-volume-wrap {
+    order: 6;
+    margin: 20px 10px 0 0;
+}
+
+.music-player .aplayer .aplayer-time .aplayer-icon-order {
+    order: 7;
+    margin: 20px 10px 0;
+}
+
+.music-player .aplayer .aplayer-time .aplayer-icon-loop {
+    order: 8;
+    margin: 20px 10px 0;
+}
+
+.music-player .aplayer .aplayer-time .aplayer-icon-menu {
+    order: 9;
+    margin: 20px 0 0 10px;
 }
 
 /* 强制显示上一曲/播放/下一曲按钮 */
@@ -312,14 +362,24 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
 
 /* 播放按钮放大 */
 .music-player .aplayer .aplayer-time .aplayer-icon-play {
-    width: 40px !important;
-    height: 40px !important;
+    width: 44px !important;
+    height: 44px !important;
 }
 
 .music-player .aplayer .aplayer-time .aplayer-icon-back,
 .music-player .aplayer .aplayer-time .aplayer-icon-forward {
-    width: 24px !important;
-    height: 24px !important;
+    width: 26px !important;
+    height: 26px !important;
+}
+
+/* 辅助按钮：小尺寸、稍淡 */
+.music-player .aplayer .aplayer-time .aplayer-volume-wrap .aplayer-icon,
+.music-player .aplayer .aplayer-time .aplayer-icon-order,
+.music-player .aplayer .aplayer-time .aplayer-icon-loop,
+.music-player .aplayer .aplayer-time .aplayer-icon-menu {
+    width: 18px !important;
+    height: 18px !important;
+    opacity: 0.7 !important;
 }
 
 /* 歌词：居中，普通行灰、当前行白 */
