@@ -468,3 +468,95 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
 .music-player .aplayer .aplayer-list ol li .aplayer-list-author {
     color: #98989d !important;
 }
+
+/* =========================================
+   滚动动效 & 微交互美化
+   ========================================= */
+
+/* 滚动揭示：进入视口时淡入上移（由 scroll-effects.js 添加 is-visible） */
+.reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .7s cubic-bezier(.22, 1, .36, 1),
+                transform .7s cubic-bezier(.22, 1, .36, 1);
+    will-change: opacity, transform;
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* 导航栏滚动态：向下滚动加毛玻璃 + 阴影，回顶恢复 */
+#headNav.nav-scrolled {
+    background-color: rgba(10, 10, 20, .72) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, .5);
+    transition: background-color .35s ease, box-shadow .35s ease,
+                -webkit-backdrop-filter .35s ease, backdrop-filter .35s ease;
+}
+
+/* 全局平滑滚动 + 锚点（目录）点击偏移，避免被导航栏遮挡 */
+html { scroll-behavior: smooth; }
+:target,
+#articleContent h1, #articleContent h2, #articleContent h3, #articleContent h4 {
+    scroll-margin-top: 84px;
+}
+
+/* 文章卡片 hover 微交互：轻微上浮 + 阴影增强 */
+.article .card {
+    transition: transform .3s ease, box-shadow .3s ease;
+    will-change: transform;
+}
+.article .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .45) !important;
+}
+
+/* 文章内链接 hover 下划线滑入动画 */
+#articleContent a:not(.post-category):not(.chip):not(:has(img)) {
+    position: relative;
+    text-decoration: none;
+}
+#articleContent a:not(.post-category):not(.chip):not(:has(img))::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 100%; height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s ease;
+}
+#articleContent a:not(.post-category):not(.chip):not(:has(img)):hover::after {
+    transform: scaleX(1);
+}
+
+/* 代码块 hover 左侧高亮细线 */
+#articleContent pre,
+#articleContent figure.highlight {
+    transition: border-left-color .3s ease;
+    border-left: 3px solid transparent !important;
+}
+#articleContent pre:hover,
+#articleContent figure.highlight:hover {
+    border-left-color: #4fc3f7 !important;
+}
+
+/* 全局滚动条美化（深色主题配套） */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0a0a14; }
+::-webkit-scrollbar-thumb {
+    background: #2a2a3a;
+    border-radius: 6px;
+    border: 2px solid #0a0a14;
+}
+::-webkit-scrollbar-thumb:hover { background: #3a3a52; }
+
+/* 回顶按钮 hover 微交互 */
+#backTop .btn-floating {
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+#backTop .btn-floating:hover {
+    transform: translateY(-3px) scale(1.08);
+}
