@@ -232,6 +232,7 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
 .music-player .aplayer .aplayer-music {
     text-align: center;
     width: 100% !important;
+    margin-bottom: 24px;
 }
 
 .music-player .aplayer .aplayer-music .aplayer-title {
@@ -258,7 +259,7 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
 
 .music-player .aplayer .aplayer-bar-wrap {
     flex: 1 1 100% !important;
-    margin: 20px 0 14px;
+    margin: 0 0 16px;
 }
 
 .music-player .aplayer .aplayer-bar {
@@ -382,21 +383,50 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     opacity: 0.7 !important;
 }
 
-/* 歌词：居中，普通行灰、当前行白 */
+/* 歌词：覆盖在封面图上，Apple Music 粗体滚动 */
 .music-player .aplayer .aplayer-lrc {
-    color: #98989d;
-    text-shadow: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px !important;
+    margin: 0 !important;
+    display: block !important;
+    overflow: hidden;
+    text-align: center;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.music-player .aplayer .aplayer-lrc-contents {
+    padding-top: 136px;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
 .music-player .aplayer .aplayer-lrc p {
-    color: #98989d !important;
-    font-size: 13px !important;
-    text-shadow: none !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    line-height: 28px !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7) !important;
 }
 
 .music-player .aplayer .aplayer-lrc p.aplayer-lrc-current {
+    font-size: 23px !important;
     color: #ffffff !important;
-    text-shadow: none !important;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* 封面渐变遮罩，让歌词更清晰 */
+.music-player .aplayer .aplayer-pic::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.25) 40%, rgba(0, 0, 0, 0.25) 60%, rgba(0, 0, 0, 0.55) 100%);
+    z-index: 2;
 }
 
 /* 播放列表：深色 */
