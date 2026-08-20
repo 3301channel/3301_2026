@@ -446,7 +446,7 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     z-index: 2;
 }
 
-/* 播放/暂停按钮：移到封面右上角，去掉圆圈（仅保留图标） */
+/* 播放/暂停按钮：去掉圆圈；播放时在右下角、暂停时滑到左上角（对角滑动更有视觉冲击力） */
 .music-player .aplayer .aplayer-pic .aplayer-button {
     background: transparent !important;
     box-shadow: none !important;
@@ -454,24 +454,33 @@ body.DarkMode .aplayer.aplayer-fixed .aplayer-body {
     border-radius: 0 !important;
     opacity: 1 !important;
     z-index: 5 !important;              /* 置于渐变遮罩与歌词之上，确保可见 */
-    top: 12px !important;
-    right: 12px !important;
-    bottom: auto !important;
-    left: auto !important;
-    margin: 0 !important;
     width: 30px !important;
     height: 30px !important;
+    margin: 0 !important;
+    /* 对角滑动过渡（top/left 同锚点，确保从右下到左上平滑划过，不跳变） */
+    transition: top .5s cubic-bezier(.22, 1, .36, 1),
+                left .5s cubic-bezier(.22, 1, .36, 1),
+                opacity .3s ease !important;
 }
-.music-player .aplayer .aplayer-pic .aplayer-play,
-.music-player .aplayer .aplayer-pic .aplayer-pause {
+/* 暂停态（显示播放图标）：左上角 */
+.music-player .aplayer .aplayer-pic .aplayer-play {
     width: 30px !important;
     height: 30px !important;
     border: none !important;            /* 去掉外圈白边 */
     top: 12px !important;
-    right: 12px !important;
+    left: 12px !important;
+    right: auto !important;
     bottom: auto !important;
-    left: auto !important;
-    margin: 0 !important;
+}
+/* 播放态（显示暂停图标）：右下角 */
+.music-player .aplayer .aplayer-pic .aplayer-pause {
+    width: 30px !important;
+    height: 30px !important;
+    border: none !important;            /* 去掉外圈白边 */
+    top: calc(100% - 42px) !important;  /* 距底部 12px（12 边距 + 30 高） */
+    left: calc(100% - 42px) !important; /* 距右侧 12px */
+    right: auto !important;
+    bottom: auto !important;
 }
 .music-player .aplayer .aplayer-pic .aplayer-play svg,
 .music-player .aplayer .aplayer-pic .aplayer-pause svg {
