@@ -1,0 +1,1526 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Redis &amp; Tomcat 快速入门学习文档, 3301 channel, 博客, blog, 3301">
+    <meta name="description" content="Redis&amp;amp;Tomcat 快速入门学习文档本文档面向零基础学习者，极简梳理Redis缓存中间件和Tomcat Web服务器的核心概念、核心特性、使用场景、基础实操及协同工作原理，剔除冗余理论，聚焦入门必备知识点，帮助快速掌握两大主流">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Redis &amp; Tomcat 快速入门学习文档 | 3301 channel</title>
+    <link rel="icon" type="image/png" href="/3301_2026/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/my.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/3301_2026/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/3301_2026/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/3301_2026/css/reward.css">
+    
+
+
+
+    <script src="/3301_2026/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/3301_2026/atom.xml" title="3301 channel" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/3301_2026/" class="waves-effect waves-light">
+                    
+                    <img src="/3301_2026/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">3301 channel</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/" class="waves-effect waves-light" >
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/tags" class="waves-effect waves-light" >
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/categories" class="waves-effect waves-light" >
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/archives" class="waves-effect waves-light" >
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/about" class="waves-effect waves-light" >
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/contact" class="waves-effect waves-light" >
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/friends" class="waves-effect waves-light" >
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="https://3301channel.github.io" class="waves-effect waves-light" target="_blank" rel="noopener noreferrer">
+      
+      <i class="fas fa-clock-rotate-left" style="zoom: 0.6;"></i>
+      
+      <span>时光机</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/3301_2026/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">3301 channel</div>
+        <div class="logo-desc">
+            
+            3301 channel - 个人博客，分享杂志、影视、学习资料与生活记录
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a target="_blank" rel="noopener" href="https://3301channel.github.io" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-clock-rotate-left"></i>
+			
+			时光机
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/abc3301/abc3301.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/abc3301/abc3301.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/3301_2026/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Redis &amp; Tomcat 快速入门学习文档</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/3301_2026/tags/Redis/">
+                                <span class="chip bg-color">Redis</span>
+                            </a>
+                        
+                            <a href="/3301_2026/tags/Tomcat/">
+                                <span class="chip bg-color">Tomcat</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/3301_2026/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
+                                后端开发
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-08-19
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    20 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Redis-amp-Tomcat-快速入门学习文档"><a href="#Redis-amp-Tomcat-快速入门学习文档" class="headerlink" title="Redis&amp;Tomcat 快速入门学习文档"></a>Redis&amp;Tomcat 快速入门学习文档</h1><p>本文档面向零基础学习者，极简梳理<strong>Redis缓存中间件</strong>和<strong>Tomcat Web服务器</strong>的核心概念、核心特性、使用场景、基础实操及协同工作原理，剔除冗余理论，聚焦入门必备知识点，帮助快速掌握两大主流技术组件的核心价值与用法。</p>
+<h1 id="一、Tomcat-核心知识（Web容器）"><a href="#一、Tomcat-核心知识（Web容器）" class="headerlink" title="一、Tomcat 核心知识（Web容器）"></a>一、Tomcat 核心知识（Web容器）</h1><h2 id="1-1-什么是Tomcat"><a href="#1-1-什么是Tomcat" class="headerlink" title="1.1 什么是Tomcat"></a>1.1 什么是Tomcat</h2><p>Tomcat 是<strong>开源轻量级Java Web服务器&#x2F; Servlet容器</strong>，由Apache基金会开发，是Java Web项目最常用的运行容器。主要用于运行Servlet、JSP等Java Web程序，接收用户HTTP请求、处理业务逻辑、返回响应结果，是B&#x2F;S架构项目的核心运行载体。</p>
+<p>简单理解：<strong>没有Tomcat，Java Web项目无法独立运行</strong>，Tomcat就是Java程序的“运行环境+请求调度中心”。</p>
+<h2 id="1-2-核心定位与核心特性"><a href="#1-2-核心定位与核心特性" class="headerlink" title="1.2 核心定位与核心特性"></a>1.2 核心定位与核心特性</h2><ul>
+<li><p><strong>核心定位</strong>：专注运行Java Web应用（War&#x2F;Jar包），负责HTTP请求解析、线程调度、项目部署、会话管理，不负责缓存、数据库存储。</p>
+</li>
+<li><p><strong>轻量高效</strong>：占用资源少、启动速度快，适配中小型Web项目，稳定性极强，企业主流稳定版本为8.5、9.x。</p>
+</li>
+<li><p><strong>标准兼容</strong>：严格遵循Servlet、JSP官方规范，所有标准Java Web项目均可无缝部署。</p>
+</li>
+<li><p><strong>内置功能</strong>：自带Session会话管理、虚拟主机、热部署、线程池管理、请求过滤等基础能力。</p>
+</li>
+</ul>
+<h2 id="1-3-核心组件（入门必懂）"><a href="#1-3-核心组件（入门必懂）" class="headerlink" title="1.3 核心组件（入门必懂）"></a>1.3 核心组件（入门必懂）</h2><ul>
+<li><p><strong>Server</strong>：Tomcat顶层服务，代表整个服务器实例，包含所有服务组件。</p>
+</li>
+<li><p><strong>Service</strong>：服务集合，绑定连接器和容器，负责统筹请求处理。</p>
+</li>
+<li><p><strong>Connector（连接器）</strong>：核心请求入口，监听8080端口，解析HTTP协议，接收用户请求、返回响应。</p>
+</li>
+<li><p><strong>Container（容器）</strong>：业务核心，包含Engine、Host、Context，负责运行Web项目。</p>
+<ul>
+<li><p>Engine：全局引擎，处理所有站点请求；</p>
+</li>
+<li><p>Host：虚拟主机，支持多域名部署；</p>
+</li>
+<li><p>Context：单个Web项目上下文，每个部署的项目对应一个Context，管理项目生命周期。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-4-核心使用场景"><a href="#1-4-核心使用场景" class="headerlink" title="1.4 核心使用场景"></a>1.4 核心使用场景</h2><ul>
+<li><p>运行Java Web项目（SpringMVC、SSM、传统JSP&#x2F;Servlet项目）；</p>
+</li>
+<li><p>单机&#x2F;集群部署Web服务，承接前端HTTP请求；</p>
+</li>
+<li><p>配合Nginx实现反向代理、负载均衡，分发后端服务请求。</p>
+</li>
+</ul>
+<h2 id="1-5-基础实操要点"><a href="#1-5-基础实操要点" class="headerlink" title="1.5 基础实操要点"></a>1.5 基础实操要点</h2><ul>
+<li><p><strong>默认端口</strong>：8080（可修改conf&#x2F;server.xml配置文件更换端口）；</p>
+</li>
+<li><p><strong>项目部署方式</strong>：将War包放入webapps目录，或通过配置Context指定项目路径；</p>
+</li>
+<li><p><strong>核心配置文件</strong>：server.xml（端口、线程池、集群配置）、context.xml（数据源、会话配置）；</p>
+</li>
+<li><p><strong>默认会话机制</strong>：单机默认本地Session存储，集群场景下存在会话丢失问题（需配合Redis解决）。</p>
+</li>
+</ul>
+<h1 id="二、Redis-核心知识（内存缓存中间件）"><a href="#二、Redis-核心知识（内存缓存中间件）" class="headerlink" title="二、Redis 核心知识（内存缓存中间件）"></a>二、Redis 核心知识（内存缓存中间件）</h1><h2 id="2-1-什么是Redis"><a href="#2-1-什么是Redis" class="headerlink" title="2.1 什么是Redis"></a>2.1 什么是Redis</h2><p>Redis（Remote Dictionary Server，远程字典服务）是<strong>开源、高性能的内存键值对数据库</strong>，基于ANSI C语言开发，主打高速读写，兼顾持久化能力。区别于MySQL等磁盘数据库，Redis核心数据存储在内存，读写速度可达<strong>十万级QPS</strong>，是企业最主流的缓存中间件。</p>
+<p>简单理解：<strong>Redis就是高速临时数据仓库</strong>，用来缓解数据库压力、加速数据查询、存储临时业务数据。</p>
+<h2 id="2-2-核心特性"><a href="#2-2-核心特性" class="headerlink" title="2.2 核心特性"></a>2.2 核心特性</h2><ul>
+<li><p><strong>极致高性能</strong>：纯内存操作，微秒级响应，远超磁盘数据库，适配高并发场景；</p>
+</li>
+<li><p><strong>丰富数据结构</strong>：不止简单Key-Value，支持String、Hash、List、Set、Sorted Set等5大基础数据结构，适配各类复杂业务；</p>
+</li>
+<li><p><strong>支持持久化</strong>：提供RDB快照、AOF日志两种持久化方案，防止断电数据丢失；</p>
+</li>
+<li><p><strong>高可用集群</strong>：支持主从复制、哨兵模式、集群模式，实现高可用、负载均衡；</p>
+</li>
+<li><p><strong>丰富扩展能力</strong>：支持过期淘汰、事务、消息订阅发布、分布式锁、限流等高级功能。</p>
+</li>
+</ul>
+<h2 id="2-3-核心核心功能（入门重点）"><a href="#2-3-核心核心功能（入门重点）" class="headerlink" title="2.3 核心核心功能（入门重点）"></a>2.3 核心核心功能（入门重点）</h2><h3 id="2-3-1-五大基础数据结构"><a href="#2-3-1-五大基础数据结构" class="headerlink" title="2.3.1 五大基础数据结构"></a>2.3.1 五大基础数据结构</h3><ul>
+<li><p><strong>String字符串</strong>：最常用，存储字符串、数字、二进制数据，适配缓存用户信息、配置、计数器；</p>
+</li>
+<li><p><strong>Hash哈希</strong>：类似Map，适合存储结构化数据（用户信息、商品详情），节省内存；</p>
+</li>
+<li><p><strong>List列表</strong>：有序可重复，底层双向链表，适配消息队列、点赞列表、日志排序；</p>
+</li>
+<li><p><strong>Set集合</strong>：无序不可重复，适配去重、好友列表、抽奖场景；</p>
+</li>
+<li><p><strong>ZSet有序集合</strong>：带权重排序、不可重复，适配排行榜、延时队列。</p>
+</li>
+</ul>
+<h3 id="2-3-2-内存淘汰策略（高频考点）"><a href="#2-3-2-内存淘汰策略（高频考点）" class="headerlink" title="2.3.2 内存淘汰策略（高频考点）"></a>2.3.2 内存淘汰策略（高频考点）</h3><p>Redis内存占满后，自动淘汰数据释放空间，默认策略为<strong>volatile-lru</strong>，常用策略：</p>
+<ul>
+<li><p>allkeys-lru：全局淘汰最近最少使用数据（最常用，适配绝大多数缓存场景）；</p>
+</li>
+<li><p>volatile-lru：仅淘汰带过期时间的最少使用数据；</p>
+</li>
+<li><p>volatile-ttl：优先淘汰即将过期的数据；</p>
+</li>
+<li><p>allkeys-random：随机淘汰全局数据。</p>
+</li>
+</ul>
+<h3 id="2-3-3-持久化机制"><a href="#2-3-3-持久化机制" class="headerlink" title="2.3.3 持久化机制"></a>2.3.3 持久化机制</h3><ul>
+<li><p><strong>RDB（快照）</strong>：定时全量备份内存数据，文件体积小、恢复快，适合冷备；</p>
+</li>
+<li><p><strong>AOF（日志）</strong>：实时记录所有写操作日志，数据丢失率极低，安全性更高。</p>
+</li>
+</ul>
+<h2 id="2-4-核心使用场景"><a href="#2-4-核心使用场景" class="headerlink" title="2.4 核心使用场景"></a>2.4 核心使用场景</h2><ul>
+<li><p><strong>热点数据缓存</strong>：缓存商品、首页、用户信息，减少MySQL查询压力；</p>
+</li>
+<li><p><strong>分布式会话共享</strong>：解决Tomcat集群Session不共享、登录失效问题；</p>
+</li>
+<li><p><strong>高并发计数器</strong>：点赞数、浏览量、库存统计；</p>
+</li>
+<li><p><strong>分布式锁</strong>：防止秒杀超卖、并发重复操作；</p>
+</li>
+<li><p><strong>简单消息队列</strong>：实现异步通知、任务排队。</p>
+</li>
+</ul>
+<h2 id="2-5-基础实操要点"><a href="#2-5-基础实操要点" class="headerlink" title="2.5 基础实操要点"></a>2.5 基础实操要点</h2><ul>
+<li><p><strong>默认端口</strong>：6379；</p>
+</li>
+<li><p><strong>基础命令</strong>：set&#x2F;get（增查）、del（删除）、expire（设置过期时间）、keys（查询键）；</p>
+</li>
+<li><p><strong>核心优势对比MySQL</strong>：Redis内存读写快、并发高，适合临时高频数据；MySQL磁盘存储，适合持久化、复杂事务数据。</p>
+</li>
+</ul>
+<h1 id="三、Cookie-x2F-Session-x2F-Token-x2F-Code-核心Web基础（必学配套知识）"><a href="#三、Cookie-x2F-Session-x2F-Token-x2F-Code-核心Web基础（必学配套知识）" class="headerlink" title="三、Cookie&#x2F;Session&#x2F;Token&#x2F;Code 核心Web基础（必学配套知识）"></a>三、Cookie&#x2F;Session&#x2F;Token&#x2F;Code 核心Web基础（必学配套知识）</h1><p>学习Tomcat（Web容器）与Redis（缓存中间件），必须掌握 <strong>Cookie、Session、Token、Code</strong> 四大Web核心机制。所有网站登录、身份校验、会话保持、接口授权都基于这四类技术实现，同时也是Tomcat会话管理、Redis缓存落地的核心业务场景。</p>
+<h2 id="3-1-Cookie-详解（客户端存储机制）"><a href="#3-1-Cookie-详解（客户端存储机制）" class="headerlink" title="3.1 Cookie 详解（客户端存储机制）"></a>3.1 Cookie 详解（客户端存储机制）</h2><h3 id="3-1-1-什么是Cookie"><a href="#3-1-1-什么是Cookie" class="headerlink" title="3.1.1 什么是Cookie"></a>3.1.1 什么是Cookie</h3><p>Cookie是<strong>服务器下发、浏览器客户端保存</strong>的小型文本数据（最大4KB），以键值对形式存储在用户浏览器本地。浏览器后续每次请求该服务器时，会自动携带Cookie数据，实现用户身份标记、状态记录。</p>
+<p>核心特点：<strong>数据存在客户端、自动携带、无状态协议的状态补偿</strong>（HTTP协议本身无状态，无法记住用户）。</p>
+<h3 id="3-1-2-核心特性"><a href="#3-1-2-核心特性" class="headerlink" title="3.1.2 核心特性"></a>3.1.2 核心特性</h3><ul>
+<li><p><strong>存储位置</strong>：浏览器本地（客户端），服务器不存储Cookie数据；</p>
+</li>
+<li><p><strong>生命周期</strong>：分为会话Cookie（浏览器关闭即失效）、持久Cookie（设置expires&#x2F;max-age，过期自动清除）；</p>
+</li>
+<li><p><strong>域名限制</strong>：Cookie遵循同源策略，仅所属域名可读取，防止跨站窃取；</p>
+</li>
+<li><p><strong>安全性短板</strong>：存储在前端，可被查看、篡改、窃取，<strong>禁止存储密码、密钥等敏感数据</strong>。</p>
+</li>
+</ul>
+<h3 id="3-1-3-与Tomcat的关联"><a href="#3-1-3-与Tomcat的关联" class="headerlink" title="3.1.3 与Tomcat的关联"></a>3.1.3 与Tomcat的关联</h3><p>Tomcat默认会话机制依赖Cookie：用户首次访问Tomcat项目时，Tomcat生成唯一SessionID，通过响应头写入浏览器Cookie；后续请求浏览器携带该Cookie，Tomcat通过SessionID匹配用户会话。</p>
+<h2 id="3-2-Session-详解（服务端会话机制）"><a href="#3-2-Session-详解（服务端会话机制）" class="headerlink" title="3.2 Session 详解（服务端会话机制）"></a>3.2 Session 详解（服务端会话机制）</h2><h3 id="3-2-1-什么是Session"><a href="#3-2-1-什么是Session" class="headerlink" title="3.2.1 什么是Session"></a>3.2.1 什么是Session</h3><p>Session是<strong>服务端存储的用户会话对象</strong>，由Tomcat等Web容器创建，用于存储用户登录状态、临时业务数据。每个独立用户对应唯一Session，通过SessionID与客户端Cookie绑定。</p>
+<p>简单逻辑：<strong>Cookie存唯一标识（SessionID），Session存真实用户数据</strong>，前后端配合实现会话保持。</p>
+<h3 id="3-2-2-核心特性"><a href="#3-2-2-核心特性" class="headerlink" title="3.2.2 核心特性"></a>3.2.2 核心特性</h3><ul>
+<li><p><strong>存储位置</strong>：Web服务器端（默认Tomcat本地内存），数据安全、不可被前端篡改；</p>
+</li>
+<li><p><strong>生命周期</strong>：默认30分钟无操作失效，可在Tomcat中全局配置；</p>
+</li>
+<li><p><strong>依赖Cookie</strong>：绝大多数场景依托Cookie传递SessionID，浏览器禁用Cookie时可通过URL重写兼容；</p>
+</li>
+<li><p><strong>单机局限性</strong>：Tomcat集群下，Session本地化存储导致多节点不共享，这也是Redis实现分布式Session的核心原因。</p>
+</li>
+</ul>
+<h3 id="3-2-3-Redis-Session-核心价值（补强原有协同方案）"><a href="#3-2-3-Redis-Session-核心价值（补强原有协同方案）" class="headerlink" title="3.2.3 Redis+Session 核心价值（补强原有协同方案）"></a>3.2.3 Redis+Session 核心价值（补强原有协同方案）</h3><p>原生Tomcat Session：单机可用，集群失效、重启丢失、无法扩容。<br>Redis改造后Session：集中式缓存存储、跨Tomcat节点共享、持久化可控、支持集群高并发，是企业Web项目标准方案。</p>
+<h2 id="3-3-Token-详解（分布式身份令牌）"><a href="#3-3-Token-详解（分布式身份令牌）" class="headerlink" title="3.3 Token 详解（分布式身份令牌）"></a>3.3 Token 详解（分布式身份令牌）</h2><h3 id="3-3-1-什么是Token"><a href="#3-3-1-什么是Token" class="headerlink" title="3.3.1 什么是Token"></a>3.3.1 什么是Token</h3><p>Token是<strong>服务端生成、下发给客户端的加密身份令牌</strong>，用于替代传统Session，实现前后端分离、分布式项目的身份认证。常见格式为JWT（JSON Web Token），包含用户信息、过期时间、签名加密信息。</p>
+<h3 id="3-3-2-核心特性（对比Session）"><a href="#3-3-2-核心特性（对比Session）" class="headerlink" title="3.3.2 核心特性（对比Session）"></a>3.3.2 核心特性（对比Session）</h3><ul>
+<li><p><strong>无状态</strong>：服务端无需存储Token数据，解析签名即可校验身份，大幅减轻服务器压力；</p>
+</li>
+<li><p><strong>跨服务、跨域名</strong>：不受限于单Tomcat节点，适配微服务、分布式集群；</p>
+</li>
+<li><p><strong>客户端存储</strong>：通常存储在浏览器LocalStorage&#x2F;SessionStorage，不依赖Cookie；</p>
+</li>
+<li><p><strong>自带信息</strong>：Token内部可携带用户ID、权限、角色等非敏感信息，减少数据库查询。</p>
+</li>
+</ul>
+<h3 id="3-3-3-Redis与Token的协同"><a href="#3-3-3-Redis与Token的协同" class="headerlink" title="3.3.3 Redis与Token的协同"></a>3.3.3 Redis与Token的协同</h3><p>单纯Token存在无法主动失效、续签困难的问题，企业主流方案：<strong>Token+Redis双重校验</strong></p>
+<ul>
+<li><p>用户登录成功，服务端生成Token返回前端；</p>
+</li>
+<li><p>同时将Token存入Redis，设置过期时间，绑定用户信息；</p>
+</li>
+<li><p>每次接口请求，先校验Token合法性，再校验Redis中Token是否有效；</p>
+</li>
+<li><p>退出登录时，直接删除Redis中Token，实现主动失效。</p>
+</li>
+</ul>
+<h2 id="3-4-Code-详解（验证码-x2F-授权码机制）"><a href="#3-4-Code-详解（验证码-x2F-授权码机制）" class="headerlink" title="3.4 Code 详解（验证码&#x2F;授权码机制）"></a>3.4 Code 详解（验证码&#x2F;授权码机制）</h2><p>Code是临时授权验证码，是Web安全校验的核心机制，主要分为<strong>图片验证码</strong>和<strong>第三方授权码</strong>两类，全程可结合Redis做缓存管控。</p>
+<h3 id="3-4-1-图片验证码（登录校验）"><a href="#3-4-1-图片验证码（登录校验）" class="headerlink" title="3.4.1 图片验证码（登录校验）"></a>3.4.1 图片验证码（登录校验）</h3><ul>
+<li><p><strong>作用</strong>：防止暴力破解、机器刷请求、恶意注册登录；</p>
+</li>
+<li><p><strong>流程</strong>：前端请求验证码 → Tomcat生成随机Code → 存入Redis（设置1-5分钟过期） → 返回图片给前端 → 用户输入提交 → 服务端校验Redis中Code是否匹配；</p>
+</li>
+<li><p><strong>Redis优势</strong>：自带过期淘汰，无需手动清理过期验证码，高性能适配高频访问。</p>
+</li>
+</ul>
+<h3 id="3-4-2-授权码（第三方登录）"><a href="#3-4-2-授权码（第三方登录）" class="headerlink" title="3.4.2 授权码（第三方登录）"></a>3.4.2 授权码（第三方登录）</h3><ul>
+<li><p><strong>作用</strong>：微信、QQ、GitHub等第三方登录的临时授权凭证；</p>
+</li>
+<li><p><strong>特性</strong>：一次性使用、短期有效、不可复用；</p>
+</li>
+<li><p><strong>流程</strong>：获取临时Code → 用Code换取AccessToken → 获取用户信息 → 完成登录。</p>
+</li>
+</ul>
+<h2 id="3-5-四大核心概念完整对比表"><a href="#3-5-四大核心概念完整对比表" class="headerlink" title="3.5 四大核心概念完整对比表"></a>3.5 四大核心概念完整对比表</h2><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>存储位置</th>
+<th>核心作用</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cookie</td>
+<td>客户端浏览器</td>
+<td>存储少量标识数据，自动携带请求</td>
+<td>传统Web会话标识、记住登录状态</td>
+</tr>
+<tr>
+<td>Session</td>
+<td>服务端（Tomcat&#x2F;Redis）</td>
+<td>存储用户会话数据，维持登录状态</td>
+<td>单体项目、Tomcat集群会话共享</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>客户端本地</td>
+<td>分布式身份授权、无状态认证</td>
+<td>前后端分离、微服务项目</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>服务端（Redis缓存）</td>
+<td>临时安全校验、防刷、授权</td>
+<td>验证码登录、第三方授权</td>
+</tr>
+</tbody></table>
+<h2 id="3-6-完整企业级联动流程（终极串联）"><a href="#3-6-完整企业级联动流程（终极串联）" class="headerlink" title="3.6 完整企业级联动流程（终极串联）"></a>3.6 完整企业级联动流程（终极串联）</h2><p>用户访问网站 → 浏览器携带Cookie → Tomcat接收请求 → 无Session则跳转登录 → 前端获取验证码Code（缓存至Redis） → 用户输入账号密码+验证码校验 → 登录成功 → Tomcat生成Session&#x2F;服务端生成Token并存入Redis → 写入Cookie&#x2F;返回Token → 后续请求自动鉴权 → 实现长期会话保持</p>
+<h2 id="3-9-Cookie-x2F-Session-x2F-Token-x2F-Code-实战示例（可直接看懂）"><a href="#3-9-Cookie-x2F-Session-x2F-Token-x2F-Code-实战示例（可直接看懂）" class="headerlink" title="3.9 Cookie &#x2F; Session &#x2F; Token &#x2F; Code 实战示例（可直接看懂）"></a>3.9 Cookie &#x2F; Session &#x2F; Token &#x2F; Code 实战示例（可直接看懂）</h2><p>本节提供<strong>纯实战、最简业务样例</strong>，包含：原始数据样例、Java极简代码、Redis存储结构、完整请求流程，贴合Tomcat+Redis真实开发场景。</p>
+<h3 id="3-9-1-Code-示例（验证码-x2F-授权码）"><a href="#3-9-1-Code-示例（验证码-x2F-授权码）" class="headerlink" title="3.9.1 Code 示例（验证码&#x2F;授权码）"></a>3.9.1 Code 示例（验证码&#x2F;授权码）</h3><p><strong>业务场景</strong>：登录图片验证码、5分钟过期、一次性有效。</p>
+<p><strong>数据样例</strong>：随机4位数字字母：<strong>8A2S</strong></p>
+<p><strong>Redis存储结构</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Key: code:login:192.168.1.100</span><br><span class="line">Val: 8A2S</span><br><span class="line">Expire: 300秒（5分钟）</span><br></pre></td></tr></table></figure>
+
+<p><strong>Java 极简示例（Tomcat后端）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.生成验证码</span></span><br><span class="line"><span class="type">String</span> <span class="variable">code</span> <span class="operator">=</span> getRandomCode(); <span class="comment">// 输出 8A2S</span></span><br><span class="line"><span class="comment">// 2.存入Redis，5分钟过期</span></span><br><span class="line">redisTemplate.opsForValue().set(<span class="string">&quot;code:login:&quot;</span> + ip, code, <span class="number">5</span>, TimeUnit.MINUTES);</span><br><span class="line"><span class="comment">// 3.返回给前端图片</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>校验逻辑</strong>：用户提交验证码后，后端从Redis取值比对，<strong>一致则通过，立即删除Redis验证码（防复用）</strong>。</p>
+<h3 id="3-9-2-Cookie-示例（客户端存储）"><a href="#3-9-2-Cookie-示例（客户端存储）" class="headerlink" title="3.9.2 Cookie 示例（客户端存储）"></a>3.9.2 Cookie 示例（客户端存储）</h3><p><strong>业务场景</strong>：Tomcat默认会话Cookie JSESSIONID</p>
+<p><strong>浏览器存储原始样例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Name: JSESSIONID</span><br><span class="line">Value: 56B89C220A11456789ABCDEF12345678</span><br><span class="line">Domain: localhost</span><br><span class="line">Path: /</span><br><span class="line">Expires: 会话过期（关闭浏览器失效）</span><br></pre></td></tr></table></figure>
+
+<p><strong>Java 写Cookie示例</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Cookie</span> <span class="variable">cookie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;JSESSIONID&quot;</span>, session.getId());</span><br><span class="line">cookie.setMaxAge(-<span class="number">1</span>); <span class="comment">// 会话Cookie</span></span><br><span class="line">response.addCookie(cookie);</span><br></pre></td></tr></table></figure>
+
+<p><strong>核心行为</strong>：浏览器下次访问项目，<strong>自动带上此Cookie</strong>，Tomcat根据ID找会话。</p>
+<h3 id="3-9-3-Session-示例（服务端会话，Redis托管版）"><a href="#3-9-3-Session-示例（服务端会话，Redis托管版）" class="headerlink" title="3.9.3 Session 示例（服务端会话，Redis托管版）"></a>3.9.3 Session 示例（服务端会话，Redis托管版）</h3><p><strong>业务场景</strong>：用户登录后存储用户信息，集群共享。</p>
+<p><strong>Session 内存数据样例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sessionId = 56B89C220A11456789ABCDEF12345678</span><br><span class="line">session.setAttribute(&quot;userId&quot;, 10001);</span><br><span class="line">session.setAttribute(&quot;username&quot;, &quot;test_user&quot;);</span><br><span class="line">session.setAttribute(&quot;role&quot;, &quot;user&quot;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Redis真实存储结构（分布式Session）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Key: session:56B89C220A11456789ABCDEF12345678</span><br><span class="line">Value: 序列化后的用户会话对象</span><br><span class="line">Expire: 30分钟</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用特点</strong>：<strong>所有Tomcat节点共用这一条数据</strong>，集群不再掉线。</p>
+<h3 id="3-9-4-Token-x2F-JWT-示例（前后端分离）"><a href="#3-9-4-Token-x2F-JWT-示例（前后端分离）" class="headerlink" title="3.9.4 Token &#x2F; JWT 示例（前后端分离）"></a>3.9.4 Token &#x2F; JWT 示例（前后端分离）</h3><p><strong>业务场景</strong>：登录成功下发令牌，前端存LocalStorage，每次请求Header携带。</p>
+<p><strong>1.原始简化Token样例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;JWT_TOKEN&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.请求携带方式（Header）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization: Bearer &lt;JWT_TOKEN&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.Redis校验方案（解决JWT不能主动注销问题）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Key: token:user:10001</span><br><span class="line">Val: 当前有效token串</span><br><span class="line">Expire: 30分钟</span><br></pre></td></tr></table></figure>
+
+<p><strong>登录&#x2F;注销逻辑</strong>：<br>登录：生成JWT + 写入Redis<br>注销：<strong>直接删除Redis中Token</strong>，前端即使有Token也失效，完美解决退出登录问题。</p>
+<h2 id="3-10-四者最简联动完整示例流程"><a href="#3-10-四者最简联动完整示例流程" class="headerlink" title="3.10 四者最简联动完整示例流程"></a>3.10 四者最简联动完整示例流程</h2><p>1. 前端请求登录页验证码 → 后端生成 <strong>Code</strong> 存入Redis<br>2. 用户输入账号密码+ <strong>Code</strong> 校验通过<br>3. 传统Web：Tomcat创建 <strong>Session</strong>，写入 <strong>Cookie(JSESSIONID)</strong><br>4. 前后端分离：服务端生成 <strong>Token(JWT)</strong> 存入Redis返回前端<br>5. 后续所有请求：靠Cookie&#x2F;Token自动鉴权，识别登录用户</p>
+<h2 id="3-7-拓展：Web鉴权完整体系（除Cookie-x2F-Session-x2F-Token-x2F-Code外核心概念）"><a href="#3-7-拓展：Web鉴权完整体系（除Cookie-x2F-Session-x2F-Token-x2F-Code外核心概念）" class="headerlink" title="3.7 拓展：Web鉴权完整体系（除Cookie&#x2F;Session&#x2F;Token&#x2F;Code外核心概念）"></a>3.7 拓展：Web鉴权完整体系（除Cookie&#x2F;Session&#x2F;Token&#x2F;Code外核心概念）</h2><p>在日常Java Web、Tomcat+Redis项目中，除前面四大基础概念，企业开发、面试、接口安全必备<strong>JWT、Access&#x2F;Refresh Token、SSO、OAuth2.0、OIDC、SessionId、Nonce、Signature、Header鉴权、黑名单</strong>等核心机制，全部贴合现有技术栈。</p>
+<h3 id="3-7-1-JWT（JSON-Web-Token）"><a href="#3-7-1-JWT（JSON-Web-Token）" class="headerlink" title="3.7.1 JWT（JSON Web Token）"></a>3.7.1 JWT（JSON Web Token）</h3><p>JWT是<strong>Token的标准化加密格式</strong>，目前行业通用令牌规范，前后端分离、微服务项目标配，是对原生Token的标准化升级。</p>
+<ul>
+<li><p><strong>结构</strong>：三段式（Header头部、Payload载荷、Signature签名），Base64编码，可解析不可篡改；</p>
+</li>
+<li><p><strong>核心优势</strong>：自包含信息，服务端无需查询Redis&#x2F;数据库即可解析用户ID、权限、过期时间；</p>
+</li>
+<li><p><strong>配合Redis用法</strong>：JWT负责鉴权解析，Redis维护令牌黑名单、实现主动注销、过期管控，弥补JWT无法主动失效的缺陷。</p>
+</li>
+</ul>
+<h3 id="3-7-2-AccessToken-x2F-RefreshToken（双令牌机制）"><a href="#3-7-2-AccessToken-x2F-RefreshToken（双令牌机制）" class="headerlink" title="3.7.2 AccessToken &#x2F; RefreshToken（双令牌机制）"></a>3.7.2 AccessToken &#x2F; RefreshToken（双令牌机制）</h3><p>企业生产级标准双令牌方案，解决单Token“安全与体验不可兼得”的问题，广泛用于APP、前后端分离项目。</p>
+<ul>
+<li><p><strong>AccessToken（访问令牌）</strong>：短期有效（5–30分钟），每次接口请求携带，用于鉴权，过期快、安全性高；</p>
+</li>
+<li><p><strong>RefreshToken（刷新令牌）</strong>：长期有效（7–30天），不参与业务鉴权，仅用于过期后刷新AccessToken；</p>
+</li>
+<li><p><strong>Redis协同</strong>：双令牌均缓存至Redis，绑定用户，退出登录批量删除，实现强制下线。</p>
+</li>
+</ul>
+<h3 id="3-7-3-SessionId（会话唯一标识）"><a href="#3-7-3-SessionId（会话唯一标识）" class="headerlink" title="3.7.3 SessionId（会话唯一标识）"></a>3.7.3 SessionId（会话唯一标识）</h3><p>Session的核心唯一主键，Tomcat原生生成的32位随机串，是连接Cookie与Session的桥梁。</p>
+<ul>
+<li><p>Cookie中存储的核心内容就是JSESSIONID（Tomcat默认SessionId名称）；</p>
+</li>
+<li><p>Redis集群共享Session的本质：以SessionId为Key，用户会话数据为Value集中缓存；</p>
+</li>
+<li><p>核心作用：精准区分每一个在线用户，实现会话隔离。</p>
+</li>
+</ul>
+<h3 id="3-7-4-Nonce（一次性随机数）"><a href="#3-7-4-Nonce（一次性随机数）" class="headerlink" title="3.7.4 Nonce（一次性随机数）"></a>3.7.4 Nonce（一次性随机数）</h3><p>安全校验类临时随机码，比Code更轻量化，用于防重放、防攻击，常用于登录、接口签名、第三方回调。</p>
+<ul>
+<li><p><strong>特性</strong>：一次性使用、短时过期、不可重复；</p>
+</li>
+<li><p><strong>Redis用法</strong>：生成Nonce存入Redis，接口校验后立即删除，杜绝重放攻击。</p>
+</li>
+</ul>
+<h3 id="3-7-5-Signature（接口签名）"><a href="#3-7-5-Signature（接口签名）" class="headerlink" title="3.7.5 Signature（接口签名）"></a>3.7.5 Signature（接口签名）</h3><p>服务端与客户端约定算法生成的加密签名，用于<strong>防篡改、防伪造请求</strong>，多用于后端接口、小程序、第三方对接。</p>
+<ul>
+<li><p>原理：参数+时间戳+秘钥加密生成签名，服务端校验签名一致性；</p>
+</li>
+<li><p>Redis配合：缓存有效时间戳、临时秘钥，防止过期请求与伪造请求。</p>
+</li>
+</ul>
+<h3 id="3-7-6-Token黑名单-x2F-白名单"><a href="#3-7-6-Token黑名单-x2F-白名单" class="headerlink" title="3.7.6 Token黑名单&#x2F;白名单"></a>3.7.6 Token黑名单&#x2F;白名单</h3><p>Redis实现的安全管控机制，是生产级鉴权必备能力。</p>
+<ul>
+<li><p><strong>黑名单</strong>：用户退出、修改密码、强制下线时，将未过期Token存入Redis黑名单，拒绝后续请求；</p>
+</li>
+<li><p><strong>白名单</strong>：仅放行Redis中存在的有效令牌，杜绝伪造Token。</p>
+</li>
+</ul>
+<h3 id="3-7-7-SSO（单点登录）"><a href="#3-7-7-SSO（单点登录）" class="headerlink" title="3.7.7 SSO（单点登录）"></a>3.7.7 SSO（单点登录）</h3><p>多系统统一登录方案：<strong>一次登录，全站通行</strong>，适配多个Tomcat站点、多子系统场景。</p>
+<ul>
+<li><p>核心架构：独立认证中心 + 业务子系统；</p>
+</li>
+<li><p>Redis作用：统一缓存全局登录令牌、用户会话，实现跨系统会话共享。</p>
+</li>
+</ul>
+<h3 id="3-7-8-OAuth2-0-x2F-OIDC（第三方授权标准）"><a href="#3-7-8-OAuth2-0-x2F-OIDC（第三方授权标准）" class="headerlink" title="3.7.8 OAuth2.0 &#x2F; OIDC（第三方授权标准）"></a>3.7.8 OAuth2.0 &#x2F; OIDC（第三方授权标准）</h3><p>第三方登录、授权行业标准（微信&#x2F;QQ&#x2F;谷歌登录均基于此），是Code授权机制的底层规范。</p>
+<ul>
+<li><p>OAuth2.0：专注<strong>授权</strong>（允许第三方获取用户资源）；</p>
+</li>
+<li><p>OIDC：在OAuth2.0基础上增加<strong>身份认证</strong>，返回标准化用户身份信息；</p>
+</li>
+<li><p>流程依赖Code授权码+Redis缓存临时凭证，保证授权安全。</p>
+</li>
+</ul>
+<h3 id="3-8-全套Web鉴权体系极简总结（全覆盖）"><a href="#3-8-全套Web鉴权体系极简总结（全覆盖）" class="headerlink" title="3.8 全套Web鉴权体系极简总结（全覆盖）"></a>3.8 全套Web鉴权体系极简总结（全覆盖）</h3><ul>
+<li><p><strong>基础会话层</strong>：Cookie（客户端存储）、Session（服务端会话）、SessionId（会话唯一键）</p>
+</li>
+<li><p><strong>认证令牌层</strong>：Code（验证码&#x2F;授权码）、Token、JWT、AccessToken&#x2F;RefreshToken（双令牌）</p>
+</li>
+<li><p><strong>安全加固层</strong>：Nonce、Signature、Redis黑白名单</p>
+</li>
+<li><p><strong>多系统标准层</strong>：SSO、OAuth2.0、OIDC</p>
+</li>
+</ul>
+<p>所有机制均可无缝适配 <strong>Tomcat运行 + Redis缓存管控</strong>，构成Java Web完整的身份认证、授权、安全防护体系。</p>
+<h1 id="四、核心区别与协作总结"><a href="#四、核心区别与协作总结" class="headerlink" title="四、核心区别与协作总结"></a>四、核心区别与协作总结</h1><h2 id="3-1-问题背景"><a href="#3-1-问题背景" class="headerlink" title="3.1 问题背景"></a>3.1 问题背景</h2><p>单机Tomcat的Session存储在本地服务器，一旦搭建<strong>Tomcat集群</strong>（多台服务器分担压力），用户请求可能分发到不同节点，导致Session丢失、频繁掉线、需要重复登录。</p>
+<h2 id="3-2-解决方案：Redis实现分布式Session共享"><a href="#3-2-解决方案：Redis实现分布式Session共享" class="headerlink" title="3.2 解决方案：Redis实现分布式Session共享"></a>3.2 解决方案：Redis实现分布式Session共享</h2><p>核心原理：<strong>剥离Tomcat本地Session，统一存储到Redis</strong>，所有Tomcat节点共享Redis中的Session数据，无论请求分发到哪台Tomcat，都能读取到用户会话信息，彻底解决集群登录失效问题。</p>
+<h2 id="3-3-简易实现步骤"><a href="#3-3-简易实现步骤" class="headerlink" title="3.3 简易实现步骤"></a>3.3 简易实现步骤</h2><ol>
+<li><p>项目引入Redisson-Tomcat依赖（适配对应Tomcat版本）；</p>
+</li>
+<li><p>修改Tomcat的context.xml配置，启用RedisSessionManager；</p>
+</li>
+<li><p>配置Redis连接地址、端口、密码，将Session托管给Redis；</p>
+</li>
+<li><p>重启Tomcat集群，实现全节点会话共享。</p>
+</li>
+</ol>
+<h1 id="四、核心区别与协作总结-1"><a href="#四、核心区别与协作总结-1" class="headerlink" title="四、核心区别与协作总结"></a>四、核心区别与协作总结</h1><h2 id="4-1-核心区别"><a href="#4-1-核心区别" class="headerlink" title="4.1 核心区别"></a>4.1 核心区别</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>核心定位</th>
+<th>数据存储方式</th>
+<th>核心作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tomcat</td>
+<td>Web运行容器</td>
+<td>内存&#x2F;本地磁盘</td>
+<td>运行Java Web程序、处理HTTP请求、调度业务</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>内存缓存中间件</td>
+<td>内存+磁盘持久化</td>
+<td>高速缓存、会话共享、高并发数据处理</td>
+</tr>
+</tbody></table>
+<h2 id="4-2-完整业务流程"><a href="#4-2-完整业务流程" class="headerlink" title="4.2 完整业务流程"></a>4.2 完整业务流程</h2><p>用户发起请求 → Nginx负载均衡 → 分发至任意Tomcat节点 → Tomcat处理业务 → 优先查询Redis缓存 → 缓存命中直接返回数据 → 未命中查询MySQL → 回写Redis并返回结果 → Session统一存储Redis</p>
+<h1 id="五、入门常见问题答疑"><a href="#五、入门常见问题答疑" class="headerlink" title="五、入门常见问题答疑"></a>五、入门常见问题答疑</h1><ul>
+<li><p><strong>Q：Tomcat可以单独使用吗？</strong><br>A：可以，单机小型项目无需Redis，仅靠Tomcat即可运行，Redis是性能优化、集群扩展的辅助组件。</p>
+</li>
+<li><p><strong>Q：Redis可以替代MySQL吗？</strong><br>A：不可以。Redis是缓存，主打高速临时数据；MySQL是持久化数据库，负责存储核心业务数据，二者互补。</p>
+</li>
+<li><p><strong>Q：为什么集群必须用Redis共享Session？</strong><br>A：Tomcat本地Session无法跨节点同步，集群场景下会导致登录状态不稳定，Redis集中式存储是目前最主流、最高效的解决方案。</p>
+</li>
+</ul>
+<h1 id="六、学习总结"><a href="#六、学习总结" class="headerlink" title="六、学习总结"></a>六、学习总结</h1><p>1. <strong>Tomcat是“运行载体”</strong>：负责跑Java Web项目、处理用户请求，是Web服务的基础容器，核心解决程序运行问题；</p>
+<p>2. <strong>Redis是“性能加速器”</strong>：靠内存高速读写解决高并发、数据库压力大、集群会话问题，是Web项目性能优化的核心中间件；</p>
+<p>3.<strong>二者黄金组合</strong>：Tomcat承载业务运行，Redis优化性能与集群架构，是Java Web企业项目的标准基础架构。</p>
+<p>4. <strong>会话与认证核心逻辑</strong>：Cookie做客户端标识、Session做服务端会话存储、Token做分布式授权、Code做安全校验，四类技术依托Tomcat运行、Redis缓存优化，构成完整的Web身份认证体系。</p>
+<blockquote>
+<p>（注：部分内容可能由 AI 生成）</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/about" rel="external nofollow noreferrer">ZhangSki</a>
+                </span>
+            </div>
+            <div class="reprint__download">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-download">
+                        下载:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/md/RedisandTomcat-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3.md" download>点击下载本文 .md 源文件</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/3301_2026/tags/Redis/">
+                                    <span class="chip bg-color">Redis</span>
+                                </a>
+                            
+                                <a href="/3301_2026/tags/Tomcat/">
+                                    <span class="chip bg-color">Tomcat</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/3301_2026/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/3301_2026/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/3301_2026/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/3301_2026/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/springboot/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/9.jpg" class="responsive-img" alt="Spring Boot 基础学习文档">
+                        
+                        <span class="card-title">Spring Boot 基础学习文档</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
+                                    后端开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/Pixel_Diff%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/7.jpg" class="responsive-img" alt="Pixel Diff 文档对比服务接口文档">
+                        
+                        <span class="card-title">Pixel Diff 文档对比服务接口文档</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" class="post-category">
+                                    接口文档
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/%E6%8E%A5%E5%8F%A3/">
+                        <span class="chip bg-color">接口</span>
+                    </a>
+                    
+                    <a href="/3301_2026/tags/PixelDiff/">
+                        <span class="chip bg-color">PixelDiff</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/3301_2026/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2026</span>
+            
+            <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">38.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "3";
+                        var startDate = "16";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/abc3301" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2797459022@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2797459022" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2797459022" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/3301_2026/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/3301_2026/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/3301_2026/libs/materialize/materialize.min.js"></script>
+    <script src="/3301_2026/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/3301_2026/libs/aos/aos.js"></script>
+    <script src="/3301_2026/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/3301_2026/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/3301_2026/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/3301_2026/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/3301_2026/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/3301_2026/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/3301_2026/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/3301_2026/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/3301_2026/live2dw/assets/haru02.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>

@@ -1,0 +1,1768 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="OCR 光学字符识别 — 深度技术指南, 3301 channel, 博客, blog, 3301">
+    <meta name="description" content="OCR 光学字符识别 — 深度技术指南第一章：OCR 基础概念1.1 定义OCR（Optical Character Recognition，光学字符识别） 是指通过图像处理和模式识别技术，将图片、扫描文档、手写稿中的可见文字符号，自动转化">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>OCR 光学字符识别 — 深度技术指南 | 3301 channel</title>
+    <link rel="icon" type="image/png" href="/3301_2026/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/my.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/3301_2026/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/3301_2026/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/3301_2026/css/reward.css">
+    
+
+
+
+    <script src="/3301_2026/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/3301_2026/atom.xml" title="3301 channel" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/3301_2026/" class="waves-effect waves-light">
+                    
+                    <img src="/3301_2026/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">3301 channel</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/" class="waves-effect waves-light" >
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/tags" class="waves-effect waves-light" >
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/categories" class="waves-effect waves-light" >
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/archives" class="waves-effect waves-light" >
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/about" class="waves-effect waves-light" >
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/contact" class="waves-effect waves-light" >
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/friends" class="waves-effect waves-light" >
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="https://3301channel.github.io" class="waves-effect waves-light" target="_blank" rel="noopener noreferrer">
+      
+      <i class="fas fa-clock-rotate-left" style="zoom: 0.6;"></i>
+      
+      <span>时光机</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/3301_2026/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">3301 channel</div>
+        <div class="logo-desc">
+            
+            3301 channel - 个人博客，分享杂志、影视、学习资料与生活记录
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a target="_blank" rel="noopener" href="https://3301channel.github.io" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-clock-rotate-left"></i>
+			
+			时光机
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/abc3301/abc3301.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/abc3301/abc3301.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/3301_2026/medias/featureimages/6.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">OCR 光学字符识别 — 深度技术指南</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/3301_2026/tags/OCR/">
+                                <span class="chip bg-color">OCR</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/3301_2026/categories/AI/" class="post-category">
+                                AI
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-08-19
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    30 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="OCR-光学字符识别-—-深度技术指南"><a href="#OCR-光学字符识别-—-深度技术指南" class="headerlink" title="OCR 光学字符识别 — 深度技术指南"></a>OCR 光学字符识别 — 深度技术指南</h1><h2 id="第一章：OCR-基础概念"><a href="#第一章：OCR-基础概念" class="headerlink" title="第一章：OCR 基础概念"></a>第一章：OCR 基础概念</h2><h3 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h3><p><strong>OCR（Optical Character Recognition，光学字符识别）</strong> 是指通过图像处理和模式识别技术，将图片、扫描文档、手写稿中的可见文字符号，自动转化为机器可编辑、可检索的文本编码（如 Unicode 字符串）的技术体系。</p>
+<h3 id="1-2-OCR-与相关技术的边界"><a href="#1-2-OCR-与相关技术的边界" class="headerlink" title="1.2 OCR 与相关技术的边界"></a>1.2 OCR 与相关技术的边界</h3><table>
+<thead>
+<tr>
+<th>技术</th>
+<th>目标</th>
+<th>典型输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>OCR</strong></td>
+<td>图像中的字符 $\rightarrow$ 文本</td>
+<td>“这是一个报告”</td>
+</tr>
+<tr>
+<td><strong>ICR（智能字符识别）</strong></td>
+<td>手写体字符识别</td>
+<td>手写数字、字母</td>
+</tr>
+<tr>
+<td><strong>OMR（光学标记识别）</strong></td>
+<td>检测标记位置</td>
+<td>答题卡涂黑区域坐标</td>
+</tr>
+<tr>
+<td><strong>条形码&#x2F;二维码</strong></td>
+<td>编码符号 $\rightarrow$ 数字</td>
+<td>商品编码</td>
+</tr>
+<tr>
+<td><strong>文档理解&#x2F;Document AI</strong></td>
+<td>文本 $\rightarrow$ 结构化语义</td>
+<td>提取发票金额、日期</td>
+</tr>
+<tr>
+<td><strong>版面分析（Layout Analysis）</strong></td>
+<td>识别文本块层级关系</td>
+<td>段落、标题、表格边界</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="第二章：OCR-完整管线-—-深度解析"><a href="#第二章：OCR-完整管线-—-深度解析" class="headerlink" title="第二章：OCR 完整管线 — 深度解析"></a>第二章：OCR 完整管线 — 深度解析</h2><h3 id="2-1-图像预处理"><a href="#2-1-图像预处理" class="headerlink" title="2.1 图像预处理"></a>2.1 图像预处理</h3><p>预处理的质量直接决定 OCR 的上限。这一阶段的目标是消除干扰、增强字符特征。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>方法</th>
+<th>作用</th>
+<th>关键参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>灰度化</strong></td>
+<td>$Gray &#x3D; 0.299R + 0.587G + 0.114B$</td>
+<td>去色、降低计算量</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>二值化</strong></td>
+<td>OTSU &#x2F; 自适应阈值</td>
+<td>分离前景文字与背景</td>
+<td>阈值（全局&#x2F;局部）</td>
+</tr>
+<tr>
+<td><strong>去噪</strong></td>
+<td>高斯滤波、中值滤波、NLM</td>
+<td>消除传感器噪声</td>
+<td>核大小（kernel size）</td>
+</tr>
+<tr>
+<td><strong>倾斜校正</strong></td>
+<td>霍夫变换 &#x2F; 最小面积矩形</td>
+<td>矫正扫描角度</td>
+<td>旋转角度</td>
+</tr>
+<tr>
+<td><strong>透视校正</strong></td>
+<td>四点透视变换</td>
+<td>矫正拍摄畸变</td>
+<td>4 个源坐标 + 4 个目标坐标</td>
+</tr>
+<tr>
+<td><strong>锐化</strong></td>
+<td>Laplacian &#x2F; Unsharp Mask</td>
+<td>增强字符边缘</td>
+<td>alpha 值</td>
+</tr>
+<tr>
+<td><strong>对比度增强</strong></td>
+<td>CLAHE</td>
+<td>改善光照不均区域的可见性</td>
+<td>clip limit、tile size</td>
+</tr>
+<tr>
+<td><strong>形态学操作</strong></td>
+<td>膨胀、腐蚀、开闭运算</td>
+<td>断字连接 &#x2F; 去除噪点</td>
+<td>结构元素大小</td>
+</tr>
+<tr>
+<td><strong>图像放大</strong></td>
+<td>插值算法（Lanczos &#x2F; Bicubic）</td>
+<td>提高小字号文字的像素密度</td>
+<td>缩放因子（通常 $2\times$–$4\times$）</td>
+</tr>
+</tbody></table>
+<p><strong>OTSU 二值化原理</strong>：OTSU 算法通过最大化类间方差来自动选取最优阈值。设阈值 $t$ 将图像分为前景 $C_0$ 和背景 $C_1$，类间方差定义为：</p>
+<p>$$<br>\sigma^2_b(t) &#x3D; \omega_0(t) \cdot \omega_1(t) \cdot [\mu_0(t) - \mu_1(t)]^2<br>$$</p>
+<p>其中 $\omega_0, \omega_1$ 分别为前景和背景的像素占比，$\mu_0, \mu_1$ 为各自的平均灰度值。最优阈值 $t^* &#x3D; \arg\max_t \sigma^2_b(t)$。</p>
+<h4 id="Python-示例"><a href="#Python-示例" class="headerlink" title="Python 示例"></a>Python 示例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">preprocess_image</span>(<span class="params">image_path: <span class="built_in">str</span>, output_path: <span class="built_in">str</span> = <span class="string">&quot;cleaned.png&quot;</span></span>) -&gt; np.ndarray:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;OCR 图像预处理管线&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 1. 读取</span></span><br><span class="line">    img = cv2.imread(image_path)</span><br><span class="line">    <span class="keyword">if</span> img <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">raise</span> FileNotFoundError(<span class="string">f&quot;Cannot read image: <span class="subst">&#123;image_path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. 灰度化</span></span><br><span class="line">    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. 去噪（双边滤波保留边缘）</span></span><br><span class="line">    denoised = cv2.bilateralFilter(gray, d=<span class="number">9</span>, sigmaColor=<span class="number">75</span>, sigmaSpace=<span class="number">75</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4. CLAHE 对比度增强</span></span><br><span class="line">    clahe = cv2.createCLAHE(clipLimit=<span class="number">2.0</span>, tileGridSize=(<span class="number">8</span>, <span class="number">8</span>))</span><br><span class="line">    enhanced = clahe.apply(denoised)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 5. 二值化（OTSU）</span></span><br><span class="line">    _, binary = cv2.threshold(enhanced, <span class="number">0</span>, <span class="number">255</span>, cv2.THRESH_BINARY + cv2.THRESH_OTSU)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 6. 去噪（形态学开运算）</span></span><br><span class="line">    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line">    cleaned = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 7. 放大（小字场景）</span></span><br><span class="line">    cleaned = cv2.resize(cleaned, <span class="literal">None</span>, fx=<span class="number">2</span>, fy=<span class="number">2</span>, interpolation=cv2.INTER_LANCZOS4)</span><br><span class="line"></span><br><span class="line">    cv2.imwrite(output_path, cleaned)</span><br><span class="line">    <span class="keyword">return</span> cleaned</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java-示例"><a href="#Java-示例" class="headerlink" title="Java 示例"></a>Java 示例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.opencv.core.*;</span><br><span class="line"><span class="keyword">import</span> org.opencv.imgcodecs.Imgcodecs;</span><br><span class="line"><span class="keyword">import</span> org.opencv.imgproc.Imgproc;</span><br><span class="line"><span class="keyword">import</span> org.opencv.photo.Photo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OcrPreprocessor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">Mat</span> <span class="title function_">preprocessImage</span><span class="params">(String imagePath, String outputPath)</span> &#123;</span><br><span class="line">        <span class="comment">// 1. 读取</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">img</span> <span class="operator">=</span> Imgcodecs.imread(imagePath);</span><br><span class="line">        <span class="keyword">if</span> (img.empty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Cannot read image: &quot;</span> + imagePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 灰度化</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">gray</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 双边滤波去噪（保留边缘）</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">denoised</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        Photo.bilateralFilter(gray, denoised, <span class="number">9</span>, <span class="number">75</span>, <span class="number">75</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4. CLAHE 对比度增强</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">enhanced</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        <span class="type">CLAHE</span> <span class="variable">clahe</span> <span class="operator">=</span> Imgproc.createCLAHE(<span class="number">2.0</span>, <span class="keyword">new</span> <span class="title class_">Size</span>(<span class="number">8</span>, <span class="number">8</span>));</span><br><span class="line">        clahe.apply(denoised, enhanced);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5. OTSU 二值化</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">binary</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        Imgproc.threshold(enhanced, binary, <span class="number">0</span>, <span class="number">255</span>, Imgproc.THRESH_BINARY + Imgproc.THRESH_OTSU);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. 形态学开运算去噪</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">kernel</span> <span class="operator">=</span> Imgproc.getStructuringElement(Imgproc.MORPH_RECT, <span class="keyword">new</span> <span class="title class_">Size</span>(<span class="number">2</span>, <span class="number">2</span>));</span><br><span class="line">        <span class="type">Mat</span> <span class="variable">cleaned</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        Imgproc.morphologyEx(binary, cleaned, Imgproc.MORPH_OPEN, kernel);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 7. 放大 2x</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">scaled</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        Imgproc.resize(cleaned, scaled, <span class="keyword">new</span> <span class="title class_">Size</span>(), <span class="number">2.0</span>, <span class="number">2.0</span>, Imgproc.INTER_LANCZOS4);</span><br><span class="line"></span><br><span class="line">        Imgcodecs.imwrite(outputPath, scaled);</span><br><span class="line">        <span class="keyword">return</span> scaled;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-文本检测"><a href="#2-2-文本检测" class="headerlink" title="2.2 文本检测"></a>2.2 文本检测</h3><p>文本检测的目标是在图像中标出每个文字区域的边界框（bounding box）。现代方法主要分两类：</p>
+<h4 id="2-2-1-基于回归的方法"><a href="#2-2-1-基于回归的方法" class="headerlink" title="2.2.1 基于回归的方法"></a>2.2.1 基于回归的方法</h4><table>
+<thead>
+<tr>
+<th>模型</th>
+<th>核心思想</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>EAST</strong></td>
+<td>全卷积网络直接回归文本框 + 旋转角度</td>
+<td>速度极快，支持任意方向文本</td>
+</tr>
+<tr>
+<td><strong>DBNet（可微分二值化）</strong></td>
+<td>学习分割图 + 自适应阈值</td>
+<td>对弯曲文本效果好，速度快</td>
+</tr>
+<tr>
+<td><strong>CTPN</strong></td>
+<td>CNN + BLSTM 检测文字序列</td>
+<td>水平文本效果好，早期经典</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-2-基于分割的方法"><a href="#2-2-2-基于分割的方法" class="headerlink" title="2.2.2 基于分割的方法"></a>2.2.2 基于分割的方法</h4><table>
+<thead>
+<tr>
+<th>模型</th>
+<th>核心思想</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>PSENet（渐进式尺度扩张）</strong></td>
+<td>每个文本实例用多个尺度的核</td>
+<td>密集文本分离能力强</td>
+</tr>
+<tr>
+<td><strong>PAN</strong></td>
+<td>轻量级分割网络 + 像素聚合</td>
+<td>实时场景，手机端可用</td>
+</tr>
+<tr>
+<td><strong>FCENet</strong></td>
+<td>傅里叶域文本表示</td>
+<td>任意形状文本极佳</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-3-关键指标"><a href="#2-2-3-关键指标" class="headerlink" title="2.2.3 关键指标"></a>2.2.3 关键指标</h4><ul>
+<li><strong>IoU（Intersection over Union）</strong>：预测框与真值框的交并比。定义为 $IoU &#x3D; \dfrac{TP}{TP + FN + FP}$</li>
+<li><strong>F-score</strong>：Precision 和 Recall 的调和均值，通常 $IoU \ge 0.5$ 算正确</li>
+<li><strong>H-mean</strong>：端到端检测 + 识别的综合 F-score</li>
+</ul>
+<h3 id="2-3-文本识别"><a href="#2-3-文本识别" class="headerlink" title="2.3 文本识别"></a>2.3 文本识别</h3><p>将检测到的文本区域裁剪后送入识别模型，输出字符串。</p>
+<h4 id="2-3-1-主流架构对比"><a href="#2-3-1-主流架构对比" class="headerlink" title="2.3.1 主流架构对比"></a>2.3.1 主流架构对比</h4><table>
+<thead>
+<tr>
+<th>架构</th>
+<th>原理</th>
+<th>优缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CRNN + CTC</strong></td>
+<td>CNN 提取特征 $\rightarrow$ RNN 序列建模 $\rightarrow$ CTC 解码</td>
+<td>速度快、无需字符对齐标注；处理不规则文本弱</td>
+</tr>
+<tr>
+<td><strong>Seq2Seq + Attention</strong></td>
+<td>CNN 编码 $\rightarrow$ RNN&#x2F;LSTM 解码 + 注意力</td>
+<td>能处理弯曲&#x2F;不规则文本；训练较慢，需对齐</td>
+</tr>
+<tr>
+<td><strong>SATRN（Self-Attention）</strong></td>
+<td>纯 Transformer 架构</td>
+<td>对不规则文本鲁棒性强；参数量大</td>
+</tr>
+<tr>
+<td><strong>Vision-Language Model</strong></td>
+<td>ViT&#x2F;CNN + LLM&#x2F;language head 联合训练</td>
+<td>精度高但计算量大（如 TrOCR、ViTSTR）</td>
+</tr>
+<tr>
+<td><strong>端到端多模态 LLM</strong></td>
+<td>GPT-4o &#x2F; Claude 直接理解</td>
+<td>适合复杂场景 + 语义理解；成本高、延迟大</td>
+</tr>
+</tbody></table>
+<h4 id="2-3-2-CRNN-CTC-原理详解"><a href="#2-3-2-CRNN-CTC-原理详解" class="headerlink" title="2.3.2 CRNN + CTC 原理详解"></a>2.3.2 CRNN + CTC 原理详解</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">输入图像（H=32, W=任意）</span><br><span class="line">    |</span><br><span class="line">    v</span><br><span class="line">CNN Backbone（VGG / ResNet 变体）</span><br><span class="line">    | 特征图 (C, H/4, W/4)</span><br><span class="line">    v</span><br><span class="line">Map-to-Sequence（去除 H 维度，合并为序列）</span><br><span class="line">    | 特征序列 T = W/4</span><br><span class="line">    v</span><br><span class="line">BLSTM（双向 LSTM 序列建模）</span><br><span class="line">    | 每个时间步输出字符概率分布</span><br><span class="line">    v</span><br><span class="line">CTC Decoder（Connectionist Temporal Classification）</span><br><span class="line">    | 合并重复字符 + 去除空白符</span><br><span class="line">    v</span><br><span class="line">识别结果字符串</span><br></pre></td></tr></table></figure>
+
+<p><strong>CTC 核心思想</strong>：在每个时间步 $t$，模型输出一个概率分布 $p(l_t \mid X)$，其中 $l_t$ 属于字符集 $C \cup {\text{blank}}$。解码时通过<strong>去重合并</strong>（collapse）去除连续重复字符和空白标记：</p>
+<p>$$<br>\mathcal{B}^{-1} (\text{aa–bb–cc}) \rightarrow \text{abc}<br>$$</p>
+<p>其中 $-$ 代表空白符。目标是最大化给定输入 $X$ 下输出序列 $\pi$ 的概率：</p>
+<p>$$<br>p(\pi \mid X) &#x3D; \prod_{t&#x3D;1}^{T} p(\pi_t \mid X)<br>$$</p>
+<p>优点是不需要预先把字符和图像位置对齐。</p>
+<h4 id="2-3-3-注意力机制"><a href="#2-3-3-注意力机制" class="headerlink" title="2.3.3 注意力机制"></a>2.3.3 注意力机制</h4><p>在 Seq2Seq 架构中，解码器在生成第 $t$ 个字符时，通过注意力权重关注编码器输出的不同位置：</p>
+<p>$$<br>\alpha_{t,i} &#x3D; \frac{\exp(e_{t,i})}{\sum_{j&#x3D;1}^{T} \exp(e_{t,j})}, \quad<br>c_t &#x3D; \sum_{i&#x3D;1}^{T} \alpha_{t,i} \cdot h_i<br>$$</p>
+<p>其中 $e_{t,i}$ 为解码器隐状态 $s_{t-1}$ 与编码器隐状态 $h_i$ 的对齐分数，$c_t$ 为上下文向量。</p>
+<h3 id="2-4-后处理"><a href="#2-4-后处理" class="headerlink" title="2.4 后处理"></a>2.4 后处理</h3><p>识别完成后通常还需要以下处理来提升可用性：</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>做法</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>拼写校正</strong></td>
+<td>基于词典 + 编辑距离或语言模型</td>
+<td>英文 OCR 常见错误</td>
+</tr>
+<tr>
+<td><strong>停用词过滤</strong></td>
+<td>去除标点、多余空格</td>
+<td>全文搜索前</td>
+</tr>
+<tr>
+<td><strong>正则格式化</strong></td>
+<td>手机号、身份证、金额按规则重构</td>
+<td>结构化提取</td>
+</tr>
+<tr>
+<td><strong>N-gram 语言模型</strong></td>
+<td>上下文纠正单字识别错误</td>
+<td>连续文本</td>
+</tr>
+<tr>
+<td><strong>LLM 后纠错</strong></td>
+<td>GPT &#x2F; 本地小模型做语义级修正</td>
+<td>高精度场景</td>
+</tr>
+<tr>
+<td><strong>版面还原</strong></td>
+<td>按段落顺序重组识别结果</td>
+<td>多列文档、学术论文</td>
+</tr>
+</tbody></table>
+<h4 id="Python-后处理示例"><a href="#Python-后处理示例" class="headerlink" title="Python 后处理示例"></a>Python 后处理示例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> Levenshtein</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">postprocess_ocr</span>(<span class="params">text: <span class="built_in">str</span>, dictionary: <span class="built_in">set</span>[<span class="built_in">str</span>] = <span class="literal">None</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;OCR 后处理管线&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 1. 去除多余空格和换行</span></span><br><span class="line">    text = re.sub(<span class="string">r&quot;\s+&quot;</span>, <span class="string">&quot; &quot;</span>, text).strip()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. 统一标点符号（全角→半角）</span></span><br><span class="line">    text = text.replace(<span class="string">&quot;\uff0c&quot;</span>, <span class="string">&quot;,&quot;</span>).replace(<span class="string">&quot;\u3001&quot;</span>, <span class="string">&quot;,&quot;</span>)</span><br><span class="line">    text = text.replace(<span class="string">&quot;\u3002&quot;</span>, <span class="string">&quot;.&quot;</span>).replace(<span class="string">&quot;\uff1a&quot;</span>, <span class="string">&quot;:&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. 字典辅助校正（英文场景）</span></span><br><span class="line">    <span class="keyword">if</span> dictionary:</span><br><span class="line">        words = text.split()</span><br><span class="line">        corrected = []</span><br><span class="line">        <span class="keyword">for</span> w <span class="keyword">in</span> words:</span><br><span class="line">            clean = re.sub(<span class="string">r&quot;[^a-zA-Z]&quot;</span>, <span class="string">&quot;&quot;</span>, w)</span><br><span class="line">            <span class="keyword">if</span> clean <span class="keyword">and</span> clean <span class="keyword">not</span> <span class="keyword">in</span> dictionary:</span><br><span class="line">                <span class="comment"># 找词典中最接近的词（编辑距离 &lt;= 2）</span></span><br><span class="line">                candidates = <span class="built_in">sorted</span>(</span><br><span class="line">                    dictionary,</span><br><span class="line">                    key=<span class="keyword">lambda</span> d: Levenshtein.distance(clean.lower(), d.lower())</span><br><span class="line">                )</span><br><span class="line">                <span class="keyword">if</span> candidates <span class="keyword">and</span> Levenshtein.distance(clean.lower(), candidates[<span class="number">0</span>].lower()) &lt;= <span class="number">2</span>:</span><br><span class="line">                    corrected.append(w.replace(clean, candidates[<span class="number">0</span>]))</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">            corrected.append(w)</span><br><span class="line">        text = <span class="string">&quot; &quot;</span>.join(corrected)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4. 数字格式化（如金额）</span></span><br><span class="line">    text = re.sub(<span class="string">r&quot;(\d)([a-zA-Z])&quot;</span>, <span class="string">r&quot;\1 \2&quot;</span>, text)</span><br><span class="line">    text = re.sub(<span class="string">r&quot;([a-zA-Z])(\d)&quot;</span>, <span class="string">r&quot;\1 \2&quot;</span>, text)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java-后处理示例"><a href="#Java-后处理示例" class="headerlink" title="Java 后处理示例"></a>Java 后处理示例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.*;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OcrPostProcessor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">String</span> <span class="title function_">postprocess</span><span class="params">(String text, Set&lt;String&gt; dictionary)</span> &#123;</span><br><span class="line">        <span class="comment">// 1. 合并空白</span></span><br><span class="line">        text = text.replaceAll(<span class="string">&quot;\\s+&quot;</span>, <span class="string">&quot; &quot;</span>).trim();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 全角标点 → 半角</span></span><br><span class="line">        text = text.replace(<span class="string">&#x27;\uff0c&#x27;</span>, <span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                    .replace(<span class="string">&#x27;\u3001&#x27;</span>, <span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">                    .replace(<span class="string">&#x27;\u3002&#x27;</span>, <span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">                    .replace(<span class="string">&#x27;\uff1a&#x27;</span>, <span class="string">&#x27;:&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 词典校正（英文）</span></span><br><span class="line">        <span class="keyword">if</span> (dictionary != <span class="literal">null</span> &amp;&amp; !dictionary.isEmpty()) &#123;</span><br><span class="line">            <span class="type">String</span>[] <span class="variable">words</span> <span class="operator">=</span> text.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">            <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">            <span class="keyword">for</span> (String w : words) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">clean</span> <span class="operator">=</span> w.replaceAll(<span class="string">&quot;[^a-zA-Z]&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">                <span class="keyword">if</span> (!clean.isEmpty() &amp;&amp; !dictionary.contains(clean.toLowerCase())) &#123;</span><br><span class="line">                    <span class="type">String</span> <span class="variable">best</span> <span class="operator">=</span> dictionary.stream()</span><br><span class="line">                        .min(Comparator.comparingInt(d -&gt; levenshteinDistance(clean.toLowerCase(), d)))</span><br><span class="line">                        .orElse(clean);</span><br><span class="line">                    <span class="keyword">if</span> (levenshteinDistance(clean.toLowerCase(), best) &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">                        sb.append(w.replace(clean, best)).append(<span class="string">&quot; &quot;</span>);</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                sb.append(w).append(<span class="string">&quot; &quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            text = sb.toString().trim();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> text;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">levenshteinDistance</span><span class="params">(String a, String b)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[][] <span class="variable">dp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">int</span>[a.length() + <span class="number">1</span>][b.length() + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= a.length(); i++) dp[i][<span class="number">0</span>] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt;= b.length(); j++) dp[<span class="number">0</span>][j] = j;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= a.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= b.length(); j++) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">cost</span> <span class="operator">=</span> a.charAt(i - <span class="number">1</span>) == b.charAt(j - <span class="number">1</span>) ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">                dp[i][j] = Math.min(</span><br><span class="line">                    Math.min(dp[i-<span class="number">1</span>][j] + <span class="number">1</span>, dp[i][j-<span class="number">1</span>] + <span class="number">1</span>),</span><br><span class="line">                    dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + cost</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[a.length()][b.length()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>编辑距离</strong>：给定两个字符串 $A$ 和 $B$，Levenshtein 编辑距离 $d(A, B)$ 是将 $A$ 转换为 $B$ 所需的最少单字符编辑操作（插入、删除、替换）次数。递归定义为：</p>
+<p>$$<br>d(i, j) &#x3D; \begin{cases}<br>i &amp; \text{if } j &#x3D; 0 \<br>j &amp; \text{if } i &#x3D; 0 \<br>d(i-1, j-1) &amp; \text{if } A_i &#x3D; B_j \<br>1 + \min{d(i-1, j),; d(i, j-1),; d(i-1, j-1)} &amp; \text{otherwise}<br>\end{cases}<br>$$</p>
+<hr>
+<h2 id="第三章：主流-OCR-引擎深入对比"><a href="#第三章：主流-OCR-引擎深入对比" class="headerlink" title="第三章：主流 OCR 引擎深入对比"></a>第三章：主流 OCR 引擎深入对比</h2><h3 id="3-1-引擎总览表"><a href="#3-1-引擎总览表" class="headerlink" title="3.1 引擎总览表"></a>3.1 引擎总览表</h3><table>
+<thead>
+<tr>
+<th>引擎</th>
+<th>底层架构</th>
+<th>语言支持</th>
+<th>部署依赖</th>
+<th>推理速度（CPU）</th>
+<th>GPU 加速</th>
+<th>推理框架</th>
+<th>开源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tesseract 5</strong> (LSTM)</td>
+<td>LeNet + BLSTM</td>
+<td>100+</td>
+<td>极小（仅引擎本体）</td>
+<td>快</td>
+<td>否</td>
+<td>自研</td>
+<td>$\checkmark$</td>
+</tr>
+<tr>
+<td><strong>EasyOCR</strong></td>
+<td>CRAFT + CRNN</td>
+<td>80+</td>
+<td>PyTorch 必装</td>
+<td>较慢</td>
+<td>$\checkmark$</td>
+<td>PyTorch</td>
+<td>$\checkmark$</td>
+</tr>
+<tr>
+<td><strong>PaddleOCR</strong></td>
+<td>DBNet&#x2F;Distillation + SVTR</td>
+<td>80+（中文最优）</td>
+<td>PaddlePaddle</td>
+<td>中等</td>
+<td>$\checkmark$</td>
+<td>Paddle Inference</td>
+<td>$\checkmark$</td>
+</tr>
+<tr>
+<td><strong>Surya</strong></td>
+<td>视觉 Transformer</td>
+<td>90+</td>
+<td>PyTorch + torchvision</td>
+<td>中等</td>
+<td>$\checkmark$</td>
+<td>PyTorch</td>
+<td>$\checkmark$</td>
+</tr>
+<tr>
+<td><strong>TrOCR</strong> (Microsoft)</td>
+<td>ViT + Transformer</td>
+<td>主要英文&#x2F;中文</td>
+<td>HuggingFace Transformers</td>
+<td>较慢</td>
+<td>$\checkmark$</td>
+<td>Transformers</td>
+<td>$\checkmark$</td>
+</tr>
+<tr>
+<td><strong>阿里云 OCR</strong></td>
+<td>私有</td>
+<td>多语言</td>
+<td>无（HTTP API）</td>
+<td>N&#x2F;A</td>
+<td>N&#x2F;A</td>
+<td>云端</td>
+<td>$\times$</td>
+</tr>
+<tr>
+<td><strong>Google Cloud Vision</strong></td>
+<td>私有 ViT</td>
+<td>多语言</td>
+<td>无（HTTP API）</td>
+<td>N&#x2F;A</td>
+<td>N&#x2F;A</td>
+<td>云端</td>
+<td>$\times$</td>
+</tr>
+<tr>
+<td><strong>Azure Form&#x2F;OCR</strong></td>
+<td>私有</td>
+<td>多语言</td>
+<td>无（HTTP API）</td>
+<td>N&#x2F;A</td>
+<td>N&#x2F;A</td>
+<td>云端</td>
+<td>$\times$</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-PaddleOCR-深度解析（中文场景首选）"><a href="#3-2-PaddleOCR-深度解析（中文场景首选）" class="headerlink" title="3.2 PaddleOCR 深度解析（中文场景首选）"></a>3.2 PaddleOCR 深度解析（中文场景首选）</h3><p>PaddleOCR 是目前中文 OCR 事实标准，核心组件：</p>
+<ul>
+<li><strong>文本检测</strong>：DBNet++ 或 PSE-Net<ul>
+<li>PP-OCRv4 检测模型 mAP 在 ICDAR 数据集达 87%+</li>
+</ul>
+</li>
+<li><strong>方向分类器</strong>：判断文本是否需要旋转 180$^\circ$，提升倾斜文档鲁棒性</li>
+<li><strong>文本识别</strong>：SVTR（Scene Text Recognition with Visual Transformer）<ul>
+<li>PP-OCRv4 识别模型精度达 83%+（中文场景）</li>
+</ul>
+</li>
+<li><strong>模型蒸馏</strong>：教师模型 $\rightarrow$ 学生模型，精度几乎无损但体积缩小 50%+</li>
+<li><strong>版面分析</strong>：提供 Layout Parser 组件，支持表格、段落、标题分级</li>
+</ul>
+<h3 id="3-3-Tesseract-深度解析（轻量首选）"><a href="#3-3-Tesseract-深度解析（轻量首选）" class="headerlink" title="3.3 Tesseract 深度解析（轻量首选）"></a>3.3 Tesseract 深度解析（轻量首选）</h3><table>
+<thead>
+<tr>
+<th>版本</th>
+<th>识别引擎</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tesseract 3</td>
+<td>传统模板匹配</td>
+<td>过时，已不推荐</td>
+</tr>
+<tr>
+<td>Tesseract 4</td>
+<td>LSTM 神经网络</td>
+<td>大版本提升，先检测再识别</td>
+</tr>
+<tr>
+<td>Tesseract 5</td>
+<td>LSTM + 改进训练管线</td>
+<td>准确率进一步提升</td>
+</tr>
+</tbody></table>
+<p>核心特性：</p>
+<ul>
+<li><code>--psm</code>（Page Segmentation Mode）：0–13 共 14 种页面切割模式，控制如何分析页面布局<ul>
+<li><code>--psm 6</code>：假设为统一文本块</li>
+<li><code>--psm 7</code>：单行文本</li>
+<li><code>--psm 13</code>：原始行，不做行内处理</li>
+</ul>
+</li>
+<li><code>--oem</code>（OCR Engine Mode）：0 &#x3D; 仅传统引擎，1 &#x3D; 仅 LSTM，2 &#x3D; 两者，3 &#x3D; 默认</li>
+<li>支持 LSTM 训练自定义字体</li>
+</ul>
+<hr>
+<h2 id="第四章：代码示例-—-Python-版"><a href="#第四章：代码示例-—-Python-版" class="headerlink" title="第四章：代码示例 — Python 版"></a>第四章：代码示例 — Python 版</h2><h3 id="4-1-Tesseract"><a href="#4-1-Tesseract" class="headerlink" title="4.1 Tesseract"></a>4.1 Tesseract</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytesseract</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageFilter, ImageEnhance</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ocr_tesseract</span>(<span class="params">image_path: <span class="built_in">str</span>, lang: <span class="built_in">str</span> = <span class="string">&quot;chi_sim+eng&quot;</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;使用 Tesseract 进行 OCR，返回详细结果&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 加载并预处理</span></span><br><span class="line">    img = Image.<span class="built_in">open</span>(image_path).convert(<span class="string">&quot;L&quot;</span>)  <span class="comment"># 灰度</span></span><br><span class="line">    img = img.<span class="built_in">filter</span>(ImageFilter.SHARPEN)</span><br><span class="line">    enhancer = ImageEnhance.Contrast(img)</span><br><span class="line">    img = enhancer.enhance(<span class="number">2.0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 基础识别</span></span><br><span class="line">    text = pytesseract.image_to_string(img, lang=lang)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 按行解析</span></span><br><span class="line">    data = pytesseract.image_to_data(img, lang=lang, output_type=pytesseract.Output.DICT)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;full_text&quot;</span>: text,</span><br><span class="line">        <span class="string">&quot;lines&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;text&quot;</span>: data[<span class="string">&quot;text&quot;</span>][i],</span><br><span class="line">                <span class="string">&quot;confidence&quot;</span>: data[<span class="string">&quot;conf&quot;</span>][i],</span><br><span class="line">                <span class="string">&quot;bbox&quot;</span>: (data[<span class="string">&quot;left&quot;</span>][i], data[<span class="string">&quot;top&quot;</span>][i],</span><br><span class="line">                         data[<span class="string">&quot;width&quot;</span>][i], data[<span class="string">&quot;height&quot;</span>][i])</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data[<span class="string">&quot;text&quot;</span>]))</span><br><span class="line">            <span class="keyword">if</span> data[<span class="string">&quot;text&quot;</span>][i].strip()</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-PaddleOCR"><a href="#4-2-PaddleOCR" class="headerlink" title="4.2 PaddleOCR"></a>4.2 PaddleOCR</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> paddleocr <span class="keyword">import</span> PaddleOCR</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ocr_paddle</span>(<span class="params">image_path: <span class="built_in">str</span>, lang: <span class="built_in">str</span> = <span class="string">&quot;ch&quot;</span>, use_gpu: <span class="built_in">bool</span> = <span class="literal">False</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;使用 PaddleOCR 进行识别&quot;&quot;&quot;</span></span><br><span class="line">    ocr = PaddleOCR(</span><br><span class="line">        use_angle_cls=<span class="literal">True</span>,   <span class="comment"># 是否使用方向分类器</span></span><br><span class="line">        lang=lang,</span><br><span class="line">        use_gpu=use_gpu,</span><br><span class="line">        det_db_thresh=<span class="number">0.3</span>,    <span class="comment"># 检测阈值，降低可检测更多文本</span></span><br><span class="line">        det_db_box_thresh=<span class="number">0.5</span>, <span class="comment"># 框过滤阈值</span></span><br><span class="line">        rec_batch_num=<span class="number">6</span>        <span class="comment"># 并行识别批大小</span></span><br><span class="line">    )</span><br><span class="line">    result = ocr.ocr(image_path, cls=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> result <span class="keyword">or</span> <span class="keyword">not</span> result[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;texts&quot;</span>: [], <span class="string">&quot;raw&quot;</span>: []&#125;</span><br><span class="line"></span><br><span class="line">    lines = []</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> result[<span class="number">0</span>]:</span><br><span class="line">        bbox, (text, confidence) = line</span><br><span class="line">        lines.append(&#123;</span><br><span class="line">            <span class="string">&quot;bbox&quot;</span>: bbox,          <span class="comment"># [[x1,y1],[x2,y2],[x3,y3],[x4,y4]]</span></span><br><span class="line">            <span class="string">&quot;text&quot;</span>: text,</span><br><span class="line">            <span class="string">&quot;confidence&quot;</span>: confidence</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;texts&quot;</span>: [l[<span class="string">&quot;text&quot;</span>] <span class="keyword">for</span> l <span class="keyword">in</span> lines], <span class="string">&quot;raw&quot;</span>: lines&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-EasyOCR"><a href="#4-3-EasyOCR" class="headerlink" title="4.3 EasyOCR"></a>4.3 EasyOCR</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> easyocr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ocr_easy</span>(<span class="params">image_path: <span class="built_in">str</span>, languages: <span class="built_in">list</span>[<span class="built_in">str</span>] = <span class="literal">None</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;使用 EasyOCR 进行识别&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> languages <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        languages = [<span class="string">&quot;ch_sim&quot;</span>, <span class="string">&quot;en&quot;</span>]</span><br><span class="line"></span><br><span class="line">    reader = easyocr.Reader(languages, gpu=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    results = reader.readtext(</span><br><span class="line">        image_path,</span><br><span class="line">        paragraph=<span class="literal">True</span>,         <span class="comment"># 自动合并同段落的文本行</span></span><br><span class="line">        width_ths=<span class="number">0.7</span>,          <span class="comment"># 水平合并阈值</span></span><br><span class="line">        ycenter_ths=<span class="number">0.5</span>,        <span class="comment"># 垂直合并阈值</span></span><br><span class="line">        batch_size=<span class="number">4</span>,</span><br><span class="line">        detail=<span class="number">1</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    lines = [</span><br><span class="line">        &#123;<span class="string">&quot;bbox&quot;</span>: bbox, <span class="string">&quot;text&quot;</span>: text, <span class="string">&quot;confidence&quot;</span>: <span class="built_in">round</span>(conf, <span class="number">4</span>)&#125;</span><br><span class="line">        <span class="keyword">for</span> bbox, text, conf <span class="keyword">in</span> results</span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;texts&quot;</span>: [l[<span class="string">&quot;text&quot;</span>] <span class="keyword">for</span> l <span class="keyword">in</span> lines], <span class="string">&quot;raw&quot;</span>: lines&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-端到端批量处理示例"><a href="#4-4-端到端批量处理示例" class="headerlink" title="4.4 端到端批量处理示例"></a>4.4 端到端批量处理示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor, as_completed</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">batch_ocr</span>(<span class="params">input_dir: <span class="built_in">str</span>, output_dir: <span class="built_in">str</span>, engine=<span class="string">&quot;paddle&quot;</span>, max_workers=<span class="number">4</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;批量 OCR 任务&quot;&quot;&quot;</span></span><br><span class="line">    os.makedirs(output_dir, exist_ok=<span class="literal">True</span>)</span><br><span class="line">    images = <span class="built_in">list</span>(Path(input_dir).glob(<span class="string">&quot;*.jpg&quot;</span>)) + <span class="built_in">list</span>(Path(input_dir).glob(<span class="string">&quot;*.png&quot;</span>))</span><br><span class="line"></span><br><span class="line">    engine_fn = &#123;<span class="string">&quot;paddle&quot;</span>: ocr_paddle, <span class="string">&quot;easyocr&quot;</span>: ocr_easy, <span class="string">&quot;tesseract&quot;</span>: ocr_tesseract&#125;[engine]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_one</span>(<span class="params">img_path: Path</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        result = engine_fn(<span class="built_in">str</span>(img_path))</span><br><span class="line">        out_path = Path(output_dir) / <span class="string">f&quot;<span class="subst">&#123;img_path.stem&#125;</span>.txt&quot;</span></span><br><span class="line">        out_path.write_text(<span class="string">&quot;\n&quot;</span>.join(result[<span class="string">&quot;texts&quot;</span>]), encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;<span class="subst">&#123;img_path.name&#125;</span> -&gt; <span class="subst">&#123;out_path.name&#125;</span> (<span class="subst">&#123;<span class="built_in">len</span>(result[<span class="string">&#x27;texts&#x27;</span>])&#125;</span> lines)&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> ThreadPoolExecutor(max_workers=max_workers) <span class="keyword">as</span> pool:</span><br><span class="line">        futures = &#123;pool.submit(process_one, img): img <span class="keyword">for</span> img <span class="keyword">in</span> images&#125;</span><br><span class="line">        <span class="keyword">for</span> future <span class="keyword">in</span> as_completed(futures):</span><br><span class="line">            <span class="built_in">print</span>(future.result())</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="第五章：代码示例-—-Java-版"><a href="#第五章：代码示例-—-Java-版" class="headerlink" title="第五章：代码示例 — Java 版"></a>第五章：代码示例 — Java 版</h2><h3 id="5-1-Tesseract（通过-Tess4J）"><a href="#5-1-Tesseract（通过-Tess4J）" class="headerlink" title="5.1 Tesseract（通过 Tess4J）"></a>5.1 Tesseract（通过 Tess4J）</h3><p><strong>Maven 依赖：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sourceforge.tess4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tess4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.bytedeco<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>opencv-platform<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>完整代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> net.sourceforge.tess4j.ITesseract;</span><br><span class="line"><span class="keyword">import</span> net.sourceforge.tess4j.Tesseract;</span><br><span class="line"><span class="keyword">import</span> net.sourceforge.tess4j.Word;</span><br><span class="line"><span class="keyword">import</span> net.sourceforge.tess4j.util.LoadLibs;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.imageio.ImageIO;</span><br><span class="line"><span class="keyword">import</span> java.awt.image.BufferedImage;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TesseractOCR</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ITesseract instance;</span><br><span class="line"></span><br><span class="line">    <span class="type">public</span> <span class="title function_">TesseractOCR</span><span class="params">(String dataPath, String language)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.instance = <span class="keyword">new</span> <span class="title class_">Tesseract</span>();</span><br><span class="line">        <span class="built_in">this</span>.instance.setDatapath(dataPath);           <span class="comment">// tessdata 目录路径</span></span><br><span class="line">        <span class="built_in">this</span>.instance.setLanguage(language);            <span class="comment">// 如 &quot;chi_sim+eng&quot;</span></span><br><span class="line">        <span class="built_in">this</span>.instance.setPageSegMode(<span class="number">3</span>);                <span class="comment">// PSM_AUTO：全自动版面分析</span></span><br><span class="line">        <span class="built_in">this</span>.instance.setOcrEngineMode(<span class="number">3</span>);              <span class="comment">// OEM_DEFAULT</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">OcrResult</span> <span class="title function_">recognize</span><span class="params">(String imagePath)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">BufferedImage</span> <span class="variable">img</span> <span class="operator">=</span> ImageIO.read(<span class="keyword">new</span> <span class="title class_">File</span>(imagePath));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 识别全文本</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">fullText</span> <span class="operator">=</span> instance.doOCR(img);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 逐词粒度数据</span></span><br><span class="line">        <span class="type">List</span>&lt;Word&gt; <span class="variable">words</span> <span class="operator">=</span> instance.getWords(img);</span><br><span class="line">        <span class="type">List</span>&lt;OcrLine&gt; <span class="variable">lines</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (Word w : words) &#123;</span><br><span class="line">            lines.add(<span class="keyword">new</span> <span class="title class_">OcrLine</span>(</span><br><span class="line">                w.getText(),</span><br><span class="line">                (<span class="type">double</span>) w.getConfidence(),</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;</span><br><span class="line">                    w.getBoundingBox().x, w.getBoundingBox().y,</span><br><span class="line">                    w.getBoundingBox().width, w.getBoundingBox().height</span><br><span class="line">                &#125;</span><br><span class="line">            ));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OcrResult</span>(fullText, lines);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 内嵌数据类</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">OcrResult</span><span class="params">(String fullText, List&lt;OcrLine&gt; lines)</span> &#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">OcrLine</span><span class="params">(String text, <span class="type">double</span> confidence, <span class="type">int</span>[] bbox)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-PaddleOCR（通过-Java-推理接口）"><a href="#5-2-PaddleOCR（通过-Java-推理接口）" class="headerlink" title="5.2 PaddleOCR（通过 Java 推理接口）"></a>5.2 PaddleOCR（通过 Java 推理接口）</h3><p><strong>Maven 依赖：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baidu.paddle<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>paddleocr-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>完整代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baidu.paddle.PaddleOCR;</span><br><span class="line"><span class="keyword">import</span> com.baidu.paddle.PaddleOCRConfig;</span><br><span class="line"><span class="keyword">import</span> com.baidu.paddle.OcrResult;</span><br><span class="line"><span class="keyword">import</span> com.baidu.paddle.OcrResultLine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PaddleOCRDemo</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> PaddleOCR ocr;</span><br><span class="line"></span><br><span class="line">    <span class="type">public</span> <span class="title function_">PaddleOCRDemo</span><span class="params">(String modelDir)</span> &#123;</span><br><span class="line">        <span class="type">PaddleOCRConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PaddleOCRConfig</span>();</span><br><span class="line">        config.setDetModelDir(Paths.get(modelDir, <span class="string">&quot;det&quot;</span>));</span><br><span class="line">        config.setRecModelDir(Paths.get(modelDir, <span class="string">&quot;rec&quot;</span>));</span><br><span class="line">        config.setClsModelDir(Paths.get(modelDir, <span class="string">&quot;cls&quot;</span>));</span><br><span class="line">        config.setUseGpu(<span class="literal">false</span>);</span><br><span class="line">        config.setGpuId(<span class="number">0</span>);</span><br><span class="line">        config.setDetDbThresh(<span class="number">0.3</span>);       <span class="comment">// 检测阈值</span></span><br><span class="line">        config.setDetDbBoxThresh(<span class="number">0.5</span>);    <span class="comment">// 框过滤</span></span><br><span class="line">        config.setRecBatchNum(<span class="number">6</span>);          <span class="comment">// 并行批大小</span></span><br><span class="line">        config.setUseAngleCls(<span class="literal">true</span>);       <span class="comment">// 方向分类</span></span><br><span class="line">        <span class="built_in">this</span>.ocr = <span class="keyword">new</span> <span class="title class_">PaddleOCR</span>(config);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">List</span>&lt;OcrLine&gt; <span class="title function_">recognize</span><span class="params">(String imagePath)</span> &#123;</span><br><span class="line">        <span class="type">OcrResult</span> <span class="variable">result</span> <span class="operator">=</span> ocr.ocr(imagePath);</span><br><span class="line">        <span class="keyword">return</span> result.getLines().stream()</span><br><span class="line">            .map(line -&gt; <span class="keyword">new</span> <span class="title class_">OcrLine</span>(</span><br><span class="line">                line.getText(),</span><br><span class="line">                line.getConfidence(),</span><br><span class="line">                line.getBoundingBox()       <span class="comment">// float[8] -&gt; 4 个角点 (x,y)</span></span><br><span class="line">            ))</span><br><span class="line">            .toList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">OcrLine</span><span class="params">(String text, <span class="type">double</span> confidence, <span class="type">float</span>[] bbox)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-OpenCV-图像预处理-Tesseract"><a href="#5-3-OpenCV-图像预处理-Tesseract" class="headerlink" title="5.3 OpenCV 图像预处理 + Tesseract"></a>5.3 OpenCV 图像预处理 + Tesseract</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.opencv.core.*;</span><br><span class="line"><span class="keyword">import</span> org.opencv.imgcodecs.Imgcodecs;</span><br><span class="line"><span class="keyword">import</span> org.opencv.imgproc.Imgproc;</span><br><span class="line"><span class="keyword">import</span> net.sourceforge.tess4j.ITesseract;</span><br><span class="line"><span class="keyword">import</span> net.sourceforge.tess4j.Tesseract;</span><br><span class="line"><span class="keyword">import</span> java.awt.image.BufferedImage;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> javax.imageio.ImageIO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OcrPipeline</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123; System.loadLibrary(Core.NATIVE_LIBRARY_NAME); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ITesseract tesseract;</span><br><span class="line"></span><br><span class="line">    <span class="type">public</span> <span class="title function_">OcrPipeline</span><span class="params">(String dataPath, String lang)</span> &#123;</span><br><span class="line">        tesseract = <span class="keyword">new</span> <span class="title class_">Tesseract</span>();</span><br><span class="line">        tesseract.setDatapath(dataPath);</span><br><span class="line">        tesseract.setLanguage(lang);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">String</span> <span class="title function_">recognizeWithPreprocessing</span><span class="params">(String imagePath)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 1. 图像预处理</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">img</span> <span class="operator">=</span> Imgcodecs.imread(imagePath);</span><br><span class="line">        <span class="type">Mat</span> <span class="variable">gray</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// CLAHE</span></span><br><span class="line">        <span class="type">CLAHE</span> <span class="variable">clahe</span> <span class="operator">=</span> Imgproc.createCLAHE(<span class="number">2.0</span>, <span class="keyword">new</span> <span class="title class_">Size</span>(<span class="number">8</span>, <span class="number">8</span>));</span><br><span class="line">        <span class="type">Mat</span> <span class="variable">enhanced</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        clahe.apply(gray, enhanced);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// OTSU 二值化</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">binary</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        Imgproc.threshold(enhanced, binary, <span class="number">0</span>, <span class="number">255</span>, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 放大</span></span><br><span class="line">        <span class="type">Mat</span> <span class="variable">scaled</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mat</span>();</span><br><span class="line">        Imgproc.resize(binary, scaled, <span class="keyword">new</span> <span class="title class_">Size</span>(), <span class="number">2.0</span>, <span class="number">2.0</span>, Imgproc.INTER_LANCZOS4);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. Mat -&gt; BufferedImage</span></span><br><span class="line">        <span class="type">MatOfByte</span> <span class="variable">matBytes</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MatOfByte</span>();</span><br><span class="line">        Imgcodecs.imencode(<span class="string">&quot;.png&quot;</span>, scaled, matBytes);</span><br><span class="line">        <span class="type">BufferedImage</span> <span class="variable">bufferedImg</span> <span class="operator">=</span> ImageIO.read(<span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(matBytes.toArray()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. OCR</span></span><br><span class="line">        <span class="keyword">return</span> tesseract.doOCR(bufferedImg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-批量处理-Java-版本"><a href="#5-4-批量处理-Java-版本" class="headerlink" title="5.4 批量处理 Java 版本"></a>5.4 批量处理 Java 版本</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BatchOcrProcessor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> TesseractOCR ocr;</span><br><span class="line"></span><br><span class="line">    <span class="type">public</span> <span class="title function_">BatchOcrProcessor</span><span class="params">(TesseractOCR ocr)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.ocr = ocr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">processDirectory</span><span class="params">(String inputDir, String outputDir, <span class="type">int</span> maxThreads)</span></span><br><span class="line">            <span class="keyword">throws</span> IOException, InterruptedException &#123;</span><br><span class="line"></span><br><span class="line">        Files.createDirectories(Paths.get(outputDir));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> (<span class="type">DirectoryStream</span>&lt;Path&gt; <span class="variable">stream</span> <span class="operator">=</span></span><br><span class="line">                 Files.newDirectoryStream(Paths.get(inputDir), <span class="string">&quot;*.&#123;jpg,png,jpeg&#125;&quot;</span>)) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="type">List</span>&lt;Path&gt; <span class="variable">files</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">            stream.forEach(files::add);</span><br><span class="line"></span><br><span class="line">            <span class="type">ExecutorService</span> <span class="variable">executor</span> <span class="operator">=</span> Executors.newFixedThreadPool(maxThreads);</span><br><span class="line">            <span class="type">List</span>&lt;Future&lt;String&gt;&gt; <span class="variable">futures</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (Path file : files) &#123;</span><br><span class="line">                futures.add(executor.submit(() -&gt; &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="type">var</span> <span class="variable">result</span> <span class="operator">=</span> ocr.recognize(file.toString());</span><br><span class="line">                        <span class="type">Path</span> <span class="variable">outPath</span> <span class="operator">=</span> Paths.get(outputDir,</span><br><span class="line">                            file.getFileName().toString().replaceAll(<span class="string">&quot;\\.\\w+$&quot;</span>, <span class="string">&quot;.txt&quot;</span>));</span><br><span class="line">                        Files.writeString(outPath, result.fullText());</span><br><span class="line">                        <span class="keyword">return</span> file.getFileName() + <span class="string">&quot; -&gt; &quot;</span> + outPath.getFileName()</span><br><span class="line">                            + <span class="string">&quot; (&quot;</span> + result.lines().size() + <span class="string">&quot; words)&quot;</span>;</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        <span class="keyword">return</span> file.getFileName() + <span class="string">&quot; -&gt; ERROR: &quot;</span> + e.getMessage();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (Future&lt;String&gt; f : futures) &#123;</span><br><span class="line">                System.out.println(f.get());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            executor.shutdown();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="第六章：结果评估与指标"><a href="#第六章：结果评估与指标" class="headerlink" title="第六章：结果评估与指标"></a>第六章：结果评估与指标</h2><h3 id="6-1-核心评估指标"><a href="#6-1-核心评估指标" class="headerlink" title="6.1 核心评估指标"></a>6.1 核心评估指标</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>公式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CER</strong>（字符错误率）</td>
+<td>$\displaystyle \frac{S + I + D}{N}$</td>
+<td>字符级，$N$ 为参考序列总字符数</td>
+</tr>
+<tr>
+<td><strong>WER</strong>（词错误率）</td>
+<td>$\displaystyle \frac{S_w + I_w + D_w}{N_w}$</td>
+<td>词级，英文更常用</td>
+</tr>
+<tr>
+<td><strong>Precision</strong></td>
+<td>$\displaystyle \frac{TP}{TP + FP}$</td>
+<td>检出的文字中有多少是正确的</td>
+</tr>
+<tr>
+<td><strong>Recall</strong></td>
+<td>$\displaystyle \frac{TP}{TP + FN}$</td>
+<td>所有文字中有多少被正确检出</td>
+</tr>
+<tr>
+<td><strong>F1-score</strong></td>
+<td>$\displaystyle \frac{2 \cdot P \cdot R}{P + R}$</td>
+<td>Precision 和 Recall 的调和平均</td>
+</tr>
+<tr>
+<td><strong>ACC</strong>（准确率）</td>
+<td>$\displaystyle 1 - \text{CER}$</td>
+<td>与 $1 - \text{CER}$ 等价</td>
+</tr>
+</tbody></table>
+<p>其中 $S$ &#x3D; 替换数，$I$ &#x3D; 插入数，$D$ &#x3D; 删除数，$N$ &#x3D; 参考字符总数。各符号与编辑距离的关系为 $\text{CER} &#x3D; \dfrac{\text{Levenshtein}(ref, hyp)}{|ref|}$。</p>
+<p>F1-score 的形式化表达：</p>
+<p>$$<br>F_1 &#x3D; 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}<br>$$</p>
+<h3 id="6-2-评估代码"><a href="#6-2-评估代码" class="headerlink" title="6.2 评估代码"></a>6.2 评估代码</h3><h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Levenshtein</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calc_cer</span>(<span class="params">reference: <span class="built_in">str</span>, hypothesis: <span class="built_in">str</span></span>) -&gt; <span class="built_in">float</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;计算字符错误率 CER&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(reference) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.0</span> <span class="keyword">if</span> <span class="built_in">len</span>(hypothesis) &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="number">0.0</span></span><br><span class="line">    d = Levenshtein.distance(reference, hypothesis)</span><br><span class="line">    <span class="keyword">return</span> d / <span class="built_in">len</span>(reference)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calc_wer</span>(<span class="params">reference: <span class="built_in">str</span>, hypothesis: <span class="built_in">str</span></span>) -&gt; <span class="built_in">float</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;计算词错误率 WER（英文按空格分词）&quot;&quot;&quot;</span></span><br><span class="line">    ref_words = reference.strip().split()</span><br><span class="line">    hyp_words = hypothesis.strip().split()</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(ref_words) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.0</span> <span class="keyword">if</span> <span class="built_in">len</span>(hyp_words) &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="number">0.0</span></span><br><span class="line">    d = Levenshtein.distance(<span class="string">&quot; &quot;</span>.join(ref_words), <span class="string">&quot; &quot;</span>.join(hyp_words))</span><br><span class="line">    <span class="keyword">return</span> d / <span class="built_in">len</span>(ref_words)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">evaluate_ocr</span>(<span class="params">ground_truths: <span class="built_in">list</span>[<span class="built_in">str</span>], predictions: <span class="built_in">list</span>[<span class="built_in">str</span>]</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;批量评估 OCR 结果&quot;&quot;&quot;</span></span><br><span class="line">    cers = [calc_cer(gt, pred) <span class="keyword">for</span> gt, pred <span class="keyword">in</span> <span class="built_in">zip</span>(ground_truths, predictions)]</span><br><span class="line">    wers = [calc_wer(gt, pred) <span class="keyword">for</span> gt, pred <span class="keyword">in</span> <span class="built_in">zip</span>(ground_truths, predictions)]</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;avg_cer&quot;</span>: <span class="built_in">sum</span>(cers) / <span class="built_in">len</span>(cers),</span><br><span class="line">        <span class="string">&quot;avg_wer&quot;</span>: <span class="built_in">sum</span>(wers) / <span class="built_in">len</span>(wers),</span><br><span class="line">        <span class="string">&quot;cer_list&quot;</span>: cers,</span><br><span class="line">        <span class="string">&quot;wer_list&quot;</span>: wers</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OcrEvaluator</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calcCER</span><span class="params">(String reference, String hypothesis)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (reference.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> hypothesis.isEmpty() ? <span class="number">0.0</span> : <span class="number">1.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">dist</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">org</span>.apache.commons.text.similarity.LevenshteinDistance()</span><br><span class="line">            .apply(reference, hypothesis);</span><br><span class="line">        <span class="keyword">return</span> (<span class="type">double</span>) dist / reference.length();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calcWER</span><span class="params">(String reference, String hypothesis)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">refJoined</span> <span class="operator">=</span> String.join(<span class="string">&quot; &quot;</span>, reference.trim().split(<span class="string">&quot;\\s+&quot;</span>));</span><br><span class="line">        <span class="type">String</span> <span class="variable">hypJoined</span> <span class="operator">=</span> String.join(<span class="string">&quot; &quot;</span>, hypothesis.trim().split(<span class="string">&quot;\\s+&quot;</span>));</span><br><span class="line">        <span class="type">String</span>[] <span class="variable">refWords</span> <span class="operator">=</span> reference.trim().split(<span class="string">&quot;\\s+&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (refWords.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> hypothesis.trim().isEmpty() ? <span class="number">0.0</span> : <span class="number">1.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">dist</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">org</span>.apache.commons.text.similarity.LevenshteinDistance()</span><br><span class="line">            .apply(refJoined, hypJoined);</span><br><span class="line">        <span class="keyword">return</span> (<span class="type">double</span>) dist / refWords.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">OcrEvalResult</span><span class="params">(<span class="type">double</span> avgCER, <span class="type">double</span> avgWER)</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">OcrEvalResult</span> <span class="title function_">evaluate</span><span class="params">(List&lt;String&gt; groundTruths, List&lt;String&gt; predictions)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">totalCER</span> <span class="operator">=</span> <span class="number">0</span>, totalWER = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> Math.min(groundTruths.size(), predictions.size());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            totalCER += calcCER(groundTruths.get(i), predictions.get(i));</span><br><span class="line">            totalWER += calcWER(groundTruths.get(i), predictions.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OcrEvalResult</span>(totalCER / n, totalWER / n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="第七章：部署策略与性能调优"><a href="#第七章：部署策略与性能调优" class="headerlink" title="第七章：部署策略与性能调优"></a>第七章：部署策略与性能调优</h2><h3 id="7-1-部署选型决策树"><a href="#7-1-部署选型决策树" class="headerlink" title="7.1 部署选型决策树"></a>7.1 部署选型决策树</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">需要处理中文？</span><br><span class="line">  +-- 是 -&gt; PaddleOCR</span><br><span class="line">  |     +-- 需要高并发 API -&gt; 封装为 HTTP 服务 + 进程池</span><br><span class="line">  |     +-- 离线批处理 -&gt; 直接调用推理</span><br><span class="line">  +-- 否 -&gt; 看精度要求</span><br><span class="line">        +-- 极高 -&gt; Surya / TrOCR</span><br><span class="line">        +-- 中等 -&gt; EasyOCR</span><br><span class="line">        +-- 轻量 -&gt; Tesseract + 自定义 LSTM 训练</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2-性能优化建议"><a href="#7-2-性能优化建议" class="headerlink" title="7.2 性能优化建议"></a>7.2 性能优化建议</h3><table>
+<thead>
+<tr>
+<th>瓶颈</th>
+<th>优化手段</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CPU 推理慢</strong></td>
+<td>启用 GPU（CUDA &#x2F; MPS）；使用 ONNX Runtime 部署；模型量化（INT8）</td>
+</tr>
+<tr>
+<td><strong>检测过慢</strong></td>
+<td>降低输入分辨率（保持短边 $\ge 640\text{px}$）；调大检测阈值跳过模糊区域</td>
+</tr>
+<tr>
+<td><strong>识别过慢</strong></td>
+<td>增大 <code>rec_batch_num</code> 批量识别；使用更轻量识别模型（如 SVTR-Tiny）</td>
+</tr>
+<tr>
+<td><strong>内存占用高</strong></td>
+<td>使用模型串行加载而非并行；推理后主动释放显存（<code>torch.cuda.empty_cache()</code>）</td>
+</tr>
+<tr>
+<td><strong>服务化部署</strong></td>
+<td>Triton Inference Server &#x2F; TorchServe；gRPC 替代 HTTP REST</td>
+</tr>
+<tr>
+<td><strong>冷启动慢</strong></td>
+<td>容器预热 + 初始化脚本；模型预加载到共享内存</td>
+</tr>
+</tbody></table>
+<h3 id="7-3-常见生产架构"><a href="#7-3-常见生产架构" class="headerlink" title="7.3 常见生产架构"></a>7.3 常见生产架构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">            +---------------+</span><br><span class="line">            |   负载均衡     |</span><br><span class="line">            +-------+-------+</span><br><span class="line">                    |</span><br><span class="line">      +-------------+-------------+</span><br><span class="line">      v             v             v</span><br><span class="line">+-----------+ +-----------+ +-----------+</span><br><span class="line">| Worker 1  | | Worker 2  | | Worker 3  |  每个 Worker 持有独立 OCR 实例</span><br><span class="line">+-----+-----+ +-----+-----+ +-----+-----+</span><br><span class="line">      |             |             |</span><br><span class="line">      +-------------+-------------+</span><br><span class="line">                    v</span><br><span class="line">           +-------------------+</span><br><span class="line">           |   消息队列         |</span><br><span class="line">           | (Redis/RabbitMQ)  |  异步任务持久化</span><br><span class="line">           +-------------------+</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="第八章：常见问题与排错"><a href="#第八章：常见问题与排错" class="headerlink" title="第八章：常见问题与排错"></a>第八章：常见问题与排错</h2><h3 id="8-1-经典问题对照"><a href="#8-1-经典问题对照" class="headerlink" title="8.1 经典问题对照"></a>8.1 经典问题对照</h3><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输出全是乱码</td>
+<td>语言包未加载 &#x2F; 编码不一致</td>
+<td>检查 <code>lang</code> 参数；统一输出为 UTF-8</td>
+</tr>
+<tr>
+<td>漏掉部分文字</td>
+<td>光照不均 &#x2F; 对比度低</td>
+<td>加强预处理；调低 <code>det_db_thresh</code></td>
+</tr>
+<tr>
+<td>相邻行文字串行</td>
+<td>行高过小 &#x2F; 倾斜</td>
+<td>倾斜校正；设 <code>psm=6</code>（统一文本块）</td>
+</tr>
+<tr>
+<td>数字和字母混认</td>
+<td>字体相似（如 O0、l1）</td>
+<td>后处理加上下文模型；训练特定字体</td>
+</tr>
+<tr>
+<td>金属&#x2F;反光面文字</td>
+<td>高光干扰</td>
+<td>多角度拍摄融合；HSV 变换提取</td>
+</tr>
+<tr>
+<td>繁体&#x2F;特殊字符缺失</td>
+<td>模型不支持该字形</td>
+<td>更换语言包或使用更全的模型（如 PaddleOCR 多语言版）</td>
+</tr>
+<tr>
+<td>超大图片 OOM</td>
+<td>分辨率过高</td>
+<td>限制输入长边 $\le 2048\text{px}$；分块处理（sliding window）</td>
+</tr>
+<tr>
+<td>识别结果顺序错误</td>
+<td>多栏&#x2F;复杂版面</td>
+<td>启用版面分析组件；手动按 y&#x2F;x 排序后处理</td>
+</tr>
+</tbody></table>
+<h3 id="8-2-调试最佳实践"><a href="#8-2-调试最佳实践" class="headerlink" title="8.2 调试最佳实践"></a>8.2 调试最佳实践</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">debug_ocr</span>(<span class="params">image_path: <span class="built_in">str</span>, engine=<span class="string">&quot;paddle&quot;</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;调试 OCR 流程：保存各阶段中间结果&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line">    <span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">    base = Path(<span class="string">&quot;debug_output&quot;</span>)</span><br><span class="line">    base.mkdir(exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    img = cv2.imread(image_path)</span><br><span class="line">    cv2.imwrite(<span class="built_in">str</span>(base / <span class="string">&quot;01_original.png&quot;</span>), img)</span><br><span class="line"></span><br><span class="line">    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">    cv2.imwrite(<span class="built_in">str</span>(base / <span class="string">&quot;02_gray.png&quot;</span>), gray)</span><br><span class="line"></span><br><span class="line">    clahe = cv2.createCLAHE(clipLimit=<span class="number">2.0</span>, tileGridSize=(<span class="number">8</span>, <span class="number">8</span>))</span><br><span class="line">    enhanced = clahe.apply(gray)</span><br><span class="line">    cv2.imwrite(<span class="built_in">str</span>(base / <span class="string">&quot;03_enhanced.png&quot;</span>), enhanced)</span><br><span class="line"></span><br><span class="line">    _, binary = cv2.threshold(enhanced, <span class="number">0</span>, <span class="number">255</span>, cv2.THRESH_BINARY + cv2.THRESH_OTSU)</span><br><span class="line">    cv2.imwrite(<span class="built_in">str</span>(base / <span class="string">&quot;04_binary_otsu.png&quot;</span>), binary)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 用不同引擎识别并比对结果</span></span><br><span class="line">    <span class="keyword">from</span> paddleocr <span class="keyword">import</span> PaddleOCR</span><br><span class="line">    ocr = PaddleOCR(use_angle_cls=<span class="literal">True</span>, lang=<span class="string">&quot;ch&quot;</span>)</span><br><span class="line">    result = ocr.ocr(image_path, cls=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="built_in">str</span>(base / <span class="string">&quot;05_result.txt&quot;</span>), <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> result[<span class="number">0</span>]:</span><br><span class="line">            f.write(<span class="string">f&quot;<span class="subst">&#123;line[<span class="number">1</span>][<span class="number">1</span>]:<span class="number">.4</span>f&#125;</span>\t<span class="subst">&#123;line[<span class="number">1</span>][<span class="number">0</span>]&#125;</span>\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> base</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="第九章：进阶方向与前沿趋势"><a href="#第九章：进阶方向与前沿趋势" class="headerlink" title="第九章：进阶方向与前沿趋势"></a>第九章：进阶方向与前沿趋势</h2><table>
+<thead>
+<tr>
+<th>方向</th>
+<th>代表技术</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>版面分析</strong></td>
+<td>LayoutLM &#x2F; DocTR &#x2F; PaddleOCR Layout Parser</td>
+<td>理解段落、表格、页眉页脚的层级结构</td>
+</tr>
+<tr>
+<td><strong>表格识别</strong></td>
+<td>TableTransformer &#x2F; PaddleOCR Table</td>
+<td>结构化和还原表格中的行列关系</td>
+</tr>
+<tr>
+<td><strong>公式识别</strong></td>
+<td>LaTeX-OCR &#x2F; Pix2Text</td>
+<td>将数学公式图片转为 LaTeX 代码</td>
+</tr>
+<tr>
+<td><strong>文档 VQA</strong></td>
+<td>DocVQA &#x2F; LayoutLMv3</td>
+<td>基于文档图像做问答推理</td>
+</tr>
+<tr>
+<td><strong>多模态模型</strong></td>
+<td>GPT-4o &#x2F; Claude 3.5 &#x2F; Qwen-VL</td>
+<td>端到端理解 + 推理 + 文本提取</td>
+</tr>
+<tr>
+<td><strong>手写体文字识别</strong></td>
+<td>TrOCR &#x2F; IAM 微调</td>
+<td>大幅提升连笔、倾斜手写识别</td>
+</tr>
+<tr>
+<td><strong>少样本 &#x2F; Zero-shot OCR</strong></td>
+<td>多模态大模型的零样本能力</td>
+<td>无需训练数据，直接识别新型文档</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="第十章：资源汇总"><a href="#第十章：资源汇总" class="headerlink" title="第十章：资源汇总"></a>第十章：资源汇总</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://tesseract-ocr.github.io/">Tesseract 文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleOCR">PaddleOCR GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/JaidedAI/EasyOCR">EasyOCR GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/VikParuchuri/surya">Surya OCR</a></li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/model_doc/trocr">TrOCR (HuggingFace)</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.opencv.org/master/dd/d04/tutorial_py_table_of_contents_ocr.html">OpenCV OCR 模块文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://aistudio.baidu.com/">AI Studio 在线训练 OCR 模型</a></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>最后一句话：理解管线、做好预处理、选对引擎。</strong> OCR 的工程落地中，20% 的工作在模型选择，80% 的工作在前处理和后处理的调优上。花时间打磨预处理和 post-correction pipeline，回报远高于换一个更贵的模型。</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/about" rel="external nofollow noreferrer">ZhangSki</a>
+                </span>
+            </div>
+            <div class="reprint__download">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-download">
+                        下载:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/md/OCR%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97.md" download>点击下载本文 .md 源文件</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/3301_2026/tags/OCR/">
+                                    <span class="chip bg-color">OCR</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/3301_2026/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/3301_2026/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/3301_2026/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/3301_2026/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/Pixel_Diff%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/7.jpg" class="responsive-img" alt="Pixel Diff 文档对比服务接口文档">
+                        
+                        <span class="card-title">Pixel Diff 文档对比服务接口文档</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" class="post-category">
+                                    接口文档
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/%E6%8E%A5%E5%8F%A3/">
+                        <span class="chip bg-color">接口</span>
+                    </a>
+                    
+                    <a href="/3301_2026/tags/PixelDiff/">
+                        <span class="chip bg-color">PixelDiff</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/NLP_Code_Expanded/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/5.jpg" class="responsive-img" alt="NLP 基础技术实战（代码详解版）">
+                        
+                        <span class="card-title">NLP 基础技术实战（代码详解版）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/AI/" class="post-category">
+                                    AI
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/NLP/">
+                        <span class="chip bg-color">NLP</span>
+                    </a>
+                    
+                    <a href="/3301_2026/tags/Transformer/">
+                        <span class="chip bg-color">Transformer</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/3301_2026/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2026</span>
+            
+            <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">38.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "3";
+                        var startDate = "16";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/abc3301" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2797459022@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2797459022" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2797459022" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/3301_2026/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/3301_2026/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/3301_2026/libs/materialize/materialize.min.js"></script>
+    <script src="/3301_2026/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/3301_2026/libs/aos/aos.js"></script>
+    <script src="/3301_2026/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/3301_2026/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/3301_2026/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/3301_2026/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/3301_2026/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/3301_2026/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/3301_2026/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/3301_2026/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/3301_2026/live2dw/assets/haru02.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>

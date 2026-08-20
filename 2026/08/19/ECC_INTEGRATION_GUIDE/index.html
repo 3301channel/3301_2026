@@ -1,0 +1,1289 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="ECC 亚像素精对齐集成指南, 3301 channel, 博客, blog, 3301">
+    <meta name="description" content="ECC 亚像素精对齐集成指南一、设计背景痛点：现有 SURF&amp;#x2F;RANSAC 配准后残留 1-2px 平移误差，导致 XOR 假阳性。误报分析中，document2 的 inlier_ratio 从 0.99 退化到 0.80，原始">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>ECC 亚像素精对齐集成指南 | 3301 channel</title>
+    <link rel="icon" type="image/png" href="/3301_2026/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/my.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/3301_2026/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/3301_2026/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/3301_2026/css/reward.css">
+    
+
+
+
+    <script src="/3301_2026/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/3301_2026/atom.xml" title="3301 channel" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/3301_2026/" class="waves-effect waves-light">
+                    
+                    <img src="/3301_2026/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">3301 channel</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/" class="waves-effect waves-light" >
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/tags" class="waves-effect waves-light" >
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/categories" class="waves-effect waves-light" >
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/archives" class="waves-effect waves-light" >
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/about" class="waves-effect waves-light" >
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/contact" class="waves-effect waves-light" >
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/friends" class="waves-effect waves-light" >
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="https://3301channel.github.io" class="waves-effect waves-light" target="_blank" rel="noopener noreferrer">
+      
+      <i class="fas fa-clock-rotate-left" style="zoom: 0.6;"></i>
+      
+      <span>时光机</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/3301_2026/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">3301 channel</div>
+        <div class="logo-desc">
+            
+            3301 channel - 个人博客，分享杂志、影视、学习资料与生活记录
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a target="_blank" rel="noopener" href="https://3301channel.github.io" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-clock-rotate-left"></i>
+			
+			时光机
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/abc3301/abc3301.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/abc3301/abc3301.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/3301_2026/medias/featureimages/2.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">ECC 亚像素精对齐集成指南</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/3301_2026/tags/ECC/">
+                                <span class="chip bg-color">ECC</span>
+                            </a>
+                        
+                            <a href="/3301_2026/tags/%E5%9B%BE%E5%83%8F%E5%AF%B9%E9%BD%90/">
+                                <span class="chip bg-color">图像对齐</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/3301_2026/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="post-category">
+                                图像处理
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-08-19
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    8 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="ECC-亚像素精对齐集成指南"><a href="#ECC-亚像素精对齐集成指南" class="headerlink" title="ECC 亚像素精对齐集成指南"></a>ECC 亚像素精对齐集成指南</h1><h2 id="一、设计背景"><a href="#一、设计背景" class="headerlink" title="一、设计背景"></a>一、设计背景</h2><p><strong>痛点</strong>：现有 SURF&#x2F;RANSAC 配准后残留 1-2px 平移误差，导致 XOR 假阳性。误报分析中，<code>document2</code> 的 inlier_ratio 从 0.99 退化到 0.80，原始 XOR 区域暴增 28 倍。</p>
+<p><strong>目标</strong>：在 SURF 粗对齐之后、二值化之前，插入 ECC（Enhanced Correlation Coefficient）亚像素精对齐，将平移残余压到 &lt; 0.5px。</p>
+<p><strong>约束</strong>：</p>
+<ul>
+<li><strong>只能用 <code>MOTION_TRANSLATION</code>（2 自由度纯平移），不用 <code>MOTION_AFFINE</code>（6 自由度）</strong>，因为 SURF 已处理旋转&#x2F;缩放&#x2F;透视，避免 AFFINE 过拟合 + 与 line_centroid 反馈干扰</li>
+<li>金字塔降采样加速，平移分量回乘到原分辨率</li>
+<li>Lanczos4 插值，最小化笔画边缘模糊</li>
+<li>默认关闭，通过 config flag 控制</li>
+<li>空白页&#x2F;低纹理页 ECC 不收敛时降级返回原图，不影响下游</li>
+</ul>
+<hr>
+<h2 id="二、集成位置"><a href="#二、集成位置" class="headerlink" title="二、集成位置"></a>二、集成位置</h2><p><strong>文件</strong>：<code>src/pixel_diff/engine.py</code>，方法 <code>PixelDiffEngine.compare()</code></p>
+<p>当前对齐链（第 102-118 行）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2a. 颜色过滤</span></span><br><span class="line">filtered_scan = remove_colored_marks_bgr(scan_bgr, <span class="variable language_">self</span>.config)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2b. SURF/RANSAC 全局配准</span></span><br><span class="line">alignment = align_scan_to_template_bgr(filtered_scan, template_bgr, <span class="variable language_">self</span>.config)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2c. 文本行质心 Y 轴补偿</span></span><br><span class="line">line_alignment = align_text_lines_by_centroid_bgr(</span><br><span class="line">    alignment.aligned_bgr, template_bgr, <span class="variable language_">self</span>.config)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2d. 约束局部密集流 warp（试验性）</span></span><br><span class="line">local_warp = apply_constrained_local_warp_bgr(</span><br><span class="line">    line_alignment.aligned_bgr, template_bgr, <span class="variable language_">self</span>.config)</span><br><span class="line"></span><br><span class="line">aligned_bgr = local_warp.aligned_bgr   <span class="comment"># ← 最终对齐结果</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>插入位置</strong>：在第 2d 步之后、<code>aligned_bgr =</code> 赋值之前，新增 2e 步：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2e. ECC 亚像素精对齐（可选，默认关闭）</span></span><br><span class="line">ecc = align_ecc_subpixel_bgr(local_warp.aligned_bgr, template_bgr, <span class="variable language_">self</span>.config)</span><br><span class="line">aligned_bgr = ecc.aligned_bgr</span><br></pre></td></tr></table></figure>
+
+<p>即管道变为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SURF → line_centroid → local_warp → ECC → aligned_bgr → 二值化 → XOR</span><br></pre></td></tr></table></figure>
+
+<p>ECC 是精对齐的最后一步，它接收之前所有对齐步骤的结果，只做微小的平移补偿。</p>
+<hr>
+<h2 id="三、新增数据模型"><a href="#三、新增数据模型" class="headerlink" title="三、新增数据模型"></a>三、新增数据模型</h2><p><strong>文件</strong>：<code>src/pixel_diff/alignment.py</code></p>
+<p>在 <code>AlignmentResult</code> 之后新增：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@dataclass(<span class="params">frozen=<span class="literal">True</span></span>)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">EccAlignmentResult</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;ECC 亚像素精对齐结果。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    aligned_bgr: np.ndarray</span><br><span class="line">    <span class="string">&quot;&quot;&quot;ECC 校准后的扫描件 BGR 图像，尺寸与模板一致。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    applied: <span class="built_in">bool</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;ECC 是否实际执行（配置开启 + 计算收敛）。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    converged: <span class="built_in">bool</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;findTransformECC 是否收敛。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    tx: <span class="built_in">float</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;最终应用的 X 方向平移量（原始分辨率像素）。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    ty: <span class="built_in">float</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;最终应用的 Y 方向平移量（原始分辨率像素）。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    elapsed_ms: <span class="built_in">float</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;ECC 计算耗时（毫秒）。&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="四、核心函数实现"><a href="#四、核心函数实现" class="headerlink" title="四、核心函数实现"></a>四、核心函数实现</h2><p><strong>文件</strong>：<code>src/pixel_diff/alignment.py</code> 新增函数</p>
+<h3 id="4-1-主入口"><a href="#4-1-主入口" class="headerlink" title="4.1 主入口"></a>4.1 主入口</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">align_ecc_subpixel_bgr</span>(<span class="params"></span></span><br><span class="line"><span class="params">    scan_bgr: np.ndarray,</span></span><br><span class="line"><span class="params">    template_bgr: np.ndarray,</span></span><br><span class="line"><span class="params">    config: PixelDiffConfig,</span></span><br><span class="line"><span class="params"></span>) -&gt; EccAlignmentResult:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;使用 ECC 在灰度图上做亚像素平移精对齐，然后对 BGR 原图 warp。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    ECC 在降采样后的灰度图上计算平移向量，将平移量乘回原始分辨率，</span></span><br><span class="line"><span class="string">    再对 BGR 原图用 Lanczos4 插值做 warpAffine。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    若未启用或 ECC 不收敛，返回原图。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    t0 = time.perf_counter()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> config.ecc_enabled:</span><br><span class="line">        <span class="keyword">return</span> EccAlignmentResult(</span><br><span class="line">            aligned_bgr=scan_bgr,</span><br><span class="line">            applied=<span class="literal">False</span>, converged=<span class="literal">False</span>,</span><br><span class="line">            tx=<span class="number">0.0</span>, ty=<span class="number">0.0</span>, elapsed_ms=<span class="number">0.0</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    h, w = template_bgr.shape[:<span class="number">2</span>]</span><br><span class="line">    ds = config.ecc_downscale</span><br><span class="line">    h_low, w_low = h // ds, w // ds</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1. 降采样灰度图</span></span><br><span class="line">    scan_low = cv2.resize(scan_bgr, (w_low, h_low), interpolation=cv2.INTER_AREA)</span><br><span class="line">    template_low = cv2.resize(template_bgr, (w_low, h_low), interpolation=cv2.INTER_AREA)</span><br><span class="line">    gray_scan = cv2.cvtColor(scan_low, cv2.COLOR_BGR2GRAY)</span><br><span class="line">    gray_template = cv2.cvtColor(template_low, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. 选择运动模型</span></span><br><span class="line">    motion_type = _resolve_ecc_motion(config.ecc_motion_type)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. 运行 ECC</span></span><br><span class="line">    warp_matrix = np.eye(<span class="number">2</span>, <span class="number">3</span>, dtype=np.float32)</span><br><span class="line">    criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT,</span><br><span class="line">                config.ecc_max_iterations, config.ecc_epsilon)</span><br><span class="line"></span><br><span class="line">    converged = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        _, warp_matrix = cv2.findTransformECC(</span><br><span class="line">            gray_template, gray_scan, warp_matrix,</span><br><span class="line">            motion_type, criteria, <span class="literal">None</span>, <span class="number">1</span>,</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">except</span> cv2.error:</span><br><span class="line">        converged = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> converged:</span><br><span class="line">        elapsed = (time.perf_counter() - t0) * <span class="number">1000</span></span><br><span class="line">        <span class="keyword">return</span> EccAlignmentResult(</span><br><span class="line">            aligned_bgr=scan_bgr, applied=<span class="literal">True</span>, converged=<span class="literal">False</span>,</span><br><span class="line">            tx=<span class="number">0.0</span>, ty=<span class="number">0.0</span>, elapsed_ms=elapsed,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4. 平移分量乘回原始分辨率（旋转/缩放分量保持不变，无量纲）</span></span><br><span class="line">    warp_matrix[<span class="number">0</span>, <span class="number">2</span>] *= ds</span><br><span class="line">    warp_matrix[<span class="number">1</span>, <span class="number">2</span>] *= ds</span><br><span class="line"></span><br><span class="line">    tx = <span class="built_in">float</span>(warp_matrix[<span class="number">0</span>, <span class="number">2</span>])</span><br><span class="line">    ty = <span class="built_in">float</span>(warp_matrix[<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 5. 对 BGR 原图做高保真 warp</span></span><br><span class="line">    aligned = cv2.warpAffine(</span><br><span class="line">        scan_bgr, warp_matrix, (w, h),</span><br><span class="line">        flags=cv2.INTER_LANCZOS4,</span><br><span class="line">        borderMode=cv2.BORDER_REPLICATE,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    elapsed = (time.perf_counter() - t0) * <span class="number">1000</span></span><br><span class="line">    <span class="keyword">return</span> EccAlignmentResult(</span><br><span class="line">        aligned_bgr=aligned, applied=<span class="literal">True</span>, converged=<span class="literal">True</span>,</span><br><span class="line">        tx=tx, ty=ty, elapsed_ms=elapsed,</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-辅助函数"><a href="#4-2-辅助函数" class="headerlink" title="4.2 辅助函数"></a>4.2 辅助函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_resolve_ecc_motion</span>(<span class="params">motion_type: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;将配置中的字符串运动类型映射到 cv2 常量。&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> motion_type == <span class="string">&quot;translation&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> cv2.MOTION_TRANSLATION</span><br><span class="line">    <span class="keyword">if</span> motion_type == <span class="string">&quot;euclidean&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> cv2.MOTION_EUCLIDEAN</span><br><span class="line">    <span class="keyword">if</span> motion_type == <span class="string">&quot;affine&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> cv2.MOTION_AFFINE</span><br><span class="line">    <span class="keyword">raise</span> ConfigurationError(</span><br><span class="line">        <span class="string">&quot;ecc_motion_type must be &#x27;translation&#x27;, &#x27;euclidean&#x27;, or &#x27;affine&#x27;&quot;</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、配置参数新增"><a href="#五、配置参数新增" class="headerlink" title="五、配置参数新增"></a>五、配置参数新增</h2><p><strong>文件</strong>：<code>src/pixel_diff/models.py</code></p>
+<p>在 <code>PixelDiffConfig</code> 中，<code>ransac_reprojection_threshold</code> 之后新增：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ─── ECC 亚像素精对齐 ───</span></span><br><span class="line">ecc_enabled: <span class="built_in">bool</span> = <span class="literal">False</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;是否启用 ECC 亚像素精对齐。默认关闭，便于 A/B 测试。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">ecc_downscale: <span class="built_in">int</span> = <span class="number">4</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;ECC 降采样因子。值越大越快，但精度略降。建议 2-4。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">ecc_motion_type: <span class="built_in">str</span> = <span class="string">&quot;translation&quot;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;ECC 运动模型：&quot;translation&quot;（2DOF，推荐）、&quot;euclidean&quot;（3DOF）、&quot;affine&quot;（6DOF）。</span></span><br><span class="line"><span class="string">必须使用 &quot;translation&quot;，因为 SURF 已处理旋转/缩放/透视。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">ecc_max_iterations: <span class="built_in">int</span> = <span class="number">50</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;ECC 最大迭代次数。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">ecc_epsilon: <span class="built_in">float</span> = <span class="number">1e-4</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;ECC 相关系数收敛阈值。&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>在 <code>validate()</code> 方法中新增校验</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="variable language_">self</span>.ecc_enabled:</span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.ecc_motion_type <span class="keyword">not</span> <span class="keyword">in</span> &#123;<span class="string">&quot;translation&quot;</span>, <span class="string">&quot;euclidean&quot;</span>, <span class="string">&quot;affine&quot;</span>&#125;:</span><br><span class="line">        <span class="keyword">raise</span> ConfigurationError(</span><br><span class="line">            <span class="string">&quot;configuration: ecc_motion_type must be &quot;</span></span><br><span class="line">            <span class="string">&quot;&#x27;translation&#x27;, &#x27;euclidean&#x27;, or &#x27;affine&#x27;&quot;</span></span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.ecc_downscale &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> ConfigurationError(</span><br><span class="line">            <span class="string">&quot;configuration: ecc_downscale must be positive&quot;</span></span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.ecc_max_iterations &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> ConfigurationError(</span><br><span class="line">            <span class="string">&quot;configuration: ecc_max_iterations must be positive&quot;</span></span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.ecc_epsilon &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> ConfigurationError(</span><br><span class="line">            <span class="string">&quot;configuration: ecc_epsilon must be positive&quot;</span></span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、管道集成修改"><a href="#六、管道集成修改" class="headerlink" title="六、管道集成修改"></a>六、管道集成修改</h2><p><strong>文件</strong>：<code>src/pixel_diff/engine.py</code></p>
+<h3 id="6-1-import-补充（第-18-行附近）"><a href="#6-1-import-补充（第-18-行附近）" class="headerlink" title="6.1 import 补充（第 18 行附近）"></a>6.1 import 补充（第 18 行附近）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pixel_diff.alignment <span class="keyword">import</span> (</span><br><span class="line">    align_scan_to_template_bgr,</span><br><span class="line">    align_ecc_subpixel_bgr,  <span class="comment"># 新增</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-阶段-2-修改（原第-117-118-行附近）"><a href="#6-2-阶段-2-修改（原第-117-118-行附近）" class="headerlink" title="6.2 阶段 2 修改（原第 117-118 行附近）"></a>6.2 阶段 2 修改（原第 117-118 行附近）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">local_warp = apply_constrained_local_warp_bgr(</span><br><span class="line">    line_alignment.aligned_bgr,</span><br><span class="line">    template_bgr,</span><br><span class="line">    <span class="variable language_">self</span>.config,</span><br><span class="line">)</span><br><span class="line"><span class="comment"># 2e. ECC 亚像素精对齐（可选，默认关闭）</span></span><br><span class="line">ecc = align_ecc_subpixel_bgr(local_warp.aligned_bgr, template_bgr, <span class="variable language_">self</span>.config)</span><br><span class="line">aligned_bgr = ecc.aligned_bgr</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-metrics-中追加-ECC-诊断信息"><a href="#6-3-metrics-中追加-ECC-诊断信息" class="headerlink" title="6.3 metrics 中追加 ECC 诊断信息"></a>6.3 metrics 中追加 ECC 诊断信息</h3><p>在 metrics 字典末尾（<code>**risk_metrics</code> 之前）追加：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ECC 诊断</span></span><br><span class="line"><span class="string">&quot;ecc_enabled&quot;</span>: <span class="built_in">int</span>(<span class="variable language_">self</span>.config.ecc_enabled),</span><br><span class="line"><span class="string">&quot;ecc_applied&quot;</span>: <span class="built_in">int</span>(ecc.applied),</span><br><span class="line"><span class="string">&quot;ecc_converged&quot;</span>: <span class="built_in">int</span>(ecc.converged),</span><br><span class="line"><span class="string">&quot;ecc_tx&quot;</span>: ecc.tx,</span><br><span class="line"><span class="string">&quot;ecc_ty&quot;</span>: ecc.ty,</span><br><span class="line"><span class="string">&quot;ecc_elapsed_ms&quot;</span>: <span class="built_in">int</span>(<span class="built_in">round</span>(ecc.elapsed_ms)),</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="七、默认配置更新"><a href="#七、默认配置更新" class="headerlink" title="七、默认配置更新"></a>七、默认配置更新</h2><p><strong>文件</strong>：<code>configs/default.yaml</code></p>
+<p>在 <code>ransac_reprojection_threshold</code> 之后追加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ECC 亚像素精对齐</span></span><br><span class="line"><span class="attr">ecc_enabled:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">ecc_downscale:</span> <span class="number">4</span></span><br><span class="line"><span class="attr">ecc_motion_type:</span> <span class="string">&quot;translation&quot;</span></span><br><span class="line"><span class="attr">ecc_max_iterations:</span> <span class="number">50</span></span><br><span class="line"><span class="attr">ecc_epsilon:</span> <span class="number">1.0e-4</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="八、关键设计决策"><a href="#八、关键设计决策" class="headerlink" title="八、关键设计决策"></a>八、关键设计决策</h2><table>
+<thead>
+<tr>
+<th>决策</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>MOTION_TRANSLATION</code>（不是 AFFINE）</td>
+<td>SURF 已处理旋转&#x2F;缩放&#x2F;透视，ECC 只补平移。AFFINE 会过拟合 + 与 line_centroid 产生反馈干扰</td>
+</tr>
+<tr>
+<td>降采样 4x 而非逐级金字塔</td>
+<td>平移向量对降采样线性可乘，旋转&#x2F;缩放分量不变。单层 4x 已足够快（A4@300dpi 约 50ms），不需要多级</td>
+</tr>
+<tr>
+<td><code>INTER_LANCZOS4</code>（不是 LINEAR）</td>
+<td>ECC 后已有 3 次重采样（SURF warpPerspective LINEAR → line_centroid remap LINEAR → ECC），最后一次用 Lanczos4 可以减少累计模糊</td>
+</tr>
+<tr>
+<td><code>BORDER_REPLICATE</code>（不是 BORDER_CONSTANT）</td>
+<td>ECC 平移量极小（&lt; 3px），REPLICATE 不会引入明显伪影；CONSTANT 填白可能在后续自适应二值化中产生假边界</td>
+</tr>
+<tr>
+<td>默认关闭（<code>ecc_enabled: false</code>）</td>
+<td>便于 A&#x2F;B 对比，确认有效后再默认开启</td>
+</tr>
+<tr>
+<td>降级在异常时返回原图</td>
+<td>空白页&#x2F;纯图页 ECC 不收敛时不应中断管道，跳过 ECC 继续后续流程</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="九、改动文件清单"><a href="#九、改动文件清单" class="headerlink" title="九、改动文件清单"></a>九、改动文件清单</h2><table>
+<thead>
+<tr>
+<th>文件</th>
+<th align="center">改动类型</th>
+<th align="center">改动量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/pixel_diff/models.py</code></td>
+<td align="center">新增 5 个字段 + validate 校验</td>
+<td align="center">+20 行</td>
+</tr>
+<tr>
+<td><code>src/pixel_diff/alignment.py</code></td>
+<td align="center">新增 EccAlignmentResult + 2 个函数</td>
+<td align="center">+80 行</td>
+</tr>
+<tr>
+<td><code>src/pixel_diff/engine.py</code></td>
+<td align="center">import + 1 步插入 + metrics 追加</td>
+<td align="center">+12 行</td>
+</tr>
+<tr>
+<td><code>configs/default.yaml</code></td>
+<td align="center">新增 5 行 YAML</td>
+<td align="center">+5 行</td>
+</tr>
+<tr>
+<td><strong>总计</strong></td>
+<td align="center"></td>
+<td align="center"><strong>~117 行</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="十、验证方法"><a href="#十、验证方法" class="headerlink" title="十、验证方法"></a>十、验证方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 关闭 ECC（基线）</span></span><br><span class="line">python scripts/compare.py --config configs/default.yaml \</span><br><span class="line">    test_docx/doc_v1.docx test_docx/doc_v2.docx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 开启 ECC（对比）</span></span><br><span class="line">python scripts/compare.py --config configs/default.yaml -O ecc_enabled=<span class="literal">true</span> \</span><br><span class="line">    test_docx/doc_v1.docx test_docx/doc_v2.docx</span><br></pre></td></tr></table></figure>
+
+<p><strong>预期效果</strong>：</p>
+<ul>
+<li>开启 ECC 后 <code>inlier_ratio</code> 不直接提升（ECC 在 SURF 之后运行），但最终 XOR 区域数应<strong>减少 15-30%</strong></li>
+<li>关键看 <code>ecc_tx</code> &#x2F; <code>ecc_ty</code>：对正常文档应在 ±2px 范围内；若输出 0.0 且 <code>ecc_converged=0</code>，说明页面纹理不足以驱动 ECC</li>
+<li><code>ecc_elapsed_ms</code> 对 A4@300dpi 应 &lt; 200ms</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/about" rel="external nofollow noreferrer">ZhangSki</a>
+                </span>
+            </div>
+            <div class="reprint__download">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-download">
+                        下载:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/md/ECC_INTEGRATION_GUIDE.md" download>点击下载本文 .md 源文件</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/3301_2026/tags/ECC/">
+                                    <span class="chip bg-color">ECC</span>
+                                </a>
+                            
+                                <a href="/3301_2026/tags/%E5%9B%BE%E5%83%8F%E5%AF%B9%E9%BD%90/">
+                                    <span class="chip bg-color">图像对齐</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/3301_2026/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/3301_2026/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/3301_2026/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/3301_2026/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/kulin%E6%89%93%E5%8C%85/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/3.jpg" class="responsive-img" alt="Nuitka 打包笔记（ARM64 / 飞腾机器）">
+                        
+                        <span class="card-title">Nuitka 打包笔记（ARM64 / 飞腾机器）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    部署运维
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/Nuitka/">
+                        <span class="chip bg-color">Nuitka</span>
+                    </a>
+                    
+                    <a href="/3301_2026/tags/%E6%89%93%E5%8C%85/">
+                        <span class="chip bg-color">打包</span>
+                    </a>
+                    
+                    <a href="/3301_2026/tags/ARM/">
+                        <span class="chip bg-color">ARM</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/HTTP%E6%8E%A5%E5%8F%A3%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/1.jpg" class="responsive-img" alt="HTTP 接口快速入门学习文档">
+                        
+                        <span class="card-title">HTTP 接口快速入门学习文档</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
+                                    后端开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/HTTP/">
+                        <span class="chip bg-color">HTTP</span>
+                    </a>
+                    
+                    <a href="/3301_2026/tags/%E6%8E%A5%E5%8F%A3/">
+                        <span class="chip bg-color">接口</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/3301_2026/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2026</span>
+            
+            <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">38.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "3";
+                        var startDate = "16";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/abc3301" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2797459022@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2797459022" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2797459022" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/3301_2026/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/3301_2026/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/3301_2026/libs/materialize/materialize.min.js"></script>
+    <script src="/3301_2026/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/3301_2026/libs/aos/aos.js"></script>
+    <script src="/3301_2026/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/3301_2026/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/3301_2026/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/3301_2026/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/3301_2026/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/3301_2026/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/3301_2026/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/3301_2026/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/3301_2026/live2dw/assets/haru02.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>

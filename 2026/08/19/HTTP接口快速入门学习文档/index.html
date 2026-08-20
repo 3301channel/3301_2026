@@ -1,0 +1,1332 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="HTTP 接口快速入门学习文档, 3301 channel, 博客, blog, 3301">
+    <meta name="description" content="HTTP接口快速入门学习文档一、文档前言本文档为HTTP接口极速入门教程，主打零基础、实战化、快速落地，摒弃冗余理论，聚焦开发、测试、对接工作中常用的核心知识点。读完可快速掌握HTTP接口的调用逻辑、规范、请求响应规则，能够独立完成接口调试">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>HTTP 接口快速入门学习文档 | 3301 channel</title>
+    <link rel="icon" type="image/png" href="/3301_2026/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/my.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/3301_2026/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/3301_2026/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/3301_2026/css/reward.css">
+    
+
+
+
+    <script src="/3301_2026/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/3301_2026/atom.xml" title="3301 channel" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/3301_2026/" class="waves-effect waves-light">
+                    
+                    <img src="/3301_2026/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">3301 channel</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/" class="waves-effect waves-light" >
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/tags" class="waves-effect waves-light" >
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/categories" class="waves-effect waves-light" >
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/archives" class="waves-effect waves-light" >
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/about" class="waves-effect waves-light" >
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/contact" class="waves-effect waves-light" >
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/friends" class="waves-effect waves-light" >
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="https://3301channel.github.io" class="waves-effect waves-light" target="_blank" rel="noopener noreferrer">
+      
+      <i class="fas fa-clock-rotate-left" style="zoom: 0.6;"></i>
+      
+      <span>时光机</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/3301_2026/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">3301 channel</div>
+        <div class="logo-desc">
+            
+            3301 channel - 个人博客，分享杂志、影视、学习资料与生活记录
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a target="_blank" rel="noopener" href="https://3301channel.github.io" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-clock-rotate-left"></i>
+			
+			时光机
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/abc3301/abc3301.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/abc3301/abc3301.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/3301_2026/medias/featureimages/1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">HTTP 接口快速入门学习文档</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/3301_2026/tags/HTTP/">
+                                <span class="chip bg-color">HTTP</span>
+                            </a>
+                        
+                            <a href="/3301_2026/tags/%E6%8E%A5%E5%8F%A3/">
+                                <span class="chip bg-color">接口</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/3301_2026/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
+                                后端开发
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-08-19
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    8 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="HTTP接口快速入门学习文档"><a href="#HTTP接口快速入门学习文档" class="headerlink" title="HTTP接口快速入门学习文档"></a>HTTP接口快速入门学习文档</h1><h2 id="一、文档前言"><a href="#一、文档前言" class="headerlink" title="一、文档前言"></a>一、文档前言</h2><p>本文档为<strong>HTTP接口极速入门教程</strong>，主打零基础、实战化、快速落地，摒弃冗余理论，聚焦开发、测试、对接工作中常用的核心知识点。读完可快速掌握HTTP接口的调用逻辑、规范、请求响应规则，能够独立完成接口调试、简单对接和问题排查，适用于新手开发、测试人员、后端接口对接学习者。</p>
+<p><strong>学习目标</strong>：1小时吃透HTTP接口核心，看懂接口文档、会调接口、能排查基础报错</p>
+<h2 id="二、HTTP接口核心概念（通俗理解）"><a href="#二、HTTP接口核心概念（通俗理解）" class="headerlink" title="二、HTTP接口核心概念（通俗理解）"></a>二、HTTP接口核心概念（通俗理解）</h2><h3 id="2-1-什么是HTTP接口？"><a href="#2-1-什么是HTTP接口？" class="headerlink" title="2.1 什么是HTTP接口？"></a>2.1 什么是HTTP接口？</h3><p>HTTP接口（也叫API接口）是<strong>客户端与服务器之间的数据通信通道</strong>，基于HTTP协议实现数据交互。</p>
+<p>通俗类比：服务器是一家餐厅，接口是餐厅的<strong>点餐窗口</strong>，客户端（浏览器、APP、小程序、代码）通过窗口发送请求（点餐），服务器处理后返回响应（上菜），完成数据交互。</p>
+<h3 id="2-2-核心特性"><a href="#2-2-核心特性" class="headerlink" title="2.2 核心特性"></a>2.2 核心特性</h3><ul>
+<li><p><strong>无状态</strong>：服务器不记录客户端上次的请求信息，每次请求都是独立的，需要通过Token、Cookie等实现状态保持</p>
+</li>
+<li><p><strong>基于请求-响应模型</strong>：必须客户端主动发请求，服务器被动响应，不会主动推送数据（WebSocket除外）</p>
+</li>
+<li><p><strong>跨平台通用</strong>：支持电脑、手机、小程序、各类代码语言调用，是目前互联网最主流的数据交互方式</p>
+</li>
+<li><p><strong>明文传输（默认HTTP）</strong>：数据直接传输，不安全；HTTPS&#x3D;HTTP+SSL加密，生产环境必备</p>
+</li>
+</ul>
+<h2 id="三、HTTP接口五大核心要素（必背）"><a href="#三、HTTP接口五大核心要素（必背）" class="headerlink" title="三、HTTP接口五大核心要素（必背）"></a>三、HTTP接口五大核心要素（必背）</h2><p>任何一个HTTP接口，都由这5个部分组成，看懂接口文档、调试接口只需要掌握这些内容。</p>
+<h3 id="3-1-请求地址（URL）"><a href="#3-1-请求地址（URL）" class="headerlink" title="3.1 请求地址（URL）"></a>3.1 请求地址（URL）</h3><p>接口的唯一访问地址，相当于餐厅的窗口地址，格式固定：<code>协议://域名/IP:端口/接口路径</code></p>
+<p>示例：<code>https://api.test.com/user/getInfo</code></p>
+<ul>
+<li><p>协议：http &#x2F; https</p>
+</li>
+<li><p>域名&#x2F;IP：服务器地址</p>
+</li>
+<li><p>端口：HTTP默认80，HTTPS默认443（可省略，自定义端口必须携带）</p>
+</li>
+<li><p>接口路径：具体接口标识，区分不同功能</p>
+</li>
+</ul>
+<h3 id="3-2-请求方法（Method）"><a href="#3-2-请求方法（Method）" class="headerlink" title="3.2 请求方法（Method）"></a>3.2 请求方法（Method）</h3><p>定义客户端对服务器数据的<strong>操作类型</strong>，常用5种（工作中99%场景只用这5种）：</p>
+<p>增（POST）删（DELETE）改（PUT&#x2F;PATCH）查（GET）</p>
+<table>
+<thead>
+<tr>
+<th>请求方法</th>
+<th>作用</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>查询数据（只读）</td>
+<td>获取用户信息、查询列表、搜索数据</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>新增数据（写数据）</td>
+<td>注册账号、发布内容、提交表单</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>修改全部数据</td>
+<td>完整更新用户资料、修改全部信息</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>修改部分数据</td>
+<td>只修改用户昵称、只更新手机号</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>删除数据</td>
+<td>删除订单、删除用户、删除文章</td>
+</tr>
+</tbody></table>
+<p><strong>重点区别</strong>：GET参数拼接在URL中，明文可见、有长度限制；POST参数在请求体中，更安全、无长度限制。</p>
+<h3 id="3-3-请求头（Headers）"><a href="#3-3-请求头（Headers）" class="headerlink" title="3.3 请求头（Headers）"></a>3.3 请求头（Headers）</h3><p>请求的附加信息，告诉服务器「客户端是谁、数据格式是什么、身份凭证是什么」，无需手动拼接，工具可自动携带。</p>
+<p>常用核心请求头：</p>
+<ul>
+<li><p><code>Content-Type</code>：请求体数据格式（最核心），常用值：</p>
+<ul>
+<li><p><code>application/json</code>：JSON格式（90%接口使用）</p>
+</li>
+<li><p><code>application/x-www-form-urlencoded</code>：表单格式</p>
+</li>
+<li><p><code>multipart/form-data</code>：文件上传（图片、视频、文件）</p>
+</li>
+</ul>
+</li>
+<li><p><code>Authorization</code>：身份令牌（Token），接口登录授权凭证</p>
+</li>
+<li><p><code>Cookie</code>：本地缓存信息，用于会话保持</p>
+</li>
+<li><p><code>User-Agent</code>：客户端设备信息（浏览器、APP型号）</p>
+</li>
+</ul>
+<h3 id="3-4-请求参数（Params-x2F-Body）"><a href="#3-4-请求参数（Params-x2F-Body）" class="headerlink" title="3.4 请求参数（Params&#x2F;Body）"></a>3.4 请求参数（Params&#x2F;Body）</h3><p>客户端传给服务器的<strong>核心数据</strong>，分为3种类型：</p>
+<ul>
+<li><p><strong>URL参数（Query参数）</strong>：拼接在URL后面，格式<code>?key1=value1&amp;key2=value2</code>，GET请求专用</p>
+</li>
+<li><p><strong>路径参数（Path参数）</strong>：嵌入URL路径中，如<code>/user/1001</code>，1001为用户ID，常用于精准查询、删除</p>
+</li>
+<li><p><strong>请求体参数（Body参数）</strong>：放在请求内部，POST&#x2F;PUT&#x2F;PATCH专用，支持JSON、表单、文件等格式</p>
+</li>
+</ul>
+<h3 id="3-5-响应结果（Response）"><a href="#3-5-响应结果（Response）" class="headerlink" title="3.5 响应结果（Response）"></a>3.5 响应结果（Response）</h3><p>服务器处理后返回给客户端的数据，包含三部分：状态码、响应头、响应体。</p>
+<h2 id="四、HTTP状态码（快速排查报错必备）"><a href="#四、HTTP状态码（快速排查报错必备）" class="headerlink" title="四、HTTP状态码（快速排查报错必备）"></a>四、HTTP状态码（快速排查报错必备）</h2><p>状态码是服务器返回的<strong>处理结果暗号</strong>，看到状态码即可快速定位问题，无需逐行看日志。</p>
+<h3 id="4-1-1xx-信息类（临时响应，极少用到）"><a href="#4-1-1xx-信息类（临时响应，极少用到）" class="headerlink" title="4.1 1xx 信息类（临时响应，极少用到）"></a>4.1 1xx 信息类（临时响应，极少用到）</h3><p>100：继续请求，服务器已接收部分请求，等待剩余数据</p>
+<h3 id="4-2-2xx-成功类（请求正常）"><a href="#4-2-2xx-成功类（请求正常）" class="headerlink" title="4.2 2xx 成功类（请求正常）"></a>4.2 2xx 成功类（请求正常）</h3><ul>
+<li><p>200 OK：请求成功（最常用）</p>
+</li>
+<li><p>201 Created：数据新增成功（POST接口专用）</p>
+</li>
+<li><p>204 No Content：处理成功，无返回数据（DELETE接口常用）</p>
+</li>
+</ul>
+<h3 id="4-3-3xx-重定向类（地址跳转）"><a href="#4-3-3xx-重定向类（地址跳转）" class="headerlink" title="4.3 3xx 重定向类（地址跳转）"></a>4.3 3xx 重定向类（地址跳转）</h3><ul>
+<li><p>301：永久重定向（域名更换）</p>
+</li>
+<li><p>302：临时重定向（登录跳转、页面跳转）</p>
+</li>
+</ul>
+<h3 id="4-4-4xx-客户端错误（自己的问题）"><a href="#4-4-4xx-客户端错误（自己的问题）" class="headerlink" title="4.4 4xx 客户端错误（自己的问题）"></a>4.4 4xx 客户端错误（自己的问题）</h3><ul>
+<li><p>400 Bad Request：请求参数错误（参数缺失、格式错误、参数类型不对）</p>
+</li>
+<li><p>401 Unauthorized：未登录&#x2F;Token失效（无授权）</p>
+</li>
+<li><p>403 Forbidden：权限不足（已登录，但无操作权限）</p>
+</li>
+<li><p>404 Not Found：接口地址不存在（路径写错、服务器无该接口）</p>
+</li>
+<li><p>405 Method Not Allowed：请求方法错误（接口只支持GET，你用了POST）</p>
+</li>
+<li><p>409 Conflict：数据冲突（重复新增数据）</p>
+</li>
+</ul>
+<h3 id="4-5-5xx-服务端错误（服务器的问题）"><a href="#4-5-5xx-服务端错误（服务器的问题）" class="headerlink" title="4.5 5xx 服务端错误（服务器的问题）"></a>4.5 5xx 服务端错误（服务器的问题）</h3><ul>
+<li><p>500 Internal Server Error：服务器代码报错（接口逻辑bug）</p>
+</li>
+<li><p>502 Bad Gateway：网关错误（服务器宕机、接口未部署）</p>
+</li>
+<li><p>503 Service Unavailable：服务不可用（服务器过载、维护中）</p>
+</li>
+</ul>
+<h2 id="五、接口数据格式（JSON核心）"><a href="#五、接口数据格式（JSON核心）" class="headerlink" title="五、接口数据格式（JSON核心）"></a>五、接口数据格式（JSON核心）</h2><p>目前99%的HTTP接口均使用<strong>JSON格式</strong>传输数据，格式简洁、易读、各语言通用。</p>
+<h3 id="5-1-JSON基础语法（极简版）"><a href="#5-1-JSON基础语法（极简版）" class="headerlink" title="5.1 JSON基础语法（极简版）"></a>5.1 JSON基础语法（极简版）</h3><ul>
+<li><p>键值对格式：<code>&quot;key&quot;:&quot;value&quot;</code>，键必须双引号包裹</p>
+</li>
+<li><p>支持数据类型：字符串、数字、布尔值、数组、对象、null</p>
+</li>
+<li><p>多个键值对用逗号分隔，整体用{}包裹</p>
+</li>
+</ul>
+<h3 id="5-2-标准接口响应JSON示例"><a href="#5-2-标准接口响应JSON示例" class="headerlink" title="5.2 标准接口响应JSON示例"></a>5.2 标准接口响应JSON示例</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span>       <span class="comment">// 自定义业务状态码</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;请求成功&quot;</span><span class="punctuation">,</span>  <span class="comment">// 响应提示信息</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>           <span class="comment">// 核心返回数据</span></span><br><span class="line">    <span class="attr">&quot;userId&quot;</span><span class="punctuation">:</span> <span class="number">1001</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;userName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;测试用户&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;phone&quot;</span><span class="punctuation">:</span> <span class="string">&quot;13800138000&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="六、完整接口请求实战流程"><a href="#六、完整接口请求实战流程" class="headerlink" title="六、完整接口请求实战流程"></a>六、完整接口请求实战流程</h2><p>以「获取用户信息接口」为例，完整演示一次HTTP接口交互全过程。</p>
+<h3 id="6-1-接口信息"><a href="#6-1-接口信息" class="headerlink" title="6.1 接口信息"></a>6.1 接口信息</h3><ul>
+<li><p>请求地址：<code>https://api.test.com/user/getInfo</code></p>
+</li>
+<li><p>请求方法：GET</p>
+</li>
+<li><p>请求参数：userId（用户ID，必传）</p>
+</li>
+<li><p>请求头：Authorization（登录Token）</p>
+</li>
+</ul>
+<h3 id="6-2-完整请求示例"><a href="#6-2-完整请求示例" class="headerlink" title="6.2 完整请求示例"></a>6.2 完整请求示例</h3><p>真实请求URL：<code>https://api.test.com/user/getInfo?userId=1001</code></p>
+<h3 id="6-3-成功响应结果"><a href="#6-3-成功响应结果" class="headerlink" title="6.3 成功响应结果"></a>6.3 成功响应结果</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;查询成功&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;userId&quot;</span><span class="punctuation">:</span> <span class="number">1001</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;userName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;张三&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;age&quot;</span><span class="punctuation">:</span> <span class="number">25</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;gender&quot;</span><span class="punctuation">:</span> <span class="string">&quot;男&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-4-失败响应示例（参数缺失）"><a href="#6-4-失败响应示例（参数缺失）" class="headerlink" title="6.4 失败响应示例（参数缺失）"></a>6.4 失败响应示例（参数缺失）</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">400</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;userId参数不能为空&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="七、常用接口调试工具（快速上手）"><a href="#七、常用接口调试工具（快速上手）" class="headerlink" title="七、常用接口调试工具（快速上手）"></a>七、常用接口调试工具（快速上手）</h2><p>学习和对接接口无需写代码，用工具可直接调试，推荐2款主流工具：</p>
+<h3 id="7-1-Postman（万能接口调试工具）"><a href="#7-1-Postman（万能接口调试工具）" class="headerlink" title="7.1 Postman（万能接口调试工具）"></a>7.1 Postman（万能接口调试工具）</h3><p>支持所有请求方法、参数格式，可保存接口、批量调试，新手首选。</p>
+<p><strong>使用步骤</strong>：输入URL→选择请求方法→填写请求头&#x2F;参数→点击发送→查看响应结果</p>
+<h3 id="7-2-Apifox（国产替代，更轻量化）"><a href="#7-2-Apifox（国产替代，更轻量化）" class="headerlink" title="7.2 Apifox（国产替代，更轻量化）"></a>7.2 Apifox（国产替代，更轻量化）</h3><p>集接口文档、调试、Mock、测试于一体，免费好用，适配国内开发场景。</p>
+<h2 id="八、新手高频报错及解决方案"><a href="#八、新手高频报错及解决方案" class="headerlink" title="八、新手高频报错及解决方案"></a>八、新手高频报错及解决方案</h2><p>汇总学习和工作中最常见的接口问题，快速解决，避免踩坑：</p>
+<ul>
+<li><p><strong>404报错</strong>：检查接口URL是否拼写错误、接口是否部署上线、端口是否正确</p>
+</li>
+<li><p><strong>400报错</strong>：检查参数是否缺失、参数格式是否和文档一致（数字&#x2F;字符串混淆）、JSON格式是否有误（少逗号、少引号）</p>
+</li>
+<li><p><strong>401报错</strong>：未携带Token、Token过期、Token格式错误（需携带Bearer前缀）</p>
+</li>
+<li><p><strong>405报错</strong>：请求方法不匹配（文档是GET，调用时用了POST）</p>
+</li>
+<li><p><strong>500报错</strong>：服务器代码问题，无需自查，反馈后端开发排查</p>
+</li>
+<li><p><strong>跨域报错</strong>：前端调用接口出现，服务器未配置跨域允许，需后端开启跨域权限</p>
+</li>
+</ul>
+<h2 id="九、快速学习总结（核心口诀）"><a href="#九、快速学习总结（核心口诀）" class="headerlink" title="九、快速学习总结（核心口诀）"></a>九、快速学习总结（核心口诀）</h2><p>1. 接口五要素：<strong>地址、方法、请求头、参数、响应</strong></p>
+<p>2. 方法口诀：<strong>查GET、增POST、改PUT、删DELETE</strong></p>
+<p>3. 状态码口诀：<strong>200成、400错参数、401无权限、404地址错、500服务崩</strong></p>
+<p>4. 数据格式：<strong>90%接口用JSON，请求头必配Content-Type</strong></p>
+<h2 id="十、进阶学习方向"><a href="#十、进阶学习方向" class="headerlink" title="十、进阶学习方向"></a>十、进阶学习方向</h2><p>掌握基础后，可深入学习：接口鉴权（Token&#x2F;JWT）、接口签名、限流熔断、HTTPS加密、RESTful接口规范、WebSocket接口、接口自动化测试。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/about" rel="external nofollow noreferrer">ZhangSki</a>
+                </span>
+            </div>
+            <div class="reprint__download">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-download">
+                        下载:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/md/HTTP%E6%8E%A5%E5%8F%A3%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3.md" download>点击下载本文 .md 源文件</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/3301_2026/tags/HTTP/">
+                                    <span class="chip bg-color">HTTP</span>
+                                </a>
+                            
+                                <a href="/3301_2026/tags/%E6%8E%A5%E5%8F%A3/">
+                                    <span class="chip bg-color">接口</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/3301_2026/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/3301_2026/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/3301_2026/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/3301_2026/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/ECC_INTEGRATION_GUIDE/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/2.jpg" class="responsive-img" alt="ECC 亚像素精对齐集成指南">
+                        
+                        <span class="card-title">ECC 亚像素精对齐集成指南</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="post-category">
+                                    图像处理
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/ECC/">
+                        <span class="chip bg-color">ECC</span>
+                    </a>
+                    
+                    <a href="/3301_2026/tags/%E5%9B%BE%E5%83%8F%E5%AF%B9%E9%BD%90/">
+                        <span class="chip bg-color">图像对齐</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/Git/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/0.jpg" class="responsive-img" alt="Git 核心常用命令超详细文档（通俗易懂版）">
+                        
+                        <span class="card-title">Git 核心常用命令超详细文档（通俗易懂版）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
+                                    后端开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/Git/">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/3301_2026/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2026</span>
+            
+            <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">38.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "3";
+                        var startDate = "16";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/abc3301" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2797459022@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2797459022" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2797459022" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/3301_2026/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/3301_2026/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/3301_2026/libs/materialize/materialize.min.js"></script>
+    <script src="/3301_2026/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/3301_2026/libs/aos/aos.js"></script>
+    <script src="/3301_2026/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/3301_2026/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/3301_2026/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/3301_2026/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/3301_2026/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/3301_2026/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/3301_2026/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/3301_2026/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/3301_2026/live2dw/assets/haru02.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>

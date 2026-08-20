@@ -1,0 +1,1594 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Pixel Diff 文档对比服务接口文档, 3301 channel, 博客, blog, 3301">
+    <meta name="description" content="Pixel Diff 文档对比服务接口文档1. 文档信息
+
+
+项目
+内容
+
+
+
+服务名称
+Pixel Diff 文档对比服务
+
+
+API 版本
+v1
+
+
+默认地址
+http://127.0.0.1:8000
+
+
+Swagger 文档
+htt">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Pixel Diff 文档对比服务接口文档 | 3301 channel</title>
+    <link rel="icon" type="image/png" href="/3301_2026/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/my.css">
+<link rel="stylesheet" type="text/css" href="/3301_2026/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/3301_2026/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/3301_2026/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/3301_2026/css/reward.css">
+    
+
+
+
+    <script src="/3301_2026/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/3301_2026/atom.xml" title="3301 channel" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/3301_2026/" class="waves-effect waves-light">
+                    
+                    <img src="/3301_2026/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">3301 channel</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/" class="waves-effect waves-light" >
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/tags" class="waves-effect waves-light" >
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/categories" class="waves-effect waves-light" >
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/archives" class="waves-effect waves-light" >
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/about" class="waves-effect waves-light" >
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/contact" class="waves-effect waves-light" >
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/3301_2026/friends" class="waves-effect waves-light" >
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="https://3301channel.github.io" class="waves-effect waves-light" target="_blank" rel="noopener noreferrer">
+      
+      <i class="fas fa-clock-rotate-left" style="zoom: 0.6;"></i>
+      
+      <span>时光机</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/3301_2026/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">3301 channel</div>
+        <div class="logo-desc">
+            
+            3301 channel - 个人博客，分享杂志、影视、学习资料与生活记录
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/3301_2026/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a target="_blank" rel="noopener" href="https://3301channel.github.io" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-clock-rotate-left"></i>
+			
+			时光机
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/abc3301/abc3301.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/abc3301/abc3301.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/3301_2026/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Pixel Diff 文档对比服务接口文档</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/3301_2026/tags/%E6%8E%A5%E5%8F%A3/">
+                                <span class="chip bg-color">接口</span>
+                            </a>
+                        
+                            <a href="/3301_2026/tags/PixelDiff/">
+                                <span class="chip bg-color">PixelDiff</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/3301_2026/categories/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" class="post-category">
+                                接口文档
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-08-19
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    10 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Pixel-Diff-文档对比服务接口文档"><a href="#Pixel-Diff-文档对比服务接口文档" class="headerlink" title="Pixel Diff 文档对比服务接口文档"></a>Pixel Diff 文档对比服务接口文档</h1><h2 id="1-文档信息"><a href="#1-文档信息" class="headerlink" title="1. 文档信息"></a>1. 文档信息</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务名称</td>
+<td>Pixel Diff 文档对比服务</td>
+</tr>
+<tr>
+<td>API 版本</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>默认地址</td>
+<td><code>http://127.0.0.1:8000</code></td>
+</tr>
+<tr>
+<td>Swagger 文档</td>
+<td><code>http://127.0.0.1:8000/docs</code></td>
+</tr>
+<tr>
+<td>数据格式</td>
+<td>JSON、<code>multipart/form-data</code>、HTML、PNG</td>
+</tr>
+<tr>
+<td>字符编码</td>
+<td>UTF-8</td>
+</tr>
+</tbody></table>
+<h2 id="2-服务说明"><a href="#2-服务说明" class="headerlink" title="2. 服务说明"></a>2. 服务说明</h2><p>服务采用异步任务模式：</p>
+<ol>
+<li>客户端上传原件 A 和待对比文件 B。</li>
+<li>服务返回 <code>task_id</code>，并在后台执行文档渲染、配准和差异检测。</li>
+<li>客户端使用 <code>task_id</code> 轮询任务状态。</li>
+<li>任务完成后，可读取结构化结果或打开三栏对比页面。</li>
+<li>任务不再需要时，可调用删除接口清理任务和产物。</li>
+</ol>
+<p>支持的文件扩展名：</p>
+<ul>
+<li><code>.pdf</code></li>
+<li><code>.docx</code></li>
+<li><code>.png</code></li>
+<li><code>.jpg</code></li>
+<li><code>.jpeg</code></li>
+</ul>
+<p>单个上传文件默认最大为 100 MB。任务默认最长执行时间为 900 秒。</p>
+<h2 id="3-通用响应结构"><a href="#3-通用响应结构" class="headerlink" title="3. 通用响应结构"></a>3. 通用响应结构</h2><p>正常业务响应通常采用以下结构：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;OK&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>字段说明：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>code</code></td>
+<td>integer</td>
+<td>业务状态码</td>
+</tr>
+<tr>
+<td><code>msg</code></td>
+<td>string</td>
+<td>状态或错误说明</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>object&#x2F;null</td>
+<td>响应数据</td>
+</tr>
+</tbody></table>
+<h3 id="3-1-任务状态"><a href="#3-1-任务状态" class="headerlink" title="3.1 任务状态"></a>3.1 任务状态</h3><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pending</code></td>
+<td>已进入队列，尚未开始</td>
+</tr>
+<tr>
+<td><code>processing</code></td>
+<td>正在执行对比</td>
+</tr>
+<tr>
+<td><code>completed</code></td>
+<td>对比完成</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>对比失败</td>
+</tr>
+</tbody></table>
+<h2 id="4-创建文档对比任务"><a href="#4-创建文档对比任务" class="headerlink" title="4. 创建文档对比任务"></a>4. 创建文档对比任务</h2><h3 id="4-1-请求"><a href="#4-1-请求" class="headerlink" title="4.1 请求"></a>4.1 请求</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /api/v1/compare/tasks</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>multipart/form-data</span><br></pre></td></tr></table></figure>
+
+<p>请求参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th align="right">必填</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>file_a</code></td>
+<td>file</td>
+<td align="right">是</td>
+<td>-</td>
+<td>原件或模板文件</td>
+</tr>
+<tr>
+<td><code>file_b</code></td>
+<td>file</td>
+<td align="right">是</td>
+<td>-</td>
+<td>待检测文件</td>
+</tr>
+<tr>
+<td><code>ignore_categories</code></td>
+<td>string</td>
+<td align="right">否</td>
+<td><code>[]</code></td>
+<td>预留的忽略类别 JSON 字符串</td>
+</tr>
+<tr>
+<td><code>space_recognition</code></td>
+<td>boolean</td>
+<td align="right">否</td>
+<td><code>false</code></td>
+<td>预留的空格识别开关</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：当前版本可以接收 <code>ignore_categories</code> 和 <code>space_recognition</code>，但尚未将其传入底层检测算法，因此这两个参数目前不会改变检测结果。</p>
+</blockquote>
+<h3 id="4-2-cURL-示例"><a href="#4-2-cURL-示例" class="headerlink" title="4.2 cURL 示例"></a>4.2 cURL 示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;http://127.0.0.1:8000/api/v1/compare/tasks&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;accept: application/json&quot;</span> \</span><br><span class="line">  -F <span class="string">&quot;file_a=@document2_v1.pdf&quot;</span> \</span><br><span class="line">  -F <span class="string">&quot;file_b=@document2_v3.pdf&quot;</span> \</span><br><span class="line">  -F <span class="string">&quot;ignore_categories=[]&quot;</span> \</span><br><span class="line">  -F <span class="string">&quot;space_recognition=false&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-成功响应"><a href="#4-3-成功响应" class="headerlink" title="4.3 成功响应"></a>4.3 成功响应</h3><p>HTTP 状态码：<code>202 Accepted</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Task submitted successfully&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ace029b192ef4c0db762fc5898043841&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pending&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;queued_ahead&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;created_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-07-29T01:40:47.063890+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;started_at&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;completed_at&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;error&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file_name_a&quot;</span><span class="punctuation">:</span> <span class="string">&quot;document2_v1.pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file_name_b&quot;</span><span class="punctuation">:</span> <span class="string">&quot;document2_v3.pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://127.0.0.1:8000/api/v1/compare/tasks/ace029b192ef4c0db762fc5898043841/result&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;result_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://127.0.0.1:8000/api/v1/compare/tasks/ace029b192ef4c0db762fc5898043841/result&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-上传失败"><a href="#4-4-上传失败" class="headerlink" title="4.4 上传失败"></a>4.4 上传失败</h3><p>HTTP 状态码：<code>400 Bad Request</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">40001</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;unsupported file type; allowed extensions: .docx, .jpeg, .jpg, .pdf, .png&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>文件超过大小限制时，也返回业务码 <code>40001</code>。</p>
+<h2 id="5-查询任务状态和比对结果"><a href="#5-查询任务状态和比对结果" class="headerlink" title="5. 查询任务状态和比对结果"></a>5. 查询任务状态和比对结果</h2><h3 id="5-1-请求"><a href="#5-1-请求" class="headerlink" title="5.1 请求"></a>5.1 请求</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/v1/compare/tasks/&#123;task_id&#125;/result</span><br></pre></td></tr></table></figure>
+
+<p>路径参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th align="right">必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>task_id</code></td>
+<td>string</td>
+<td align="right">是</td>
+<td>创建任务时返回的任务标识</td>
+</tr>
+</tbody></table>
+<p>建议任务未完成时每隔 2～3 秒轮询一次。</p>
+<h3 id="5-2-cURL-示例"><a href="#5-2-cURL-示例" class="headerlink" title="5.2 cURL 示例"></a>5.2 cURL 示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="string">&quot;http://127.0.0.1:8000/api/v1/compare/tasks/ace029b192ef4c0db762fc5898043841/result&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-处理中响应"><a href="#5-3-处理中响应" class="headerlink" title="5.3 处理中响应"></a>5.3 处理中响应</h3><p>HTTP 状态码：<code>202 Accepted</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;OK&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ace029b192ef4c0db762fc5898043841&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;processing&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;queued_ahead&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;created_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-07-29T01:40:47.063890+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;started_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-07-29T01:40:47.064590+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;completed_at&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;error&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file_name_a&quot;</span><span class="punctuation">:</span> <span class="string">&quot;document2_v1.pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file_name_b&quot;</span><span class="punctuation">:</span> <span class="string">&quot;document2_v3.pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;results&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-完成响应"><a href="#5-4-完成响应" class="headerlink" title="5.4 完成响应"></a>5.4 完成响应</h3><p>HTTP 状态码：<code>200 OK</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;OK&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ace029b192ef4c0db762fc5898043841&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;completed&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;queued_ahead&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;created_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-07-29T01:40:47.063890+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;started_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-07-29T01:40:47.064590+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;completed_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-07-29T01:41:28.014404+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;error&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file_name_a&quot;</span><span class="punctuation">:</span> <span class="string">&quot;document2_v1.pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file_name_b&quot;</span><span class="punctuation">:</span> <span class="string">&quot;document2_v3.pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;results&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;similarity&quot;</span><span class="punctuation">:</span> <span class="number">98.7</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;difference_count&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;added&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;deleted&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;modified&quot;</span><span class="punctuation">:</span> <span class="number">4</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;compare_view_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://127.0.0.1:8000/api/pixel/compare/tasks/ace029b192ef4c0db762fc5898043841/viewer&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;preview_url_a&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;preview_url_b&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;diff_list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;tag&quot;</span><span class="punctuation">:</span> <span class="string">&quot;replace&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;text_a&quot;</span><span class="punctuation">:</span> <span class="string">&quot;原件区域文字&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;text_b&quot;</span><span class="punctuation">:</span> <span class="string">&quot;原件区域文字&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;bbox_a&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">              <span class="attr">&quot;char&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">              <span class="attr">&quot;bbox&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">120</span><span class="punctuation">,</span> <span class="number">240</span><span class="punctuation">,</span> <span class="number">196</span><span class="punctuation">,</span> <span class="number">282</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">              <span class="attr">&quot;page_idx&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">          <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;bbox_b&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;page_idx&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;risk_level&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MEDIUM&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;risk_reason&quot;</span><span class="punctuation">:</span> <span class="string">&quot;large_visual_residual_without_text&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;area&quot;</span><span class="punctuation">:</span> <span class="number">3192.0</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>results</code> 字段说明：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>similarity</code></td>
+<td>number</td>
+<td>根据差异率换算的相似度百分比</td>
+</tr>
+<tr>
+<td><code>difference_count.added</code></td>
+<td>integer</td>
+<td>新增差异数量</td>
+</tr>
+<tr>
+<td><code>difference_count.deleted</code></td>
+<td>integer</td>
+<td>删除差异数量</td>
+</tr>
+<tr>
+<td><code>difference_count.modified</code></td>
+<td>integer</td>
+<td>修改差异数量</td>
+</tr>
+<tr>
+<td><code>compare_view_url</code></td>
+<td>string</td>
+<td>三栏结果展示页面地址</td>
+</tr>
+<tr>
+<td><code>preview_url_a</code></td>
+<td>null</td>
+<td>预留字段，当前未提供独立预览地址</td>
+</tr>
+<tr>
+<td><code>preview_url_b</code></td>
+<td>null</td>
+<td>预留字段，当前未提供独立预览地址</td>
+</tr>
+<tr>
+<td><code>diff_list</code></td>
+<td>array</td>
+<td>差异区域列表</td>
+</tr>
+</tbody></table>
+<p><code>diff_list</code> 项说明：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tag</code></td>
+<td>string</td>
+<td><code>insert</code>、<code>delete</code> 或 <code>replace</code></td>
+</tr>
+<tr>
+<td><code>text_a</code></td>
+<td>string</td>
+<td>原件区域文字</td>
+</tr>
+<tr>
+<td><code>text_b</code></td>
+<td>string</td>
+<td>对比件区域文字</td>
+</tr>
+<tr>
+<td><code>bbox_a</code></td>
+<td>array</td>
+<td>原件差异框及页码</td>
+</tr>
+<tr>
+<td><code>bbox_b</code></td>
+<td>null</td>
+<td>当前版本未单独返回对比件差异框</td>
+</tr>
+<tr>
+<td><code>page_idx</code></td>
+<td>integer</td>
+<td>从 0 开始的页码</td>
+</tr>
+<tr>
+<td><code>risk_level</code></td>
+<td>string&#x2F;null</td>
+<td>风险等级</td>
+</tr>
+<tr>
+<td><code>risk_reason</code></td>
+<td>string&#x2F;null</td>
+<td>风险判定原因</td>
+</tr>
+<tr>
+<td><code>area</code></td>
+<td>number&#x2F;null</td>
+<td>差异区域面积</td>
+</tr>
+</tbody></table>
+<h3 id="5-5-失败响应"><a href="#5-5-失败响应" class="headerlink" title="5.5 失败响应"></a>5.5 失败响应</h3><p>当前实现中，任务执行失败时 HTTP 状态码仍为 <code>200 OK</code>，应以业务码和任务状态判断。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">50002</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;comparison failed&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;74a35af57a964980a446534a789403f7&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;failed&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;queued_ahead&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;created_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-07-29T02:42:37.109673+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;started_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-07-29T02:42:37.111255+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;completed_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-07-29T02:42:38.014404+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;error&quot;</span><span class="punctuation">:</span> <span class="string">&quot;具体错误信息&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file_name_a&quot;</span><span class="punctuation">:</span> <span class="string">&quot;document1_v1.pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;file_name_b&quot;</span><span class="punctuation">:</span> <span class="string">&quot;document1_v3.pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;results&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-6-任务不存在"><a href="#5-6-任务不存在" class="headerlink" title="5.6 任务不存在"></a>5.6 任务不存在</h3><p>HTTP 状态码：<code>404 Not Found</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;detail&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task not found&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-打开三栏对比页面"><a href="#6-打开三栏对比页面" class="headerlink" title="6. 打开三栏对比页面"></a>6. 打开三栏对比页面</h2><h3 id="6-1-展示入口"><a href="#6-1-展示入口" class="headerlink" title="6.1 展示入口"></a>6.1 展示入口</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/pixel/compare/tasks/&#123;task_id&#125;/view</span><br></pre></td></tr></table></figure>
+
+<p>当任务已经完成时，接口返回 <code>302 Found</code>，并跳转到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/api/pixel/compare/tasks/&#123;task_id&#125;/viewer</span><br></pre></td></tr></table></figure>
+
+<p>当任务仍在处理中时，接口返回任务状态 JSON，不执行跳转。</p>
+<p>浏览器会自动跟随跳转。使用 cURL 时需要添加 <code>-L</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L <span class="string">&quot;http://127.0.0.1:8000/api/pixel/compare/tasks/ace029b192ef4c0db762fc5898043841/view&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-直接打开展示页"><a href="#6-2-直接打开展示页" class="headerlink" title="6.2 直接打开展示页"></a>6.2 直接打开展示页</h3><p>推荐最终用户直接访问：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/api/pixel/compare/tasks/&#123;task_id&#125;/viewer</span><br></pre></td></tr></table></figure>
+
+<p>页面采用三栏布局：</p>
+<ul>
+<li>左栏：原件或模板页面；</li>
+<li>中栏：差分图，可切换为待检测原图；</li>
+<li>右栏：从结果 JSON 的 <code>regions</code> 中提取的当前页差异列表。</li>
+</ul>
+<p>右侧差异列表按页展示差异编号、类型、风险、位置、尺寸、面积、新增&#x2F;删除像素及分类信息。</p>
+<h2 id="7-页面图像接口"><a href="#7-页面图像接口" class="headerlink" title="7. 页面图像接口"></a>7. 页面图像接口</h2><p>该接口供三栏展示页内部调用，不在 Swagger 中展示。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/pixel/compare/tasks/&#123;task_id&#125;/pages/&#123;page&#125;/&#123;image_type&#125;</span><br></pre></td></tr></table></figure>
+
+<p>路径参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>task_id</code></td>
+<td>string</td>
+<td>任务标识</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>integer</td>
+<td>从 1 开始的页码</td>
+</tr>
+<tr>
+<td><code>image_type</code></td>
+<td>string</td>
+<td><code>template</code>、<code>candidate</code> 或 <code>diff</code></td>
+</tr>
+</tbody></table>
+<p>图像类型：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>template</code></td>
+<td>原件或模板页面</td>
+</tr>
+<tr>
+<td><code>candidate</code></td>
+<td>待检测页面</td>
+</tr>
+<tr>
+<td><code>diff</code></td>
+<td>差异残影图</td>
+</tr>
+</tbody></table>
+<p>成功时返回 <code>image/png</code>，并以内联方式在浏览器显示。</p>
+<h2 id="8-删除任务"><a href="#8-删除任务" class="headerlink" title="8. 删除任务"></a>8. 删除任务</h2><h3 id="8-1-请求"><a href="#8-1-请求" class="headerlink" title="8.1 请求"></a>8.1 请求</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE /api/v1/compare/tasks/&#123;task_id&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-cURL-示例"><a href="#8-2-cURL-示例" class="headerlink" title="8.2 cURL 示例"></a>8.2 cURL 示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X DELETE \</span><br><span class="line">  <span class="string">&quot;http://127.0.0.1:8000/api/v1/compare/tasks/ace029b192ef4c0db762fc5898043841&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-3-成功响应"><a href="#8-3-成功响应" class="headerlink" title="8.3 成功响应"></a>8.3 成功响应</h3><p>HTTP 状态码：<code>200 OK</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Task files deleted successfully&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ace029b192ef4c0db762fc5898043841&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>任务处于 <code>pending</code> 或 <code>processing</code> 状态时不能删除，返回 <code>409 Conflict</code>。</p>
+<h2 id="9-业务码与-HTTP-状态"><a href="#9-业务码与-HTTP-状态" class="headerlink" title="9. 业务码与 HTTP 状态"></a>9. 业务码与 HTTP 状态</h2><table>
+<thead>
+<tr>
+<th>场景</th>
+<th align="right">HTTP 状态</th>
+<th align="right">业务码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建任务成功</td>
+<td align="right">202</td>
+<td align="right">200</td>
+</tr>
+<tr>
+<td>任务处理中</td>
+<td align="right">202</td>
+<td align="right">200</td>
+</tr>
+<tr>
+<td>查询完成结果</td>
+<td align="right">200</td>
+<td align="right">200</td>
+</tr>
+<tr>
+<td>上传参数或文件错误</td>
+<td align="right">400</td>
+<td align="right">40001</td>
+</tr>
+<tr>
+<td>任务执行失败</td>
+<td align="right">200</td>
+<td align="right">50002</td>
+</tr>
+<tr>
+<td>任务不存在</td>
+<td align="right">404</td>
+<td align="right">-</td>
+</tr>
+<tr>
+<td>删除运行中的任务</td>
+<td align="right">409</td>
+<td align="right">-</td>
+</tr>
+</tbody></table>
+<h2 id="10-Python-调用示例"><a href="#10-Python-调用示例" class="headerlink" title="10. Python 调用示例"></a>10. Python 调用示例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">base_url = <span class="string">&quot;http://127.0.0.1:8000&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> (</span><br><span class="line">    Path(<span class="string">&quot;document2_v1.pdf&quot;</span>).<span class="built_in">open</span>(<span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> file_a,</span><br><span class="line">    Path(<span class="string">&quot;document2_v3.pdf&quot;</span>).<span class="built_in">open</span>(<span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> file_b,</span><br><span class="line">):</span><br><span class="line">    response = requests.post(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;base_url&#125;</span>/api/v1/compare/tasks&quot;</span>,</span><br><span class="line">        files=&#123;</span><br><span class="line">            <span class="string">&quot;file_a&quot;</span>: (<span class="string">&quot;document2_v1.pdf&quot;</span>, file_a, <span class="string">&quot;application/pdf&quot;</span>),</span><br><span class="line">            <span class="string">&quot;file_b&quot;</span>: (<span class="string">&quot;document2_v3.pdf&quot;</span>, file_b, <span class="string">&quot;application/pdf&quot;</span>),</span><br><span class="line">        &#125;,</span><br><span class="line">        data=&#123;</span><br><span class="line">            <span class="string">&quot;ignore_categories&quot;</span>: <span class="string">&quot;[]&quot;</span>,</span><br><span class="line">            <span class="string">&quot;space_recognition&quot;</span>: <span class="string">&quot;false&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        timeout=<span class="number">120</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">response.raise_for_status()</span><br><span class="line">task_id = response.json()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    response = requests.get(</span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;base_url&#125;</span>/api/v1/compare/tasks/<span class="subst">&#123;task_id&#125;</span>/result&quot;</span>,</span><br><span class="line">        timeout=<span class="number">30</span>,</span><br><span class="line">    )</span><br><span class="line">    payload = response.json()</span><br><span class="line">    status = payload.get(<span class="string">&quot;data&quot;</span>, &#123;&#125;).get(<span class="string">&quot;status&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> status == <span class="string">&quot;completed&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(payload[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;results&quot;</span>])</span><br><span class="line">        <span class="built_in">print</span>(payload[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;results&quot;</span>][<span class="string">&quot;compare_view_url&quot;</span>])</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> status == <span class="string">&quot;failed&quot;</span>:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(payload[<span class="string">&quot;data&quot;</span>].get(<span class="string">&quot;error&quot;</span>) <span class="keyword">or</span> payload[<span class="string">&quot;msg&quot;</span>])</span><br><span class="line"></span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-启动方式"><a href="#11-启动方式" class="headerlink" title="11. 启动方式"></a>11. 启动方式</h2><p>开发环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python scripts/run_api.py --host 127.0.0.1 --port 8000</span><br></pre></td></tr></table></figure>
+
+<p>PyInstaller 发布环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run_api --host 0.0.0.0 --port 8000</span><br></pre></td></tr></table></figure>
+
+<p>若只允许本机访问，请将 <code>0.0.0.0</code> 改为 <code>127.0.0.1</code>。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/about" rel="external nofollow noreferrer">ZhangSki</a>
+                </span>
+            </div>
+            <div class="reprint__download">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-download">
+                        下载:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/3301_2026/md/Pixel_Diff%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.md" download>点击下载本文 .md 源文件</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/3301_2026/tags/%E6%8E%A5%E5%8F%A3/">
+                                    <span class="chip bg-color">接口</span>
+                                </a>
+                            
+                                <a href="/3301_2026/tags/PixelDiff/">
+                                    <span class="chip bg-color">PixelDiff</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/3301_2026/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/3301_2026/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/3301_2026/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/3301_2026/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/RedisandTomcat-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/8.jpg" class="responsive-img" alt="Redis &amp; Tomcat 快速入门学习文档">
+                        
+                        <span class="card-title">Redis &amp; Tomcat 快速入门学习文档</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category">
+                                    后端开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
+                    </a>
+                    
+                    <a href="/3301_2026/tags/Tomcat/">
+                        <span class="chip bg-color">Tomcat</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/3301_2026/2026/08/19/OCR%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
+                    <div class="card-image">
+                        
+                        <img src="/3301_2026/medias/featureimages/6.jpg" class="responsive-img" alt="OCR 光学字符识别 — 深度技术指南">
+                        
+                        <span class="card-title">OCR 光学字符识别 — 深度技术指南</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-08-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/3301_2026/categories/AI/" class="post-category">
+                                    AI
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/3301_2026/tags/OCR/">
+                        <span class="chip bg-color">OCR</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/3301_2026/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/3301_2026/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2026</span>
+            
+            <a href="/3301_2026/about" target="_blank">ZhangSki</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">38.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2022";
+                        var startMonth = "3";
+                        var startDate = "16";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/abc3301" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2797459022@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2797459022" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2797459022" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/3301_2026/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/3301_2026/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/3301_2026/libs/materialize/materialize.min.js"></script>
+    <script src="/3301_2026/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/3301_2026/libs/aos/aos.js"></script>
+    <script src="/3301_2026/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/3301_2026/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/3301_2026/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/3301_2026/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/3301_2026/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/3301_2026/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/3301_2026/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/3301_2026/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/3301_2026/live2dw/assets/haru02.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>

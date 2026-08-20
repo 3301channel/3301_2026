@@ -1,0 +1,223 @@
+/* =========================================================
+   复古霓虹像素风 (Retro Neon Pixel) 覆盖样式
+   通过 source/css/my.css 中的 @import 开关启用/停用
+   配色：霓虹青 #00fff9 · 霓虹粉 #ff2d95 · 霓虹绿 #39ff14 · 霓虹紫 #b026ff
+   ========================================================= */
+
+/* ---------- 1. 像素字体 ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@font-face {
+    font-family: 'Zpix';
+    src: url('https://cdn.jsdelivr.net/gh/SolidZORO/zpix-pixel-font@master/dist/zpix.ttf') format('truetype');
+    font-display: swap;
+}
+
+body,
+html {
+    font-family: 'Zpix', 'Press Start 2P', monospace !important;
+    letter-spacing: 0.5px;
+}
+
+h1, h2, h3, h4, h5, h6,
+.card .card-image .card-title,
+.chip,
+.btn,
+.post-title,
+.title,
+.mobile-head .logo-name,
+.mobile-head .logo-desc {
+    font-family: 'Zpix', 'Press Start 2P', monospace !important;
+}
+
+p, li, .article-content, .summary, .post-info, .publish-info {
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* ---------- 2. 深色底 + 赛博网格 ---------- */
+body {
+    background-color: #0a0a14 !important;
+    background-image:
+        linear-gradient(rgba(0, 255, 249, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 249, 0.04) 1px, transparent 1px) !important;
+    background-size: 40px 40px !important;
+    color: #c8d0e8 !important;
+}
+
+/* CRT 扫描线（淡淡一层，增强复古感） */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.12) 0px,
+        rgba(0, 0, 0, 0.12) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* 导航栏样式交给 Matery 原版（不覆盖），由 _config.matery.yml 的 .bg-color 决定。
+   原因：像素字体在导航栏太宽会导致 7 个菜单项换行；原版普通字体 + 整齐布局更合适。 */
+
+/* ---------- 4. 标题霓虹光晕 ---------- */
+h1, h2, h3, h4, h5, h6,
+.bg-cover .title,
+.post-title,
+.title {
+    color: #ffffff !important;
+    text-shadow:
+        0 0 6px #00fff9,
+        0 0 14px #00fff9,
+        0 0 28px #00fff9,
+        0 0 50px #00fff9 !important;
+}
+
+/* 副标题 / 打字效果：霓虹绿 */
+#subtitle {
+    color: #39ff14 !important;
+    text-shadow:
+        0 0 6px #39ff14,
+        0 0 14px #39ff14,
+        0 0 26px #39ff14 !important;
+}
+
+/* ---------- 5. 卡片：深色 + 霓虹边框 ---------- */
+.card {
+    background: rgba(20, 22, 42, 0.85) !important;
+    border: 1px solid rgba(0, 255, 249, 0.45) !important;
+    border-radius: 0 !important;
+    box-shadow:
+        0 0 10px rgba(0, 255, 249, 0.35),
+        0 0 24px rgba(0, 255, 249, 0.15),
+        inset 0 0 12px rgba(0, 255, 249, 0.06) !important;
+}
+
+.card:hover {
+    border-color: #ff2d95 !important;
+    box-shadow:
+        0 0 14px rgba(255, 45, 149, 0.5),
+        0 0 32px rgba(255, 45, 149, 0.25),
+        inset 0 0 14px rgba(255, 45, 149, 0.1) !important;
+    transform: translate(-2px, -2px);
+}
+
+.card .card-image .card-title {
+    color: #fff !important;
+    text-shadow:
+        0 0 6px #00fff9,
+        0 0 16px #00fff9 !important;
+}
+
+/* 卡片正文文字 */
+.card-content,
+.article-content,
+.card-content p,
+.summary {
+    color: #c8d0e8 !important;
+}
+
+/* ---------- 6. 正文与链接 ---------- */
+.container,
+.post-info,
+.publish-info,
+.publish-date,
+.publish-author {
+    color: #a8b4d8 !important;
+}
+
+a {
+    color: #00e5ff !important;
+}
+
+a:hover {
+    color: #ff2d95 !important;
+    text-shadow: 0 0 10px #ff2d95 !important;
+}
+
+/* ---------- 7. 标签 / 按钮 ---------- */
+.chip {
+    background: transparent !important;
+    border: 1px solid #b026ff !important;
+    border-radius: 0 !important;
+    color: #e39bff !important;
+    box-shadow: 0 0 10px rgba(176, 38, 255, 0.45) !important;
+}
+
+.btn,
+.btn-floating {
+    background: rgba(10, 10, 20, 0.9) !important;
+    border: 1px solid #00fff9 !important;
+    border-radius: 0 !important;
+    color: #00fff9 !important;
+    box-shadow: 0 0 12px rgba(0, 255, 249, 0.5) !important;
+}
+
+.btn:hover {
+    border-color: #39ff14 !important;
+    color: #39ff14 !important;
+    box-shadow: 0 0 16px rgba(57, 255, 20, 0.6) !important;
+}
+
+/* ---------- 8. 代码块 ---------- */
+pre, code {
+    border-radius: 0 !important;
+    font-family: 'Press Start 2P', 'Zpix', monospace !important;
+    font-size: 11px !important;
+    background: #12101e !important;
+    border: 1px solid rgba(0, 255, 249, 0.35) !important;
+}
+
+/* ---------- 9. 图片像素化 ---------- */
+img,
+.card-image img,
+.bg-cover,
+.cover,
+#banner img {
+    image-rendering: pixelated !important;
+}
+
+.profile .avatar,
+#profile-avatar img {
+    image-rendering: pixelated !important;
+    border-radius: 0 !important;
+    border: 2px solid #00fff9 !important;
+    box-shadow: 0 0 14px #00fff9 !important;
+}
+
+/* ---------- 10. 页脚 ---------- */
+footer,
+footer .copy-right {
+    background-color: #0a0a14 !important;
+    color: #7a8bb0 !important;
+    border-top: 1px solid rgba(0, 255, 249, 0.3) !important;
+}
+
+/* ---------- 11. 音乐播放器霓虹化 ---------- */
+.aplayer {
+    background: #0a0a14 !important;
+    color: #00fff9 !important;
+    border-top: 1px solid #00fff9 !important;
+    box-shadow: 0 -2px 16px rgba(0, 255, 249, 0.3) !important;
+}
+
+.aplayer .aplayer-list {
+    background: #12101e !important;
+}
+
+.aplayer .aplayer-list ol li {
+    color: #a8b4d8 !important;
+}
+
+.aplayer .aplayer-list ol li:hover,
+.aplayer .aplayer-list ol li.aplayer-list-light {
+    background: rgba(0, 255, 249, 0.12) !important;
+    color: #00fff9 !important;
+}
